@@ -1,5 +1,20 @@
 import tkinter as tk
 from PIL import Image, ImageTk
+import csv
+
+cats_dict = dict()
+with open(file='src\\cats.csv', mode='r') as f:
+    rows = csv.reader(f)
+    for row in rows:
+        cnum = int(row[0])
+        # name, gen, color, yrs, url, photo site
+        datalst = [row[1], row[2], row[3], row[4], row[12], row[13]]
+        cats_dict[cnum] = datalst
+        print(cats_dict[cnum])
+
+first = 1 # list[0]
+second = 2 # list[1]
+third = 3 # list[2]
 
 class Showing3Cats(tk.Frame):
     def __init__(self):
@@ -28,11 +43,11 @@ class Showing3Cats(tk.Frame):
         h = 300
         wt = 200
         ht = 200
-        img1 = Image.open('src\\cats\\Dodo.jpg')
+        img1 = Image.open(cats_dict[first][5])
         img1_resized = self.resize(wt, ht, img1)
-        img2 = Image.open('src\\cats\\Lulu.jpg')
+        img2 = Image.open(cats_dict[second][5])
         img2_resized = self.resize(wt, ht, img2)
-        img3 = Image.open('src\\cats\\Peter.jpg')
+        img3 = Image.open(cats_dict[third][5])
         img3_resized = self.resize(wt, ht, img3)
 
         self.photo1 = ImageTk.PhotoImage(img1_resized)
@@ -49,9 +64,9 @@ class Showing3Cats(tk.Frame):
 
     def infos(self):
         w = 37
-        name1, gender1, yrs1, color1, url1 = 'Dodo', '公', '3', '白底橘貓', '123'
-        name2, gender2, yrs2, color2, url2 = 'Lulu', '母', '3', '三花', '123'
-        name3, gender3, yrs3, color3, url3 = 'Peter', '公', '2', '乳牛', '123'
+        name1, gender1, color1, yrs1, url1 = cats_dict[first][0], cats_dict[first][1], cats_dict[first][2], cats_dict[first][3], cats_dict[first][4]
+        name2, gender2, color2, yrs2, url2 = cats_dict[second][0], cats_dict[second][1], cats_dict[second][2], cats_dict[second][3], cats_dict[second][4]
+        name3, gender3, color3, yrs3, url3 = cats_dict[third][0], cats_dict[third][1], cats_dict[third][2], cats_dict[third][3], cats_dict[third][4]
 
         self.info1 = tk.Label(self, height = 10, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}\n詳細資料:{url}'.format(name=name1, gender=gender1, yrs=yrs1, color=color1, url=url1), anchor="w", justify = 'left')
         self.info2 = tk.Label(self, height = 10, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}\n詳細資料:{url}'.format(name=name2, gender=gender2, yrs=yrs2, color=color2, url=url2), anchor="w", justify = 'left')
