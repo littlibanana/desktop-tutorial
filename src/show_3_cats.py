@@ -1,6 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import csv
+import webbrowser
 
 cats_dict = dict()
 with open(file='src\\cats.csv', mode='r') as f:
@@ -24,6 +25,7 @@ class Showing3Cats(tk.Frame):
         self.images()
         self.infos()
         self.main_page_btn()
+        self.url()
 
     def title_words(self):
         self.title = tk.Label(self, height = 3, text='最適合你的貓咪', font=('Times', 20, 'bold'), bg='green')
@@ -64,21 +66,40 @@ class Showing3Cats(tk.Frame):
 
     def infos(self):
         w = 37
-        name1, gender1, color1, yrs1, url1 = cats_dict[first][0], cats_dict[first][1], cats_dict[first][2], cats_dict[first][3], cats_dict[first][4]
-        name2, gender2, color2, yrs2, url2 = cats_dict[second][0], cats_dict[second][1], cats_dict[second][2], cats_dict[second][3], cats_dict[second][4]
-        name3, gender3, color3, yrs3, url3 = cats_dict[third][0], cats_dict[third][1], cats_dict[third][2], cats_dict[third][3], cats_dict[third][4]
+        name1, gender1, color1, yrs1 = cats_dict[first][0], cats_dict[first][1], cats_dict[first][2], cats_dict[first][3]
+        name2, gender2, color2, yrs2 = cats_dict[second][0], cats_dict[second][1], cats_dict[second][2], cats_dict[second][3]
+        name3, gender3, color3, yrs3 = cats_dict[third][0], cats_dict[third][1], cats_dict[third][2], cats_dict[third][3]
 
-        self.info1 = tk.Label(self, height = 10, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}\n詳細資料:{url}'.format(name=name1, gender=gender1, yrs=yrs1, color=color1, url=url1), anchor="w", justify = 'left')
-        self.info2 = tk.Label(self, height = 10, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}\n詳細資料:{url}'.format(name=name2, gender=gender2, yrs=yrs2, color=color2, url=url2), anchor="w", justify = 'left')
-        self.info3 = tk.Label(self, height = 10, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}\n詳細資料:{url}'.format(name=name3, gender=gender3, yrs=yrs3, color=color3, url=url3), anchor="w", justify = 'left')
+        self.info1 = tk.Label(self, height = 5, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}'.format(name=name1, gender=gender1, yrs=yrs1, color=color1), anchor="w", justify = 'left')
+        self.info2 = tk.Label(self, height = 5, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}'.format(name=name2, gender=gender2, yrs=yrs2, color=color2), anchor="w", justify = 'left')
+        self.info3 = tk.Label(self, height = 5, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}'.format(name=name3, gender=gender3, yrs=yrs3, color=color3), anchor="w", justify = 'left')
 
         self.info1.grid(row = 2, column = 0, sticky = tk.W)
         self.info2.grid(row = 2, column = 1, sticky = tk.W)
         self.info3.grid(row = 2, column = 2, sticky = tk.W)
+    
+
+
+    def url(self):
+        w=37
+        url1 = cats_dict[first][4]
+        url2 = cats_dict[second][4]
+        url3 = cats_dict[third][4]
+
+        self.web1 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = self.browse(url1))
+        self.web2 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = self.browse(url2))
+        self.web3 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = self.browse(url3))
+        self.web1.grid(row = 3, column = 0, sticky = tk.W)
+        self.web2.grid(row = 3, column = 1, sticky = tk.W)
+        self.web3.grid(row = 3, column = 2, sticky = tk.W)
+
+    def browse(self, link):
+        webbrowser.open_new(link)
+
 
     def main_page_btn(self):
         self.main_page = tk.Button(self, height = 2, text='Main Page')
-        self.main_page.grid(row=3, column=0, columnspan=3, sticky = tk.NE + tk.SW)
+        self.main_page.grid(row=4, column=0, columnspan=3, sticky = tk.NE + tk.SW)
 
 window = Showing3Cats()
 window.master.title('cats')
