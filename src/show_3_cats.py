@@ -86,15 +86,13 @@ class Showing3Cats(tk.Frame):
         url2 = cats_dict[second][4]
         url3 = cats_dict[third][4]
 
-        self.web1 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = self.browse(url1))
-        self.web2 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = self.browse(url2))
-        self.web3 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = self.browse(url3))
-        self.web1.grid(row = 3, column = 0, sticky = tk.W)
-        self.web2.grid(row = 3, column = 1, sticky = tk.W)
-        self.web3.grid(row = 3, column = 2, sticky = tk.W)
-
-    def browse(self, link):
-        webbrowser.open_new(link)
+        self.web1 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = lambda: webbrowser.open(url1))
+        self.web2 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = lambda: webbrowser.open(url2))
+        self.web3 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = lambda: webbrowser.open(url3))
+        self.web1.grid(row = 3, column = 0, sticky = tk.NE + tk.SW)
+        self.web2.grid(row = 3, column = 1, sticky 
+        = tk.NE + tk.SW)
+        self.web3.grid(row = 3, column = 2, sticky = tk.NE + tk.SW)
 
 
     def main_page_btn(self):
