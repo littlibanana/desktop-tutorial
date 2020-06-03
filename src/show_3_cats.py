@@ -13,6 +13,7 @@ with open(file='src\\cats.csv', mode='r') as f:
         cats_dict[cnum] = datalst
         print(cats_dict[cnum])
 
+# 選到的三隻貓
 first = 1 # list[0]
 second = 2 # list[1]
 third = 3 # list[2]
@@ -27,10 +28,12 @@ class Showing3Cats(tk.Frame):
         self.main_page_btn()
         self.url()
 
+    # 標題文字
     def title_words(self):
         self.title = tk.Label(self, height = 3, text='最適合你的貓咪', font=('Times', 20, 'bold'), bg='green')
         self.title.grid(row = 0, column = 0, columnspan=3, sticky = tk.NE + tk.SW)
 
+    # Resize圖片大小(在label框框中)
     def resize(self, w_box, h_box, pil_image):  
         w, h = pil_image.size
         f1 = 1.0*w_box/w  
@@ -40,6 +43,7 @@ class Showing3Cats(tk.Frame):
         height = int(h*factor)  
         return pil_image.resize((width, height), Image.ANTIALIAS) 
 
+    # 三張照片
     def images(self):
         w = 100
         h = 300
@@ -64,6 +68,7 @@ class Showing3Cats(tk.Frame):
         self.image2.grid(row = 1, column = 1, sticky = tk.NE + tk.SW)
         self.image3.grid(row = 1, column = 2, sticky = tk.NE + tk.SW)
 
+    # 資訊欄(名 性別 花色 年齡)
     def infos(self):
         w = 37
         name1, gender1, color1, yrs1 = cats_dict[first][0], cats_dict[first][1], cats_dict[first][2], cats_dict[first][3]
@@ -78,8 +83,7 @@ class Showing3Cats(tk.Frame):
         self.info2.grid(row = 2, column = 1, sticky = tk.W)
         self.info3.grid(row = 2, column = 2, sticky = tk.W)
     
-
-
+    # 網頁連結
     def url(self):
         w=37
         url1 = cats_dict[first][4]
@@ -94,11 +98,12 @@ class Showing3Cats(tk.Frame):
         = tk.NE + tk.SW)
         self.web3.grid(row = 3, column = 2, sticky = tk.NE + tk.SW)
 
-
+    # 回到主頁
     def main_page_btn(self):
         self.main_page = tk.Button(self, height = 2, text='Main Page')
         self.main_page.grid(row=4, column=0, columnspan=3, sticky = tk.NE + tk.SW)
 
+# 顯示
 window = Showing3Cats()
 window.master.title('cats')
 window.master.geometry('800x600')
