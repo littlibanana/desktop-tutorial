@@ -11,7 +11,6 @@ with open(file='src\\cats.csv', mode='r') as f:
         # name, gen, color, yrs, url, photo site
         datalst = [row[1], row[2], row[3], row[4], row[12], row[13]]
         cats_dict[cnum] = datalst
-        print(cats_dict[cnum])
 
 # 選到的三隻貓
 first = 1 # list[0]
