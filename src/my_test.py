@@ -26,6 +26,7 @@ class Showing3Cats(tk.Frame):
         self.info2.grid(row = 2, column = 1, sticky = tk.W)
         self.info3.grid(row = 2, column = 2, sticky = tk.W)
 
+
 win = Showing3Cats()
 win.master.title('cats')
 win.master.geometry('800x600')
