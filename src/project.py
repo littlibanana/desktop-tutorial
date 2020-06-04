@@ -43,6 +43,7 @@ class initface():
 
 '''
 class part1_questionface():
+		self.background_img = ImageTk.PhotoImage(file = 'src\\part1_question_background.png')
 
 
 class part2_questionface():
@@ -55,7 +56,7 @@ class part2_questionface():
 		self..destroy()
 		part2_endingface(self.root, self.grade)
 '''
-# 貓的dict 含有超連結跟圖片位址
+# 貓的dict 含有超連結跟圖片位址跟貓的名字
 cats_dict = dict()
 with open(file='src\\cat_info.csv', mode='r') as f:
     rows = csv.reader(f)
