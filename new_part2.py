@@ -1,7 +1,11 @@
 import tkinter as tk
 import random
 import csv
-
+import pygame
+file = 'cat.wav'
+pygame.mixer.init()
+track = pygame.mixer.music.load(file)
+pygame.mixer.music.play()
 
 def read_PART2():
 
