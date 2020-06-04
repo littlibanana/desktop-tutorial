@@ -169,8 +169,8 @@ with open(file='src\\cat_info.csv', mode='r') as f:
     rows = csv.reader(f)
     for row in rows:
         cnum = int(row[0])
-        # name, gen, color, yrs, url, photo site
-        datalst = [row[1], row[2], row[3], row[4], row[5], row[6]]
+        # name, url, photo site
+        datalst = [row[1], row[5], row[6]]
         cats_dict[cnum] = datalst
 
 # 選到的三隻貓
@@ -184,7 +184,6 @@ class Showing3Cats(tk.Frame):
         self.grid()
         self.title_words()
         self.images()
-        self.infos()
         self.main_page_btn()
         self.url()
 
@@ -209,11 +208,11 @@ class Showing3Cats(tk.Frame):
         h = 300
         wt = 200
         ht = 200
-        img1 = Image.open(cats_dict[first][5])
+        img1 = Image.open(cats_dict[first][2])
         img1_resized = self.resize(wt, ht, img1)
-        img2 = Image.open(cats_dict[second][5])
+        img2 = Image.open(cats_dict[second][2])
         img2_resized = self.resize(wt, ht, img2)
-        img3 = Image.open(cats_dict[third][5])
+        img3 = Image.open(cats_dict[third][2])
         img3_resized = self.resize(wt, ht, img3)
 
         self.photo1 = ImageTk.PhotoImage(img1_resized)
@@ -228,35 +227,20 @@ class Showing3Cats(tk.Frame):
         self.image2.grid(row = 1, column = 1, sticky = tk.NE + tk.SW)
         self.image3.grid(row = 1, column = 2, sticky = tk.NE + tk.SW)
 
-    # 資訊欄(名 性別 花色 年齡)
-    def infos(self):
-        w = 37
-        name1, gender1, color1, yrs1 = cats_dict[first][0], cats_dict[first][1], cats_dict[first][2], cats_dict[first][3]
-        name2, gender2, color2, yrs2 = cats_dict[second][0], cats_dict[second][1], cats_dict[second][2], cats_dict[second][3]
-        name3, gender3, color3, yrs3 = cats_dict[third][0], cats_dict[third][1], cats_dict[third][2], cats_dict[third][3]
-
-        self.info1 = tk.Label(self, height = 5, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}'.format(name=name1, gender=gender1, yrs=yrs1, color=color1), anchor="w", justify = 'left')
-        self.info2 = tk.Label(self, height = 5, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}'.format(name=name2, gender=gender2, yrs=yrs2, color=color2), anchor="w", justify = 'left')
-        self.info3 = tk.Label(self, height = 5, width = w, text = '姓名:{name}\n性別:{gender}\n年紀:{yrs}\n花色:{color}'.format(name=name3, gender=gender3, yrs=yrs3, color=color3), anchor="w", justify = 'left')
-
-        self.info1.grid(row = 2, column = 0, sticky = tk.W)
-        self.info2.grid(row = 2, column = 1, sticky = tk.W)
-        self.info3.grid(row = 2, column = 2, sticky = tk.W)
-    
     # 網頁連結
     def url(self):
         w=37
-        url1 = cats_dict[first][4]
-        url2 = cats_dict[second][4]
-        url3 = cats_dict[third][4]
+        url1 = cats_dict[first][1]
+        url2 = cats_dict[second][1]
+        url3 = cats_dict[third][1]
 
         self.web1 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = lambda: webbrowser.open(url1))
         self.web2 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = lambda: webbrowser.open(url2))
         self.web3 = tk.Button(self, height = 1, width = w, text = '點我查看詳細資料', command = lambda: webbrowser.open(url3))
-        self.web1.grid(row = 3, column = 0, sticky = tk.NE + tk.SW)
-        self.web2.grid(row = 3, column = 1, sticky 
+        self.web1.grid(row = 2, column = 0, sticky = tk.NE + tk.SW)
+        self.web2.grid(row = 2, column = 1, sticky 
         = tk.NE + tk.SW)
-        self.web3.grid(row = 3, column = 2, sticky = tk.NE + tk.SW)
+        self.web3.grid(row = 2, column = 2, sticky = tk.NE + tk.SW)
 
     # 回到主頁
     def main_page_btn(self):
