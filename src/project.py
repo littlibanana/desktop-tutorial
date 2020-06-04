@@ -8,7 +8,8 @@ class Helper():
 		self.root = root
 		self.root.config()  # ?
 		self.root.title('Cat Adopting Helper')
-		self.root.iconphoto(True, tk.PhotoImage(file='C:\\Users\\JamieLin\\Desktop\\圖片11.png'))  # 設定視窗標題前的小圖示(jpg檔不適用)(布林值為True代表每個視窗都用一樣圖示)
+		self.root.icon_img = ImageTk.PhotoImage(file='小圖示.png')
+		self.root.iconphoto(True, self.root.icon_img)  # 設定視窗標題前的小圖示(jpg檔不適用)(布林值為True代表每個視窗都用一樣圖示)
 		self.root.geometry('1000x563+145+30')  # 設定視窗啟動時的大小與位置(寬x長+左位移+右位移)(此長寬為ppt等比例縮放尺寸)
 		#self.root.resizable(False, False)
 		self.root.ft = tkFont.Font(family='内海フォント-Bold', size=15, weight=tkFont.BOLD)  #　設定文字字體、大小、粗細
@@ -20,8 +21,8 @@ class initface():
 	def __init__(self, root):
 		self.root = root
 		self.initface = tk.Canvas(self.root,bd=0, width=1000,height=563, highlightthickness=0) # 設定畫布大小
-		self.background_img = ImageTk.PhotoImage(file = '圖片3.png')  # 若要讓此圖片尺寸符合canvas且保持ppt原畫面比例，此背景圖檔需先調整。(做法:用ppt做好後另存新檔成圖片、再用"小畫家3D"點選裁剪、右上角設定、鎖定外觀比例&與畫布一起調整圖片大小、寬度設定與width一樣，再儲存即完成)
-		self.initface.create_image(400, 280, image=self.background_img)  # 設定圖片在畫布上的位置(原點(錨定點)預設為畫布左上角，前兩參數為圖片左上角那個點的座標)
+		self.background_img = ImageTk.PhotoImage(file = 'background_initface.png')  # 若要讓此圖片尺寸符合canvas且保持ppt原畫面比例，此背景圖檔需先調整。(做法:用ppt做好後另存新檔成圖片、再用"小畫家3D"點選裁剪、右上角設定、鎖定外觀比例&與畫布一起調整圖片大小、寬度設定與width一樣，再儲存即完成)
+		self.initface.create_image(400, 280, image=self.background_img)  # 設定圖片在畫布上的位置(原點(錨定點)預設為畫布左上角，前兩參數為圖片正中間那個點的座標)
 		self.initface.grid()#sticky = tk.NE
 		self.btn1 = tk.Button(self.initface,text='小幫手Part 1',font = self.root.ft,bg="white",fg = 'pink',anchor = tk.CENTER,command=self.change_part1_questionface)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
 		self.btn1.grid()
@@ -54,16 +55,16 @@ class part2_questionface():
 		part2_endingface(self.root, self.grade)
 '''
 class part1_endingface():
-	def __init__(self, root, cat1, cat2, cat3):  # cat1...為貓編號(從1開始)
+	def __init__(self, root, cat1, cat2, cat3):  # cat1為貓編號(從1開始)
 		self.root = root
 		self.cat1 = cat1 - 1
 		self.cat2 = cat2 - 1
 		self.cat3 = cat3 - 1
 		self.part1_endingface = tk.Canvas(self.root, bd=0, width=1000, height=563, highlightthickness=0)
-		self.background_img = ImageTk.PhotoImage(file = 'background_nothing.png')
-		self.part1_endingface.create_image(400, 280, image=self.background_img) #?
+		self.background_img = ImageTk.PhotoImage(file = 'part1_result_background.png')
+		self.part1_endingface.create_image(500, 280, image=self.background_img) #?
 		self.part1_endingface.grid()
-		self.imglist = ['奶酥.png','奶酥.png','奶酥.png']
+		self.imglist = ['奶酥.jpg','Lulu.jpg','Peter.jpg','大佳.jpg','Dodo.jpg','小清新.jpg','紅麴.jpg','福吉.jpg','環環.jpg','瞳瞳.jpg','薔薔.jpg','天和.jpg','華江.jpg','凱特.jpg','香蕉油.jpg','米香.jpg','艾草.jpg','金水.jpg','迪迪.jpg']
 		self.cat1_img = ImageTk.PhotoImage(file = self.imglist[self.cat1])
 		self.cat2_img = ImageTk.PhotoImage(file = self.imglist[self.cat2])
 		self.cat3_img = ImageTk.PhotoImage(file = self.imglist[self.cat3])
@@ -73,12 +74,21 @@ class part1_endingface():
 		self.lb2.grid()
 		self.lb3 = tk.Label(self.part1_endingface, image = self.cat3_img)
 		self.lb3.grid()
-		self.btn = tk.Button(self.part1_endingface,text='回到主頁', font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command=self.change_initface)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
-		self.btn.grid()
-		self.part1_endingface.create_window(250, 200, width=234, height=514,window = self.lb1)
-		self.part1_endingface.create_window(400, 470, width=234, height=514,window = self.lb2)
-		self.part1_endingface.create_window(800, 470, width=234, height=514,window = self.lb3)
-		self.part1_endingface.create_window(400, 500, anchor=tk.CENTER, width=200, height=40,window = self.btn)
+		self.btn_cat1 = tk.Button(self.part1_endingface,text='點此看連結', font = self.root.ft, bg="white", fg = 'orange', anchor = tk.CENTER)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+		self.btn_cat1.grid()
+		self.btn_cat2 = tk.Button(self.part1_endingface,text='點此看連結', font = self.root.ft, bg="white", fg = 'orange', anchor = tk.CENTER)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+		self.btn_cat2.grid()
+		self.btn_cat3 = tk.Button(self.part1_endingface,text='點此看連結', font = self.root.ft, bg="white", fg = 'orange', anchor = tk.CENTER)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+		self.btn_cat3.grid()
+		self.btn_initface = tk.Button(self.part1_endingface,text='回到主頁', font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command=self.change_initface)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+		self.btn_initface.grid()
+		self.part1_endingface.create_window(220, 265, width=160, height=335,window = self.lb1)
+		self.part1_endingface.create_window(500, 265, width=160, height=335,window = self.lb2)
+		self.part1_endingface.create_window(780, 265, width=160, height=335,window = self.lb3)
+		self.part1_endingface.create_window(500, 510, anchor=tk.CENTER, width=200, height=40,window = self.btn_initface)
+		self.part1_endingface.create_window(220, 460, anchor=tk.CENTER, width=110, height=40,window = self.btn_cat1)
+		self.part1_endingface.create_window(500, 460, anchor=tk.CENTER, width=110, height=40,window = self.btn_cat2)
+		self.part1_endingface.create_window(780, 460, anchor=tk.CENTER, width=110, height=40,window = self.btn_cat3)
 
 	def change_initface(self):
 		self.part2_endingface.destroy()
