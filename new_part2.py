@@ -20,8 +20,14 @@ def read_PART2():
 
             question_list.append(question_dict)
 
-    random_num = random.choices(range(0, 29), k=10)
+    # random_num = random.choices(range(0, 29), k=10)
+    random_num = []
+    while len(random_num) <= 10:
+        tmp_num = random.choice(range(0, 29))
+        if tmp_num not in random_num:
+            random_num.append(tmp_num)
     print(random_num)
+
     final_question = []
     for num in random_num:
         final_question.append(question_list[num])
@@ -57,9 +63,9 @@ class Part2(tk.Frame):
         self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
 
         self.ans_btn1 = tk.Button(
-            text=option1s[number], height=1, width=20, font='微軟正黑體 20', command=lambda: self.btn1(number))
+            text=option1s[number], height=1, font='微軟正黑體 20', command=lambda: self.btn1(number))
         self.ans_btn2 = tk.Button(
-            text=option2s[number], height=1, width=20, font='微軟正黑體 20', command=lambda: self.btn2(number))
+            text=option2s[number], height=1, font='微軟正黑體 20', command=lambda: self.btn2(number))
         self.ans_btn1.place(anchor='center', relx=0.3, rely=0.8)
         self.ans_btn2.place(anchor='center', relx=0.7, rely=0.8)
 
