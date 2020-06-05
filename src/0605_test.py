@@ -215,7 +215,7 @@ class part1_questionface():
 		self.max_id_all = max_id_all
 		print(max_id_all)#error
 		self.part1_questionface.destroy()
-		part1_endingface(self.root, self.max_id_all)
+		part1_endingface(self.root, self.max_id_all[0], self.max_id_all[1], self.max_id_all[2])
 
 
 
