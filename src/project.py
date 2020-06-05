@@ -1,5 +1,5 @@
 import tkinter as tk
-from PIL import Image, ImageTk
+from PIL import ImageTk
 import tkinter.font as tkFont
 import webbrowser
 import csv
@@ -10,20 +10,20 @@ class Helper():
 		self.root = root
 		self.root.config()  # ?
 		self.root.title('Cat Adopting Helper')
-		self.root.icon_img = ImageTk.PhotoImage(file='src\\小圖示.png')
+		self.root.icon_img = ImageTk.PhotoImage(file='小圖示.png')
 		self.root.iconphoto(True, self.root.icon_img)  # 設定視窗標題前的小圖示(jpg檔不適用)(布林值為True代表每個視窗都用一樣圖示)
 		self.root.geometry('1000x563+145+30')  # 設定視窗啟動時的大小與位置(寬x長+左位移+右位移)(此長寬為ppt等比例縮放尺寸)
 		#self.root.resizable(False, False)
 		self.root.ft = tkFont.Font(family='内海フォント-Bold', size=15, weight=tkFont.BOLD)  #　設定文字字體、大小、粗細
 		#initface(self.root)
-		part1_endingface(self.root,1,2,10)
-
+		#part1_endingface(self.root,1,2,10)
+		part1_questionface(self.root)
 
 class initface():
 	def __init__(self, root):
 		self.root = root
 		self.initface = tk.Canvas(self.root, bd=0, width=1000, height=563, highlightthickness=0) # 設定畫布大小
-		self.background_img = ImageTk.PhotoImage(file = 'src\\background_initface.png')  # 若要讓此圖片尺寸符合canvas且保持ppt原畫面比例，此背景圖檔需先調整。(做法:用ppt做好後另存新檔成圖片、再用"小畫家3D"點選裁剪、右上角設定、鎖定外觀比例&與畫布一起調整圖片大小、寬度設定與width一樣，再儲存即完成)
+		self.background_img = ImageTk.PhotoImage(file = 'background_initface.png')  # 若要讓此圖片尺寸符合canvas且保持ppt原畫面比例，此背景圖檔需先調整。(做法:用ppt做好後另存新檔成圖片、再用"小畫家3D"點選裁剪、右上角設定、鎖定外觀比例&與畫布一起調整圖片大小、寬度設定與width一樣，再儲存即完成)
 		self.initface.create_image(400, 280, image=self.background_img)  # 設定圖片在畫布上的位置(原點(錨定點)預設為畫布左上角，前兩參數為圖片正中間那個點的座標)
 		self.initface.grid()#sticky = tk.NE
 		self.btn1 = tk.Button(self.initface, text='小幫手Part 1', font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER,command=self.change_part1_questionface)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
@@ -42,7 +42,7 @@ class initface():
 		part2_questionface(self.root)
 
 
-file1 = "src\\question_part1.csv"
+file1 = "question_part1.csv"
 filesopen = open(file1, 'r', newline='')
 rows = csv.reader(filesopen)
 question_list = []
@@ -50,20 +50,35 @@ for row in rows:
 	question_list.append(row)
 
 # 讀取貓咪資料存進dict
-file2 = "src\\貓咪.csv"
+file2 = "貓咪.csv"
 filesopen = open(file2, 'r', newline='')
 rows = csv.reader(filesopen)
 cat_dict = dict()
 for row in rows:
 	cat_dict[int(row[0])] = row[1:]
-'''
+
+
 class part1_questionface():
 	# 讀取問題存進dict
-	def __init__(self):
-		self.click1()
-		self.click2()
-		self.get_3_cat()
-		self.background_img = ImageTk.PhotoImage(file = 'src\\part1_question_background.png')
+	def __init__(self, root):
+		self.root = root
+		self.part1_questionface = tk.Canvas(self.root,bd=0, width=1000,height=563, highlightthickness=0)
+		self.background_img = ImageTk.PhotoImage(file = 'background_nothing.png')
+		self.part1_questionface.create_image(400, 280, image=self.background_img)#?
+		self.part1_questionface.grid()
+		#self.click1()
+		#self.click2()
+		#self.get_3_cat()
+		self.questionlbl = tk.Label(self.part1_questionface, text = question_list[0][0], bg = 'gray', fg = 'white', font = self.root.ft)
+		self.questionlbl.grid()#place(anchor = 'center', relx = 0.5, rely = 0.45)
+		self.ans_btn1 = tk.Button(self.part1_questionface, text = question_list[0][1], height = 1, width = 5, font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command = lambda: click1(question_list, cat_dict, cat_score, color_list, q_id))#?
+		self.ans_btn1.grid()#.place(anchor = 'center', relx = 0.3, rely = 0.8)
+		self.ans_btn2 = tk.Button(self.part1_questionface, text = question_list[0][2], height = 1, width = 5, font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command = lambda: click2(question_list, cat_dict, cat_score, color_list, q_id))
+		self.ans_btn2.grid()#.place(anchor = 'center', relx = 0.7, rely = 0.8)
+		self.part1_questionface.create_window(500, 200, width=200, height=40, window = self.questionlbl)
+		self.part1_questionface.create_window(200, 420, width=200, height=40, window = self.ans_btn1)
+		self.part1_questionface.create_window(800, 420, width=200, height=40, window = self.ans_btn2)
+
 
 	q_id = 0
 	def click1(self, question_list, cat_dict, cat_score, color_list, i):
@@ -187,29 +202,19 @@ class part1_questionface():
 	cat_score = {}
 	for cat_id in cat_dict.keys():
 		cat_score[int(cat_id)] = 60 # 分數60起跳
-	
-	questionlbl = tk.Label(text = question_list[0][0], bg = 'gray', fg = 'white', font = '微軟正黑體 25')
-	questionlbl.place(anchor = 'center', relx = 0.5, rely = 0.45)
-	ans_btn1 = tk.Button(text = question_list[0][1], height = 1, width = 5, font = '微軟正黑體 20', command = lambda: click1(question_list, cat_dict, cat_score, color_list, q_id))
-	ans_btn2 = tk.Button(text = question_list[0][2], height = 1, width = 5, font = '微軟正黑體 20', command = lambda: click2(question_list, cat_dict, cat_score, color_list, q_id))
-	ans_btn1.place(anchor = 'center', relx = 0.3, rely = 0.8)
-	ans_btn2.place(anchor = 'center', relx = 0.7, rely = 0.8)
-	'''
+
+	def change_part1_endingface(self):
+		self.max_id_all = max_id_all
+		self.part1_questionface.destroy()
+		part1_endingface(self.root, self.max_id_all)
+
+
 
 '''
-class part2_questionface():
-	def __init__(self, root):
-		self.root = root
-		self.part2_questionface = 
 
-	def change_part2_endingface(self):
-		self.grade = grade
-		self..destroy()
-		part2_endingface(self.root, self.grade)
-'''
 # 貓的dict 含有超連結跟圖片位址跟貓的名字
 cats_dict = dict()
-with open(file='src\\cat_info.csv', mode='r') as f:
+with open(file='cat_info.csv', mode='r') as f:
     rows = csv.reader(f)
     for row in rows:
         cnum = int(row[0])
@@ -221,7 +226,7 @@ class part1_endingface():
 	def __init__(self, root, cat1, cat2, cat3):  # cat1為貓編號(從1開始)
 		self.root = root
 		self.part1_endingface = tk.Canvas(self.root, bd=0, width=1000, height=563, highlightthickness=0)
-		self.background_img = ImageTk.PhotoImage(file = 'src\\part1_result_background.png')
+		self.background_img = ImageTk.PhotoImage(file = 'part1_result_background.png')
 		self.part1_endingface.create_image(500, 280, image=self.background_img) #?
 		self.part1_endingface.grid()
 		self.cat1_img = ImageTk.PhotoImage(file = cats_dict[cat1][1])
@@ -254,23 +259,17 @@ class part1_endingface():
 		initface(self.root)
 		#self.part1_endingface.create_image(0, 0, anchor = tk.E, image = self.cat3_img)
 
-		'''
-		self.btn1 = tk.Button(self.part1_endingface,text='小幫手Part 1',font = self.root.ft,bg="white",fg = 'pink',anchor = tk.CENTER,command=self.change_part1_questionface)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
-		self.btn1.grid()
-		self.btn2 = tk.Button(self.part1_endingface,text='小幫手Part 2',font = self.root.ft,bg="white",fg = 'pink',anchor = tk.CENTER,command=self.change_part2_questionface)
-		self.btn2.grid()
-		self.part1_endingface.create_window(800, 420, width=200, height=40,window = self.btn1)  # 設定按鈕的位置、長寬
-		self.part1_endingface.create_window(800, 470, width=200, height=40,window = self.btn2)
-	def change_part1_questionface(self):
-		self.initface.destroy()
-		part1_questionface(self.root)
 
-	def change_part2_questionface(self):
-		self.initface.destroy()
-		part2_questionface(self.root)
-		'''
+class part2_questionface():
+	def __init__(self, root):
+		self.root = root
+		self.part2_questionface = 
 
-'''
+	def change_part2_endingface(self):
+		self.grade = grade
+		self.destroy()
+		part2_endingface(self.root, self.grade)
+
 
 class part2_endingface():
 	def __init__(self, root, grade):
@@ -278,7 +277,7 @@ class part2_endingface():
 		self.grade = grade
 		self.part2_endingface = tk.Canvas(self.root, bd=0, width=1000, height=600, highlightthickness=0)
 		self.part2_endingface.grid()
-		self.imglist = ["小龍女橘字.png"]
+		self.imglist = ['小龍女橘字.png','小龍女橘字.png','小龍女橘字.png','小龍女橘字.png','小龍女橘字.png','小龍女橘字.png']
 		if self.grade <= 10:
 			self.img = ImageTk.PhotoImage(file = self.imglist[0])
 		elif 10 < self.grade <= 20:
@@ -289,7 +288,7 @@ class part2_endingface():
 			self.img = ImageTk.PhotoImage(file = self.imglist[3])
 		elif 10 < self.grade <= 20:
 			self.img = ImageTk.PhotoImage(file = self.imglist[4])
-		elif 10 < self.grade <= 20:s
+		elif 10 < self.grade <= 20:
 			self.img = ImageTk.PhotoImage(file = self.imglist[5])
 		elif 10 < self.grade <= 20:
 			self.img = ImageTk.PhotoImage(file = self.imglist[6])
@@ -305,9 +304,9 @@ class part2_endingface():
 	def change_initface(self):
 		self.part2_endingface.destroy()
 		initface(self.root)
-
-		
 '''
+		
+
 
 if __name__ == '__main__':  # ?
 	root = tk.Tk()
