@@ -2,10 +2,12 @@ import tkinter as tk
 import random
 import csv
 import pygame
-# file = 'cat.wav'
-# pygame.mixer.init()
-# track = pygame.mixer.music.load(file)
-# pygame.mixer.music.play()
+
+
+file = 'cat.wav'
+pygame.mixer.init()
+track = pygame.mixer.music.load(file)
+pygame.mixer.music.play()
 
 
 def read_PART2():
@@ -99,10 +101,6 @@ class Part2(tk.Frame):
         self.back_btn = tk.Button(
             text='上一題', font='微軟正黑體 15', command=self.back)
         self.back_btn.place(anchor='center', relx=0.9, rely=0.9)
-
-        cat_photo = tk.PhotoImage(file='73483.gif')
-        self.cat = tk.Label(image=cat_photo)
-        self.cat.pack()
 
     def btn1(self, i):
         global number
