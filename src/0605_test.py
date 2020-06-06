@@ -68,7 +68,7 @@ class part1_questionface():
 	def __init__(self, root):
 		self.root = root
 		self.part1_questionface = tk.Canvas(self.root,bd=0, width=1000,height=563, highlightthickness=0)
-		self.background_img = ImageTk.PhotoImage(file = 'background_nothing.png')
+		self.background_img = ImageTk.PhotoImage(file = 'part1_question_background.png')
 		self.part1_questionface.create_image(500, 280, image=self.background_img)#?
 		self.part1_questionface.grid()
 		self.color_list = []
@@ -85,9 +85,9 @@ class part1_questionface():
 		self.ans_btn1.grid()#.place(anchor = 'center', relx = 0.3, rely = 0.8)
 		self.ans_btn2 = tk.Button(self.part1_questionface, text = question_list[0][2], height = 1, width = 5, font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command = lambda: self.click2(question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
 		self.ans_btn2.grid()#.place(anchor = 'center', relx = 0.7, rely = 0.8)
-		self.part1_questionface.create_window(500, 200, width=200, height=40, window = self.questionlbl)
-		self.part1_questionface.create_window(200, 420, width=200, height=40, window = self.ans_btn1)
-		self.part1_questionface.create_window(800, 420, width=200, height=40, window = self.ans_btn2)
+		self.part1_questionface.create_window(500, 200, height=40, window = self.questionlbl)#width=200, 
+		self.part1_questionface.create_window(310, 300, width=200, height=40, window = self.ans_btn1)#, 
+		self.part1_questionface.create_window(650, 300, width=200, height=40, window = self.ans_btn2)#width=200, 
 
 
 	def click1(self, question_list, cat_dict, cat_score, color_list, i):
@@ -177,9 +177,9 @@ class part1_questionface():
 				self.ans_btn1.config(text = question_list[self.q_id][1])
 				self.ans_btn2.config(text = question_list[self.q_id][2])
 		else:
-			#print(self.cat_score)
+			print(self.cat_score)
 			self.max_id_all = self.get_3_cat(self.cat_score) 
-			#print(self.max_id_all)
+			print(self.max_id_all)
 			self.change_part1_endingface(self.max_id_all)
 
 	def get_3_cat(self, cat_score):
@@ -213,7 +213,7 @@ class part1_questionface():
 	
 	def change_part1_endingface(self,max_id_all):
 		self.max_id_all = max_id_all
-		#print(max_id_all)#error
+		print(max_id_all)#error
 		self.part1_questionface.destroy()
 		part1_endingface(self.root, self.max_id_all[0], self.max_id_all[1], self.max_id_all[2])
 
