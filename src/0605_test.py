@@ -177,9 +177,9 @@ class part1_questionface():
 				self.ans_btn1.config(text = question_list[self.q_id][1])
 				self.ans_btn2.config(text = question_list[self.q_id][2])
 		else:
-			print(self.cat_score)
+			#print(self.cat_score)
 			self.max_id_all = self.get_3_cat(self.cat_score) 
-			print(self.max_id_all)
+			#print(self.max_id_all)
 			self.change_part1_endingface(self.max_id_all)
 
 	def get_3_cat(self, cat_score):
@@ -213,7 +213,7 @@ class part1_questionface():
 	
 	def change_part1_endingface(self,max_id_all):
 		self.max_id_all = max_id_all
-		print(max_id_all)#error
+		#print(max_id_all)#error
 		self.part1_questionface.destroy()
 		part1_endingface(self.root, self.max_id_all[0], self.max_id_all[1], self.max_id_all[2])
 
@@ -262,7 +262,7 @@ class part1_endingface():
 		self.part1_endingface.create_window(780, 460, anchor=tk.CENTER, width=180, height=40, window = self.btn_cat3)
 
 	def change_initface(self):
-		self.part2_endingface.destroy()
+		self.part1_endingface.destroy()
 		initface(self.root)
 		#self.part1_endingface.create_image(0, 0, anchor = tk.E, image = self.cat3_img)
 
