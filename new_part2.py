@@ -45,7 +45,6 @@ questions = []
 option1s = []
 option2s = []
 true_answers = []
-
 info = []
 btn_1_score = []
 btn_2_score = []
@@ -80,9 +79,9 @@ class Part2(tk.Frame):
         self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
 
         self.ans_btn1 = tk.Button(
-            text=option1s[number], height=1, width=20, font='微軟正黑體 20', command=lambda: self.btn1(number))
+            text=option1s[number], height=1, font='微軟正黑體 20', command=lambda: self.btn1(number), bg='pink')
         self.ans_btn2 = tk.Button(
-            text=option2s[number], height=1, width=20, font='微軟正黑體 20', command=lambda: self.btn2(number))
+            text=option2s[number], height=1, font='微軟正黑體 20', command=lambda: self.btn2(number), bg='pink')
         self.ans_btn1.place(anchor='center', relx=0.3, rely=0.8)
         self.ans_btn2.place(anchor='center', relx=0.7, rely=0.8)
 
