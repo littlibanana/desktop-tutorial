@@ -86,8 +86,8 @@ class part1_questionface():
 		self.ans_btn2 = tk.Button(self.part1_questionface, text = question_list[0][2], height = 1, width = 5, font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command = lambda: self.click2(question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
 		self.ans_btn2.grid()#.place(anchor = 'center', relx = 0.7, rely = 0.8)
 		self.part1_questionface.create_window(500, 200, height=40, window = self.questionlbl)#width=200, 
-		self.part1_questionface.create_window(310, 300, width=200, height=40, window = self.ans_btn1)#, 
-		self.part1_questionface.create_window(650, 300, width=200, height=40, window = self.ans_btn2)#width=200, 
+		self.part1_questionface.create_window(310, 300, height=40, window = self.ans_btn1)#, 
+		self.part1_questionface.create_window(650, 300, height=40, window = self.ans_btn2)#width=200, 
 
 
 	def click1(self, question_list, cat_dict, cat_score, color_list, i):
