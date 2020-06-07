@@ -8,7 +8,7 @@ import pygame
 file = 'music.wav'
 pygame.mixer.init()
 track = pygame.mixer.music.load(file)
-pygame.mixer.music.play()
+pygame.mixer.music.play(-1)
 
 class Helper():
 	def __init__(self, root):
