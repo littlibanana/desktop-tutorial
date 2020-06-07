@@ -2,12 +2,13 @@ import tkinter as tk
 import random
 import csv
 import pygame
+from PIL import Image, ImageTk
 
 
-file = 'cat.wav'
-pygame.mixer.init()
-track = pygame.mixer.music.load(file)
-pygame.mixer.music.play()
+# file = 'cat.wav'
+# pygame.mixer.init()
+# track = pygame.mixer.music.load(file)
+# pygame.mixer.music.play()
 
 
 def read_PART2_question():
@@ -131,10 +132,13 @@ class Part2(tk.Frame):
             self.ans_btn2.place_forget()
 
         if answer[number-1] != int(true_answers[number-1]):
-            self.questionlbl.config(text='答錯囉，因為'+info[number-1])
+            self.info = ImageTk.PhotoImage(
+                file='part2_answers//圖片'+str(number+1)+'.png')
+            self.questionlbl.config(image=self.info)
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
+
             if number == 10:
                 self.back_btn.config(
                     text='點我看分數', command=lambda: self.next(number))
@@ -180,6 +184,7 @@ class Part2(tk.Frame):
             self.ans_btn1.place(anchor='center', relx=0.3, rely=0.8)
             self.ans_btn2.place(anchor='center', relx=0.7, rely=0.8)
             self.back_btn.config(text='上一題', command=self.back)
+            self.questionlbl.config(image='')
         if number == 10:
             part2_grade = self.part2_count_grade()
             self.questionlbl.config(text='你的分數是:'+str(part2_grade)+'分')

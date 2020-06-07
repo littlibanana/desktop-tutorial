@@ -73,7 +73,7 @@ class Helper():
         self.root.iconphoto(True, self.root.icon_img)
         # 設定視窗啟動時的大小與位置(寬x長+左位移+右位移)(此長寬為ppt等比例縮放尺寸)
         self.root.geometry('1000x563+145+30')
-        #self.root.resizable(False, False)
+        # self.root.resizable(False, False)
         self.root.ft = tkFont.Font(
             family='内海フォント-Bold', size=15, weight=tkFont.BOLD)  # 　設定文字字體、大小、粗細
         # initface(self.root)
@@ -371,7 +371,7 @@ class part2_questionface():
         self.part2_questionface = tk.Canvas(self.root, bd=0, width=1000,
                                             height=563, highlightthickness=0)
         self.background_img = ImageTk.PhotoImage(
-            file=r'C:\Users\User\Desktop\background.png')
+            file='background_nothing.png')
         self.part2_questionface.create_image(
             500, 280, image=self.background_img)
         self.part2_questionface.grid()
@@ -433,7 +433,8 @@ class part2_questionface():
             self.ans_btn2.place_forget()
 
         if answer[number-1] != int(true_answers[number-1]):
-            self.questionlbl.config(text='答錯囉，因為'+info[number-1])
+            self.questionlbl.config(
+                image='part2_answers//'+str(info[number-1]))
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
@@ -463,7 +464,8 @@ class part2_questionface():
             self.ans_btn2.place_forget()
 
         if answer[number-1] != int(true_answers[number-1]):
-            self.questionlbl.config(text='答錯囉!'+info[number-1])
+            self.questionlbl.config(
+                image=str(info[number-1]))
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
