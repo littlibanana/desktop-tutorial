@@ -20,9 +20,9 @@ class Helper():
 		self.root.geometry('1000x563+145+30')  # 設定視窗啟動時的大小與位置(寬x長+左位移+右位移)(此長寬為ppt等比例縮放尺寸)
 		#self.root.resizable(False, False)
 		self.root.ft = tkFont.Font(family='内海フォント-Bold', size=15, weight=tkFont.BOLD)  #　設定文字字體、大小、粗細
-		#initface(self.root)
+		initface(self.root)
 		#part1_endingface(self.root,1,2,10)
-		part1_questionface(self.root)
+		# part1_questionface(self.root)
 
 class initface():
 	def __init__(self, root):
@@ -81,9 +81,9 @@ class part1_questionface():
 		self.q_id = 0
 		self.questionlbl = tk.Label(self.part1_questionface, text = question_list[0][0], bg = 'gray', fg = 'white', font = self.root.ft)
 		self.questionlbl.grid()#place(anchor = 'center', relx = 0.5, rely = 0.45)
-		self.ans_btn1 = tk.Button(self.part1_questionface, text = question_list[0][1], height = 1, width = 5, font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command = lambda: self.click1(question_list, cat_dict, self.cat_score, self.color_list, self.q_id))#?
+		self.ans_btn1 = tk.Button(self.part1_questionface, text = question_list[0][1], height = 1, font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command = lambda: self.click1(question_list, cat_dict, self.cat_score, self.color_list, self.q_id))#?
 		self.ans_btn1.grid()#.place(anchor = 'center', relx = 0.3, rely = 0.8)
-		self.ans_btn2 = tk.Button(self.part1_questionface, text = question_list[0][2], height = 1, width = 5, font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command = lambda: self.click2(question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
+		self.ans_btn2 = tk.Button(self.part1_questionface, text = question_list[0][2], height = 1, font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command = lambda: self.click2(question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
 		self.ans_btn2.grid()#.place(anchor = 'center', relx = 0.7, rely = 0.8)
 		self.part1_questionface.create_window(500, 200, height=40, window = self.questionlbl)#width=200, 
 		self.part1_questionface.create_window(310, 300, height=40, window = self.ans_btn1)#, 
