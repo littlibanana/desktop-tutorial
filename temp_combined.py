@@ -371,7 +371,7 @@ class part2_questionface():
         self.part2_questionface = tk.Canvas(self.root, bd=0, width=1000,
                                             height=563, highlightthickness=0)
         self.background_img = ImageTk.PhotoImage(
-            file='background_nothing.png')
+            file='part2_question_background.png')
         self.part2_questionface.create_image(
             500, 280, image=self.background_img)
         self.part2_questionface.grid()
