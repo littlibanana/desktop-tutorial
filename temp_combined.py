@@ -437,7 +437,7 @@ class part2_questionface():
             info_img = ImageTk.PhotoImage(
                 file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
-                image=info_img)
+                image=info_img, borderwidth=0)
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
@@ -471,7 +471,7 @@ class part2_questionface():
             info_img = ImageTk.PhotoImage(
                 file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
-                image=info_img)
+                image=info_img, borderwidth=0)
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
