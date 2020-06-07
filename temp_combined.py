@@ -8,7 +8,7 @@ from PIL import ImageTk, Image
 
 def read_PART2_question():
 
-    with open(file=r'C:/Users\User\Desktop\part2.csv', mode='r', encoding='utf-8-sig') as part2:
+    with open(file='part2.csv', mode='r', encoding='utf-8-sig') as part2:
         question_list = []  # list of dict
         csvfile = csv.DictReader(part2)
         for row in csvfile:
