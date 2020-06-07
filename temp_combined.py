@@ -4,7 +4,11 @@ import csv
 import webbrowser
 import tkinter.font as tkFont
 from PIL import ImageTk, Image
-
+import pygame
+file = 'cat.wav'
+pygame.mixer.init()
+track = pygame.mixer.music.load(file)
+pygame.mixer.music.play()
 
 def read_PART2_question():
 
