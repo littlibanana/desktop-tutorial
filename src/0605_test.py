@@ -5,7 +5,7 @@ import webbrowser
 import csv
 import random
 import pygame
-file = 'cat.wav'
+file = 'music.wav'
 pygame.mixer.init()
 track = pygame.mixer.music.load(file)
 pygame.mixer.music.play()
