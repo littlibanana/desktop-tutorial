@@ -3,7 +3,7 @@ import random
 import csv
 import webbrowser
 import tkinter.font as tkFont
-from PIL import ImageTk
+from PIL import ImageTk, Image
 
 
 def read_PART2_question():
@@ -416,6 +416,7 @@ class part2_questionface():
 
     def btn1(self, i):
         global number
+        global info_img
         if number <= 9:
             number += 1
 
@@ -433,8 +434,10 @@ class part2_questionface():
             self.ans_btn2.place_forget()
 
         if answer[number-1] != int(true_answers[number-1]):
+            info_img = ImageTk.PhotoImage(
+                file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
-                image='part2_answers//'+str(info[number-1]))
+                image=info_img)
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
@@ -447,6 +450,7 @@ class part2_questionface():
 
     def btn2(self, i):
         global number
+        global info_img
         if number <= 9:
             number += 1
 
@@ -464,8 +468,10 @@ class part2_questionface():
             self.ans_btn2.place_forget()
 
         if answer[number-1] != int(true_answers[number-1]):
+            info_img = ImageTk.PhotoImage(
+                file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
-                image=str(info[number-1]))
+                image=info_img)
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
@@ -484,7 +490,8 @@ class part2_questionface():
     def next(self, i):
         global number
         if number <= 9:
-            self.questionlbl.config(text=str(number+1)+'.'+questions[number])
+            self.questionlbl.config(
+                text=str(number+1)+'.'+questions[number], image='')
             self.ans_btn1.config(text=option1s[number])
             self.ans_btn2.config(text=option2s[number])
             self.ans_btn1.place(anchor='center', relx=0.3, rely=0.8)
@@ -493,14 +500,14 @@ class part2_questionface():
         if number == 10:
             global answer
             part2_grade = self.part2_count_grade()
-            self.questionlbl.config(text='你的分數是:'+str(part2_grade)+'分')
+            self.questionlbl.config(
+                text='你的分數是:'+str(part2_grade)+'分', image='')
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
             self.back_btn.config(
                 text='回到首頁', command=self.back_init)  # 這裡加上回到主葉面的函數
             number = 0
             answer = {}
-            question_used = True
 
 
 if __name__ == '__main__':  # ?
