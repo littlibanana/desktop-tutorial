@@ -36,7 +36,7 @@ def read_PART2_question():
         tmp_num = random.choice(range(0, 29))
         if tmp_num not in random_num:
             random_num.append(tmp_num)
-    #print(random_num)
+    # print(random_num)
     final_question = []
 
     for num in random_num:
@@ -375,6 +375,20 @@ class part1_endingface():
         initface(self.root)
 
 
+def part2_count_grade():
+    results = []
+    for i in range(0, 10):
+        results.append(answer[i])
+    # print(results)
+    score = 100
+    for i in range(0, 10):
+        if str(results[i]) == '1':
+            score += int(btn_1_score[i])
+        if str(results[i]) == '2':
+            score += int(btn_2_score[i])
+    return score
+
+
 class part2_questionface():
     def __init__(self, root):
         self.root = root
@@ -414,21 +428,9 @@ class part2_questionface():
         self.ans_btn2.config(text=option2s[number])
         # print(answer, number)
 
-    def part2_count_grade(self):
-        results = []
-        for i in range(0, 10):
-            results.append(answer[i])
-        # print(results)
-        score = 100
-        for i in range(0, 10):
-            if str(results[i]) == '1':
-                score += int(btn_1_score[i])
-            if str(results[i]) == '2':
-                score += int(btn_2_score[i])
-        return score
-
     def btn1(self, i):
         global number
+        global part2_grade
         if number <= 9:
             number += 1
 
@@ -449,6 +451,7 @@ class part2_questionface():
             if number == 10:
                 self.back_btn.config(
                     text='點我看分數', command=self.to_part2_end)
+                part2_grade = part2_count_grade()
 
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
@@ -476,12 +479,15 @@ class part2_questionface():
             if number == 10:
                 self.back_btn.config(
                     text='點我看分數', command=self.to_part2_end)
+                part2_grade = part2_count_grade()
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
+
         # print(answer, number)
 
     def btn2(self, i):
         global number
+        global part2_grade
         if number <= 9:
             number += 1
 
@@ -503,6 +509,7 @@ class part2_questionface():
             if number == 10:
                 self.back_btn.config(
                     text='點我看分數', command=self.to_part2_end)
+                part2_grade = part2_count_grade()
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
 
@@ -528,6 +535,7 @@ class part2_questionface():
             if number == 10:
                 self.back_btn.config(
                     text='點我看分數', command=self.to_part2_end)
+                part2_grade = part2_count_grade()
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
         # print(answer, number)
@@ -558,12 +566,15 @@ class part2_questionface():
 
 class part2_endingface():
     def __init__(self, root, grade):
+        global part2_grade
         self.root = root
-        self.grade = grade
+        self.grade = part2_grade
         print(self.grade)
-        self.part2_endingface = tk.Canvas(self.root, bd=0, width=1000, height=600, highlightthickness=0)
+        self.part2_endingface = tk.Canvas(
+            self.root, bd=0, width=1000, height=600, highlightthickness=0)
         self.part2_endingface.grid()
-        self.imglist = ['小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png','小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png','小龍女橘字.png','小龍女橘字.png','小龍女橘字.png','小龍女橘字.png','小龍女橘字.png']
+        self.imglist = ['小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png',
+                        '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png']
         if self.grade <= 10:
             self.img = ImageTk.PhotoImage(file=self.imglist[0])
         elif 10 < self.grade <= 20:
@@ -587,10 +598,13 @@ class part2_endingface():
         self.part2_endingface.create_image(0, 0, anchor=tk.NW, image=self.img)
         self.lb = tk.Label(text=self.grade, bg='lemon chiffon')  # '#323232'
         self.lb.grid()
-        self.part2_endingface.create_window(800, 330, width=200, height=40, window=self.lb)
-        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=self.change_initface)
+        self.part2_endingface.create_window(
+            800, 330, width=200, height=40, window=self.lb)
+        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",
+                             fg='pink', anchor=tk.CENTER, command=self.change_initface)
         self.btn.grid()
-        self.part2_endingface.create_window(880, 530, width=200, height=40, window=self.btn)
+        self.part2_endingface.create_window(
+            880, 530, width=200, height=40, window=self.btn)
 
     def change_initface(self):
         global questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score
