@@ -42,31 +42,29 @@ def read_PART2_question():
     for num in random_num:
         final_question.append(question_list[num])
 
-    return final_question
+    questions = []
+    option1s = []
+    option2s = []
+    true_answers = []
+    info = []
+    btn_1_score = []
+    btn_2_score = []
+
+    for q in final_question:
+        questions.append(q['question'])
+        option1s.append(q['option1'])
+        option2s.append(q['option2'])
+        true_answers.append(q['answer'])
+        info.append(q['info'])
+        btn_1_score.append(q['score1'])
+        btn_2_score.append(q['score2'])
+
+    return questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score
 
 
-questions_list = read_PART2_question()
+questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score = read_PART2_question()
 
-
-questions = []
-option1s = []
-option2s = []
-true_answers = []
-info = []
-btn_1_score = []
-btn_2_score = []
-
-
-for q in questions_list:
-    questions.append(q['question'])
-    option1s.append(q['option1'])
-    option2s.append(q['option2'])
-    true_answers.append(q['answer'])
-    info.append(q['info'])
-    btn_1_score.append(q['score1'])
-    btn_2_score.append(q['score2'])
-
-print(true_answers)
+# print(true_answers)
 answer = {}
 number = 0
 part2_grade = 0
@@ -221,9 +219,9 @@ class part1_questionface():
                 self.ans_btn1.config(text=question_list[self.q_id][1])
                 self.ans_btn2.config(text=question_list[self.q_id][2])
         else:
-            print(self.cat_score)
+            # print(self.cat_score)
             self.max_id_all = self.get_3_cat(self.cat_score)
-            print(self.max_id_all)
+            # print(self.max_id_all)
             self.change_part1_endingface(self.max_id_all)
 
     def click2(self, question_list, cat_dict, cat_score, color_list, i):
@@ -273,9 +271,9 @@ class part1_questionface():
                 self.ans_btn1.config(text=question_list[self.q_id][1])
                 self.ans_btn2.config(text=question_list[self.q_id][2])
         else:
-            print(self.cat_score)
+            # print(self.cat_score)
             self.max_id_all = self.get_3_cat(self.cat_score)
-            print(self.max_id_all)
+            # print(self.max_id_all)
             self.change_part1_endingface(self.max_id_all)
 
     def get_3_cat(self, cat_score):
@@ -309,7 +307,7 @@ class part1_questionface():
 
     def change_part1_endingface(self, max_id_all):
         self.max_id_all = max_id_all
-        print(max_id_all)  # error
+        # print(max_id_all)  # error
         self.part1_questionface.destroy()
         part1_endingface(
             self.root, self.max_id_all[0], self.max_id_all[1], self.max_id_all[2])
@@ -414,7 +412,7 @@ class part2_questionface():
         self.questionlbl.config(text=str(number+1)+'.'+questions[number])
         self.ans_btn1.config(text=option1s[number])
         self.ans_btn2.config(text=option2s[number])
-        print(answer, number)
+        # print(answer, number)
 
     def part2_count_grade(self):
         results = []
@@ -480,7 +478,7 @@ class part2_questionface():
                     text='點我看分數', command=self.to_part2_end)
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
-        print(answer, number)
+        # print(answer, number)
 
     def btn2(self, i):
         global number
@@ -532,7 +530,7 @@ class part2_questionface():
                     text='點我看分數', command=self.to_part2_end)
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
-        print(answer, number)
+        # print(answer, number)
 
     def to_part2_end(self):
         global number
@@ -593,8 +591,10 @@ class part2_endingface():
             880, 330, width=200, height=40, window=self.btn)
 
     def change_initface(self):
+        global questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score
         self.part2_endingface.destroy()
         initface(self.root)
+        questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score = read_PART2_question()
 
 
 if __name__ == '__main__':  # ?
