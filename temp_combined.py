@@ -430,6 +430,8 @@ class part2_questionface():
         answer[number-1] = 1
 
         if answer[number-1] == int(true_answers[number-1]):
+            self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
+            self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
             self.questionlbl.config(text='恭喜答對')
             if number <= 9:
                 self.back_btn.config(
@@ -442,7 +444,7 @@ class part2_questionface():
             self.ans_btn2.place_forget()
 
         if answer[number-1] != int(true_answers[number-1]):
-            self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
+            self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
             info_img = ImageTk.PhotoImage(
                 file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
@@ -471,6 +473,7 @@ class part2_questionface():
         answer[number-1] = 2
 
         if answer[number-1] == int(true_answers[number-1]):
+            self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
             self.questionlbl.config(text='恭喜答對ฅ’ω’ฅ')
             if number <= 9:
                 self.back_btn.config(
@@ -482,6 +485,7 @@ class part2_questionface():
             self.ans_btn2.place_forget()
 
         if answer[number-1] != int(true_answers[number-1]):
+            self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
             self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
             info_img = ImageTk.PhotoImage(
                 file='part2_answers//'+str(info[number-1]))
@@ -522,7 +526,8 @@ class part2_questionface():
             self.ans_btn1.place(anchor='center', relx=0.3, rely=0.55)
             self.ans_btn2.place(anchor='center', relx=0.7, rely=0.55)
             self.questionlbl.place(anchor='center', relx=0.5, rely=0.4)
-            self.back_btn.config(text='上一題', command=self.back)
+            # self.back_btn.config(text='上一題', command=self.back)
+            self.back_btn.place_forget()
 
 
 class part2_endingface():
