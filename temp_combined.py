@@ -475,6 +475,9 @@ class part2_questionface():
         if answer[number-1] == int(true_answers[number-1]):
             self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
             self.questionlbl.config(text='恭喜答對ฅ’ω’ฅ')
+            photo1 = tk.PhotoImage(file = 'correct cat.png')
+            self.questionlbl.config(image = photo1,anchor = tk.CENTER)
+            
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
