@@ -5,6 +5,9 @@ import webbrowser
 import tkinter.font as tkFont
 from PIL import ImageTk, Image
 import pygame
+import winsound
+
+
 file = 'music.wav'
 pygame.mixer.init()
 track = pygame.mixer.music.load(file)
@@ -402,6 +405,8 @@ class part2_questionface():
 
     def back(self):
         global number
+        if number == 0:
+            winsound.PlaySound(r'meow.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
         if number > 0:
             number -= 1
         answer[number] = ''
