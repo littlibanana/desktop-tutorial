@@ -82,6 +82,8 @@ class Helper():
         # self.root.resizable(False, False)
         self.root.ft = tkFont.Font(
             family='内海フォント-Bold', size=15, weight=tkFont.BOLD)  # 　設定文字字體、大小、粗細
+        self.root.ft1 = tkFont.Font(
+            family='内海フォント-Bold', size=20, weight=tkFont.BOLD)
         # initface(self.root)
         # part1_endingface(self.root,1,2,10)
         initface(self.root)
@@ -445,6 +447,12 @@ class part2_questionface():
 
         if answer[number-1] != int(true_answers[number-1]):
             self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
+            self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
+
+            self.wronglbl = tk.Label(text='答錯囉', bg='orange red',
+                                     fg='white', font=self.root.ft1)
+            self.wronglbl.place(anchor='center', relx=0.55, rely=0.8)
+
             info_img = ImageTk.PhotoImage(
                 file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
@@ -487,6 +495,10 @@ class part2_questionface():
         if answer[number-1] != int(true_answers[number-1]):
             self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
             self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
+            self.wronglbl = tk.Label(text='答錯囉', bg='orange red',
+                                     fg='white', font=self.root.ft1)
+            self.wronglbl.place(anchor='center', relx=0.55, rely=0.8)
+
             info_img = ImageTk.PhotoImage(
                 file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
@@ -504,7 +516,6 @@ class part2_questionface():
                     text='點我看分數', command=self.to_part2_end)
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
-
         print(answer, number)
 
     def to_part2_end(self):
@@ -528,6 +539,7 @@ class part2_questionface():
             self.questionlbl.place(anchor='center', relx=0.5, rely=0.4)
             # self.back_btn.config(text='上一題', command=self.back)
             self.back_btn.place_forget()
+            self.wronglbl.place_forget()
 
 
 class part2_endingface():
