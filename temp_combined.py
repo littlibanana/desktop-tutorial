@@ -442,7 +442,7 @@ class part2_questionface():
             self.questionlbl.config(image=self.correct_img, borderwidth=0)
             self.wronglbl = tk.Label(text='恭喜答對囉', bg='pink',
                                      fg='white', font=self.root.ft1)
-            self.wronglbl.place(anchor='center', relx=0.5, rely=0.72)
+            self.wronglbl.place(anchor='center', relx=0.5, rely=0.75)
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
