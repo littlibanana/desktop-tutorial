@@ -66,6 +66,7 @@ for q in questions_list:
 print(true_answers)
 answer = {}
 number = 0
+part2_grade = 0
 
 
 class Helper():
@@ -435,15 +436,18 @@ class part2_questionface():
                     text='下一題', command=lambda: self.next(number))
             if number == 10:
                 self.back_btn.config(
-                    text='點我看分數', command=lambda: self.next(number))
+                    text='點我看分數', command=self.to_part2_end)
+
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
 
         if answer[number-1] != int(true_answers[number-1]):
+            self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
             info_img = ImageTk.PhotoImage(
                 file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
                 image=info_img, borderwidth=0)
+
             if number <= 9:
                 if number == '0':
                     self.back_btn.config(
@@ -453,7 +457,7 @@ class part2_questionface():
                         text='下一題', command=lambda: self.next(number))
             if number == 10:
                 self.back_btn.config(
-                    text='點我看分數', command=lambda: self.next(number))
+                    text='點我看分數', command=self.to_part2_end)
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
         print(answer, number)
@@ -473,15 +477,17 @@ class part2_questionface():
                     text='下一題', command=lambda: self.next(number))
             if number == 10:
                 self.back_btn.config(
-                    text='點我看分數', command=lambda: self.next(number))
+                    text='點我看分數', command=self.to_part2_end)
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
 
         if answer[number-1] != int(true_answers[number-1]):
+            self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
             info_img = ImageTk.PhotoImage(
                 file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
                 image=info_img, borderwidth=0)
+
             if number <= 9:
                 if number == '0':
                     self.back_btn.config(
@@ -491,15 +497,20 @@ class part2_questionface():
                         text='下一題', command=lambda: self.next(number))
             if number == 10:
                 self.back_btn.config(
-                    text='點我看分數', command=lambda: self.next(number))
+                    text='點我看分數', command=self.to_part2_end)
             self.ans_btn1.place_forget()
             self.ans_btn2.place_forget()
 
         print(answer, number)
 
-    def back_init(self):
+    def to_part2_end(self):
+        global number
+        global answer
+
         self.part2_questionface.destroy()
-        initface(self.root)
+        part2_endingface(self.root, part2_grade)
+        number = 0
+        answer = {}
 
     def next(self, i):
         global number
@@ -510,21 +521,47 @@ class part2_questionface():
             self.ans_btn2.config(text=option2s[number])
             self.ans_btn1.place(anchor='center', relx=0.3, rely=0.55)
             self.ans_btn2.place(anchor='center', relx=0.7, rely=0.55)
-            if str(number) == '0':
-                self.back_btn.config(text='喵', command=self.back)
-            else:
-                self.back_btn.config(text='上一題', command=self.back)
-        if number == 10:
-            global answer
-            part2_grade = self.part2_count_grade()
-            self.questionlbl.config(
-                text='你的分數是:'+str(part2_grade)+'分', image='')
-            self.ans_btn1.place_forget()
-            self.ans_btn2.place_forget()
-            self.back_btn.config(
-                text='回到首頁', command=self.back_init)  # 這裡加上回到主葉面的函數
-            number = 0
-            answer = {}
+            self.questionlbl.place(anchor='center', relx=0.5, rely=0.4)
+            self.back_btn.config(text='上一題', command=self.back)
+
+
+class part2_endingface():
+    def __init__(self, root, grade):
+        self.root = root
+        self.grade = grade
+        self.part2_endingface = tk.Canvas(
+            self.root, bd=0, width=1000, height=600, highlightthickness=0)
+        self.part2_endingface.grid()
+        self.imglist = ['小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png',
+                        '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png']
+        if self.grade <= 10:
+            self.img = ImageTk.PhotoImage(file=self.imglist[0])
+        elif 10 < self.grade <= 20:
+            self.img = ImageTk.PhotoImage(file=self.imglist[1])
+        elif 10 < self.grade <= 20:
+            self.img = ImageTk.PhotoImage(file=self.imglist[2])
+        elif 10 < self.grade <= 20:
+            self.img = ImageTk.PhotoImage(file=self.imglist[3])
+        elif 10 < self.grade <= 20:
+            self.img = ImageTk.PhotoImage(file=self.imglist[4])
+        elif 10 < self.grade <= 20:
+            self.img = ImageTk.PhotoImage(file=self.imglist[5])
+        elif 10 < self.grade <= 20:
+            self.img = ImageTk.PhotoImage(file=self.imglist[6])
+        self.part2_endingface.create_image(0, 0, anchor=tk.NW, image=self.img)
+        self.lb = tk.Label(text='98', bg='lemon chiffon')  # '#323232'
+        self.lb.grid()
+        self.part2_endingface.create_window(
+            800, 330, width=200, height=40, window=self.lb)
+        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",
+                             fg='pink', anchor=tk.CENTER, command=self.change_initface)
+        self.btn.grid()
+        self.part2_endingface.create_window(
+            880, 330, width=200, height=40, window=self.btn)
+
+    def change_initface(self):
+        self.part2_endingface.destroy()
+        initface(self.root)
 
 
 if __name__ == '__main__':  # ?
