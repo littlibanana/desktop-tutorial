@@ -10,6 +10,7 @@ pygame.mixer.init()
 track = pygame.mixer.music.load(file)
 pygame.mixer.music.play()
 
+
 def read_PART2_question():
 
     with open(file='part2.csv', mode='r', encoding='utf-8-sig') as part2:
@@ -136,28 +137,36 @@ class part1_questionface():
     # 讀取問題存進dict
     def __init__(self, root):
         self.root = root
-        self.part1_questionface = tk.Canvas(self.root,bd=0, width=1000,height=563, highlightthickness=0)
-        self.background_img = ImageTk.PhotoImage(file = 'part1_question_background.png')
-        self.part1_questionface.create_image(500, 280, image=self.background_img)#?
+        self.part1_questionface = tk.Canvas(
+            self.root, bd=0, width=1000, height=563, highlightthickness=0)
+        self.background_img = ImageTk.PhotoImage(
+            file='part1_question_background.png')
+        self.part1_questionface.create_image(
+            500, 280, image=self.background_img)  # ?
         self.part1_questionface.grid()
         self.color_list = []
         self.cat_score = {}
         for cat_id in cat_dict.keys():
-            self.cat_score[int(cat_id)] = 60 # 分數60起跳    
-        #self.click1()
-        #self.click2()
-        #self.get_3_cat()
+            self.cat_score[int(cat_id)] = 60  # 分數60起跳
+        # self.click1()
+        # self.click2()
+        # self.get_3_cat()
         self.q_id = 0
-        self.questionlbl = tk.Label(self.part1_questionface, text = question_list[0][0], bg = 'gray', fg = 'white', font = self.root.ft)
-        self.questionlbl.grid()#place(anchor = 'center', relx = 0.5, rely = 0.45)
-        self.ans_btn1 = tk.Button(self.part1_questionface, text = question_list[0][1], height = 1, font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command = lambda: self.click1(question_list, cat_dict, self.cat_score, self.color_list, self.q_id))#?
-        self.ans_btn1.grid()#.place(anchor = 'center', relx = 0.3, rely = 0.8)
-        self.ans_btn2 = tk.Button(self.part1_questionface, text = question_list[0][2], height = 1, font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command = lambda: self.click2(question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
-        self.ans_btn2.grid()#.place(anchor = 'center', relx = 0.7, rely = 0.8)
-        self.part1_questionface.create_window(500, 200, height=40, window = self.questionlbl)#width=200, 
-        self.part1_questionface.create_window(310, 300, height=40, window = self.ans_btn1)#, 
-        self.part1_questionface.create_window(650, 300, height=40, window = self.ans_btn2)#width=200, 
-
+        self.questionlbl = tk.Label(
+            self.part1_questionface, text=question_list[0][0], bg='gray', fg='white', font=self.root.ft)
+        self.questionlbl.grid()  # place(anchor = 'center', relx = 0.5, rely = 0.45)
+        self.ans_btn1 = tk.Button(self.part1_questionface, text=question_list[0][1], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click1(
+            question_list, cat_dict, self.cat_score, self.color_list, self.q_id))  # ?
+        self.ans_btn1.grid()  # .place(anchor = 'center', relx = 0.3, rely = 0.8)
+        self.ans_btn2 = tk.Button(self.part1_questionface, text=question_list[0][2], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click2(
+            question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
+        self.ans_btn2.grid()  # .place(anchor = 'center', relx = 0.7, rely = 0.8)
+        self.part1_questionface.create_window(
+            500, 200, height=40, window=self.questionlbl)  # width=200,
+        self.part1_questionface.create_window(
+            310, 300, height=40, window=self.ans_btn1)  # ,
+        self.part1_questionface.create_window(
+            650, 300, height=40, window=self.ans_btn2)  # width=200,
 
     def click1(self, question_list, cat_dict, cat_score, color_list, i):
         global q_id
@@ -170,13 +179,16 @@ class part1_questionface():
             else:
                 if self.q_id == 13:
                     if color_list[0] == cat_dict[cat_id][self.q_id]:
-                        self.cat_score[cat_id] += int(question_list[self.q_id][3])
+                        self.cat_score[cat_id] += int(
+                            question_list[self.q_id][3])
                 elif self.q_id == 14:
                     if color_list[1] == cat_dict[cat_id][self.q_id]:
-                        self.cat_score[cat_id] += int(question_list[self.q_id][3])
+                        self.cat_score[cat_id] += int(
+                            question_list[self.q_id][3])
                 else:
                     if color_list[0] == cat_dict[cat_id][self.q_id]:
-                        self.cat_score[cat_id] += int(question_list[self.q_id][3])
+                        self.cat_score[cat_id] += int(
+                            question_list[self.q_id][3])
         if self.q_id >= 10:  # 製造最後三題
             if self.q_id <= 12:
                 color_list.append(question_list[self.q_id][1])
@@ -184,24 +196,27 @@ class part1_questionface():
             self.q_id += 1
         if self.q_id <= 15:
             if self.q_id == 13:
-                self.questionlbl.config(text = question_list[self.q_id][0]+color_list[0]+"還是"+color_list[1]+"？")
-                self.ans_btn1.config(text = color_list[0])
-                self.ans_btn2.config(text = color_list[1])
+                self.questionlbl.config(
+                    text=question_list[self.q_id][0]+color_list[0]+"還是"+color_list[1]+"？")
+                self.ans_btn1.config(text=color_list[0])
+                self.ans_btn2.config(text=color_list[1])
             elif self.q_id == 14:
-                self.questionlbl.config(text = question_list[self.q_id][0]+color_list[1]+"還是"+color_list[2]+"？")
-                self.ans_btn1.config(text = color_list[1])
-                self.ans_btn2.config(text = color_list[2])
+                self.questionlbl.config(
+                    text=question_list[self.q_id][0]+color_list[1]+"還是"+color_list[2]+"？")
+                self.ans_btn1.config(text=color_list[1])
+                self.ans_btn2.config(text=color_list[2])
             elif self.q_id == 15:
-                self.questionlbl.config(text = question_list[self.q_id][0]+color_list[0]+"還是"+color_list[2]+"？")
-                self.ans_btn1.config(text = color_list[0])
-                self.ans_btn2.config(text = color_list[2])
+                self.questionlbl.config(
+                    text=question_list[self.q_id][0]+color_list[0]+"還是"+color_list[2]+"？")
+                self.ans_btn1.config(text=color_list[0])
+                self.ans_btn2.config(text=color_list[2])
             else:
-                self.questionlbl.config(text = question_list[self.q_id][0])
-                self.ans_btn1.config(text = question_list[self.q_id][1])
-                self.ans_btn2.config(text = question_list[self.q_id][2])
+                self.questionlbl.config(text=question_list[self.q_id][0])
+                self.ans_btn1.config(text=question_list[self.q_id][1])
+                self.ans_btn2.config(text=question_list[self.q_id][2])
         else:
             print(self.cat_score)
-            self.max_id_all = self.get_3_cat(self.cat_score) 
+            self.max_id_all = self.get_3_cat(self.cat_score)
             print(self.max_id_all)
             self.change_part1_endingface(self.max_id_all)
 
@@ -216,13 +231,16 @@ class part1_questionface():
             else:
                 if self.q_id == 13:
                     if color_list[1] == cat_dict[cat_id][self.q_id]:
-                        self.cat_score[cat_id] += int(question_list[self.q_id][3])
+                        self.cat_score[cat_id] += int(
+                            question_list[self.q_id][3])
                 elif self.q_id == 14:
                     if color_list[2] == cat_dict[cat_id][self.q_id]:
-                        self.cat_score[cat_id] += int(question_list[self.q_id][3])
+                        self.cat_score[cat_id] += int(
+                            question_list[self.q_id][3])
                 else:
                     if color_list[2] == cat_dict[cat_id][self.q_id]:
-                        self.cat_score[cat_id] += int(question_list[self.q_id][3])
+                        self.cat_score[cat_id] += int(
+                            question_list[self.q_id][3])
         if self.q_id >= 10:  # 製造最後三題
             if self.q_id <= 12:
                 color_list.append(question_list[self.q_id][2])
@@ -230,31 +248,34 @@ class part1_questionface():
             self.q_id += 1
         if self.q_id <= 15:
             if self.q_id == 13:
-                self.questionlbl.config(text = question_list[self.q_id][0]+color_list[0]+"還是"+color_list[1]+"？")
-                self.ans_btn1.config(text = color_list[0])
-                self.ans_btn2.config(text = color_list[1])
+                self.questionlbl.config(
+                    text=question_list[self.q_id][0]+color_list[0]+"還是"+color_list[1]+"？")
+                self.ans_btn1.config(text=color_list[0])
+                self.ans_btn2.config(text=color_list[1])
             elif self.q_id == 14:
-                self.questionlbl.config(text = question_list[self.q_id][0]+color_list[1]+"還是"+color_list[2]+"？")
-                self.ans_btn1.config(text = color_list[1])
-                self.ans_btn2.config(text = color_list[2])
+                self.questionlbl.config(
+                    text=question_list[self.q_id][0]+color_list[1]+"還是"+color_list[2]+"？")
+                self.ans_btn1.config(text=color_list[1])
+                self.ans_btn2.config(text=color_list[2])
             elif self.q_id == 15:
-                self.questionlbl.config(text = question_list[self.q_id][0]+color_list[0]+"還是"+color_list[2]+"？")
-                self.ans_btn1.config(text = color_list[0])
-                self.ans_btn2.config(text = color_list[2])
+                self.questionlbl.config(
+                    text=question_list[self.q_id][0]+color_list[0]+"還是"+color_list[2]+"？")
+                self.ans_btn1.config(text=color_list[0])
+                self.ans_btn2.config(text=color_list[2])
             else:
-                self.questionlbl.config(text = question_list[self.q_id][0])
-                self.ans_btn1.config(text = question_list[self.q_id][1])
-                self.ans_btn2.config(text = question_list[self.q_id][2])
+                self.questionlbl.config(text=question_list[self.q_id][0])
+                self.ans_btn1.config(text=question_list[self.q_id][1])
+                self.ans_btn2.config(text=question_list[self.q_id][2])
         else:
             print(self.cat_score)
-            self.max_id_all = self.get_3_cat(self.cat_score) 
+            self.max_id_all = self.get_3_cat(self.cat_score)
             print(self.max_id_all)
             self.change_part1_endingface(self.max_id_all)
 
     def get_3_cat(self, cat_score):
         # 找分數前三高貓咪
         max_id_all = []
-        for i in range(3):
+        for _ in range(3):
             max = -1
             max_id = []
             for cat_id in cat_score.keys():
@@ -279,13 +300,13 @@ class part1_questionface():
             if len(max_id_all) >= 3:
                 break
         return max_id_all
-    
-    def change_part1_endingface(self,max_id_all):
-        self.max_id_all = max_id_all
-        print(max_id_all)#error
-        self.part1_questionface.destroy()
-        part1_endingface(self.root, self.max_id_all[0], self.max_id_all[1], self.max_id_all[2])
 
+    def change_part1_endingface(self, max_id_all):
+        self.max_id_all = max_id_all
+        print(max_id_all)  # error
+        self.part1_questionface.destroy()
+        part1_endingface(
+            self.root, self.max_id_all[0], self.max_id_all[1], self.max_id_all[2])
 
 
 # 貓的dict 含有超連結跟圖片位址跟貓的名字
@@ -298,37 +319,52 @@ with open(file='cat_info.csv', mode='r') as f:
         datas = [row[5], row[6], row[1]]
         cats_dict[cnum] = datas
 
+
 class part1_endingface():
     def __init__(self, root, cat1, cat2, cat3):  # cat1為貓編號(從1開始)
         self.root = root
-        self.part1_endingface = tk.Canvas(self.root, bd=0, width=1000, height=563, highlightthickness=0)
-        self.background_img = ImageTk.PhotoImage(file = 'part1_result_background.png')
-        self.part1_endingface.create_image(500, 280, image=self.background_img) #?
+        self.part1_endingface = tk.Canvas(
+            self.root, bd=0, width=1000, height=563, highlightthickness=0)
+        self.background_img = ImageTk.PhotoImage(
+            file='part1_result_background.png')
+        self.part1_endingface.create_image(
+            500, 280, image=self.background_img)  # ?
         self.part1_endingface.grid()
-        self.cat1_img = ImageTk.PhotoImage(file = cats_dict[cat1][1])
-        self.cat2_img = ImageTk.PhotoImage(file = cats_dict[cat2][1])
-        self.cat3_img = ImageTk.PhotoImage(file = cats_dict[cat3][1])
-        self.lb1 = tk.Label(self.part1_endingface, image = self.cat1_img)
+        self.cat1_img = ImageTk.PhotoImage(file=cats_dict[cat1][1])
+        self.cat2_img = ImageTk.PhotoImage(file=cats_dict[cat2][1])
+        self.cat3_img = ImageTk.PhotoImage(file=cats_dict[cat3][1])
+        self.lb1 = tk.Label(self.part1_endingface, image=self.cat1_img)
         self.lb1.grid()
-        self.lb2 = tk.Label(self.part1_endingface, image = self.cat2_img)
+        self.lb2 = tk.Label(self.part1_endingface, image=self.cat2_img)
         self.lb2.grid()
-        self.lb3 = tk.Label(self.part1_endingface, image = self.cat3_img)
+        self.lb3 = tk.Label(self.part1_endingface, image=self.cat3_img)
         self.lb3.grid()
-        self.btn_cat1 = tk.Button(self.part1_endingface,text='點此看{name}的資訊'.format(name=cats_dict[cat1][2]), font = self.root.ft, bg="white", fg = 'orange', anchor = tk.CENTER, command = lambda: webbrowser.open(cats_dict[cat1][0]))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat1 = tk.Button(self.part1_endingface, text='點此看{name}的資訊'.format(
+            name=cats_dict[cat1][2]), font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: webbrowser.open(cats_dict[cat1][0]))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat1.grid()
-        self.btn_cat2 = tk.Button(self.part1_endingface,text='點此看{name}的資訊'.format(name=cats_dict[cat2][2]), font = self.root.ft, bg="white", fg = 'orange', anchor = tk.CENTER, command = lambda: webbrowser.open(cats_dict[cat2][0]))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat2 = tk.Button(self.part1_endingface, text='點此看{name}的資訊'.format(
+            name=cats_dict[cat2][2]), font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: webbrowser.open(cats_dict[cat2][0]))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat2.grid()
-        self.btn_cat3 = tk.Button(self.part1_endingface,text='點此看{name}的資訊'.format(name=cats_dict[cat3][2]), font = self.root.ft, bg="white", fg = 'orange', anchor = tk.CENTER, command = lambda: webbrowser.open(cats_dict[cat3][0]))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat3 = tk.Button(self.part1_endingface, text='點此看{name}的資訊'.format(
+            name=cats_dict[cat3][2]), font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: webbrowser.open(cats_dict[cat3][0]))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat3.grid()
-        self.btn_initface = tk.Button(self.part1_endingface,text='回到主頁', font = self.root.ft, bg="white", fg = 'pink', anchor = tk.CENTER, command=self.change_initface)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_initface = tk.Button(self.part1_endingface, text='回到主頁', font=self.root.ft, bg="white",
+                                      fg='pink', anchor=tk.CENTER, command=self.change_initface)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_initface.grid()
-        self.part1_endingface.create_window(220, 265, width=160, height=335,window = self.lb1)
-        self.part1_endingface.create_window(500, 265, width=160, height=335,window = self.lb2)
-        self.part1_endingface.create_window(780, 265, width=160, height=335,window = self.lb3)
-        self.part1_endingface.create_window(500, 510, anchor=tk.CENTER, width=200, height=40, window = self.btn_initface)
-        self.part1_endingface.create_window(220, 460, anchor=tk.CENTER, width=180, height=40, window = self.btn_cat1)
-        self.part1_endingface.create_window(500, 460, anchor=tk.CENTER, width=180, height=40, window = self.btn_cat2)
-        self.part1_endingface.create_window(780, 460, anchor=tk.CENTER, width=180, height=40, window = self.btn_cat3)
+        self.part1_endingface.create_window(
+            220, 265, width=160, height=335, window=self.lb1)
+        self.part1_endingface.create_window(
+            500, 265, width=160, height=335, window=self.lb2)
+        self.part1_endingface.create_window(
+            780, 265, width=160, height=335, window=self.lb3)
+        self.part1_endingface.create_window(
+            500, 510, anchor=tk.CENTER, width=200, height=40, window=self.btn_initface)
+        self.part1_endingface.create_window(
+            220, 460, anchor=tk.CENTER, width=180, height=40, window=self.btn_cat1)
+        self.part1_endingface.create_window(
+            500, 460, anchor=tk.CENTER, width=180, height=40, window=self.btn_cat2)
+        self.part1_endingface.create_window(
+            780, 460, anchor=tk.CENTER, width=180, height=40, window=self.btn_cat3)
 
     def change_initface(self):
         self.part1_endingface.destroy()
@@ -346,20 +382,20 @@ class part2_questionface():
             500, 280, image=self.background_img)
         self.part2_questionface.grid()
         self.questionlbl = tk.Label(
-            text=str(number+1)+'.'+questions[number], bg='gray', fg='white', font='内海フォント-Bold 20')
+            text=str(number+1)+'.'+questions[number], bg='gray', fg='white', font=self.root.ft)
 
-        self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
+        self.questionlbl.place(anchor='center', relx=0.5, rely=0.4)
 
         self.ans_btn1 = tk.Button(
-            text=option1s[number], height=1, font='内海フォント-Bold 15', command=lambda: self.btn1(number), bg='pink', fg='white')
+            text=option1s[number], height=1, font=self.root.ft, command=lambda: self.btn1(number), bg='pink', fg='white')
         self.ans_btn2 = tk.Button(
-            text=option2s[number], height=1, font='内海フォント-Bold 15', command=lambda: self.btn2(number), bg='pink', fg='white')
-        self.ans_btn1.place(anchor='center', relx=0.3, rely=0.8)
-        self.ans_btn2.place(anchor='center', relx=0.7, rely=0.8)
+            text=option2s[number], height=1, font=self.root.ft, command=lambda: self.btn2(number), bg='pink', fg='white')
+        self.ans_btn1.place(anchor='center', relx=0.3, rely=0.55)
+        self.ans_btn2.place(anchor='center', relx=0.7, rely=0.55)
 
         self.back_btn = tk.Button(
-            text='沒有上一題', font='内海フォント-Bold 20', command=self.back)
-        self.back_btn.place(anchor='center', relx=0.9, rely=0.9)
+            text='喵', font=self.root.ft, command=self.back, bg='white')
+        self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
 
     def back(self):
         global number
@@ -409,8 +445,12 @@ class part2_questionface():
             self.questionlbl.config(
                 image=info_img, borderwidth=0)
             if number <= 9:
-                self.back_btn.config(
-                    text='下一題', command=lambda: self.next(number))
+                if number == '0':
+                    self.back_btn.config(
+                        text='喵', command=lambda: self.next(number))
+                if number != '0':
+                    self.back_btn.config(
+                        text='下一題', command=lambda: self.next(number))
             if number == 10:
                 self.back_btn.config(
                     text='點我看分數', command=lambda: self.next(number))
@@ -443,8 +483,12 @@ class part2_questionface():
             self.questionlbl.config(
                 image=info_img, borderwidth=0)
             if number <= 9:
-                self.back_btn.config(
-                    text='下一題', command=lambda: self.next(number))
+                if number == '0':
+                    self.back_btn.config(
+                        text='喵', command=lambda: self.next(number))
+                if number != '0':
+                    self.back_btn.config(
+                        text='下一題', command=lambda: self.next(number))
             if number == 10:
                 self.back_btn.config(
                     text='點我看分數', command=lambda: self.next(number))
@@ -464,9 +508,12 @@ class part2_questionface():
                 text=str(number+1)+'.'+questions[number], image='')
             self.ans_btn1.config(text=option1s[number])
             self.ans_btn2.config(text=option2s[number])
-            self.ans_btn1.place(anchor='center', relx=0.3, rely=0.8)
-            self.ans_btn2.place(anchor='center', relx=0.7, rely=0.8)
-            self.back_btn.config(text='上一題', command=self.back)
+            self.ans_btn1.place(anchor='center', relx=0.3, rely=0.55)
+            self.ans_btn2.place(anchor='center', relx=0.7, rely=0.55)
+            if str(number) == '0':
+                self.back_btn.config(text='喵', command=self.back)
+            else:
+                self.back_btn.config(text='上一題', command=self.back)
         if number == 10:
             global answer
             part2_grade = self.part2_count_grade()
