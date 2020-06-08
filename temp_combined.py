@@ -5,10 +5,10 @@ import webbrowser
 import tkinter.font as tkFont
 from PIL import ImageTk, Image
 import pygame
-file = 'cat.wav'
+file = 'music.wav'
 pygame.mixer.init()
 track = pygame.mixer.music.load(file)
-pygame.mixer.music.play()
+pygame.mixer.music.play(-1)
 
 
 def read_PART2_question():
