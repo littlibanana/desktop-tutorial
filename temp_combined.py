@@ -175,17 +175,17 @@ class part1_questionface():
     def click1(self, question_list, cat_dict, cat_score, color_list, i):
         global q_id
         for cat_id in cat_dict.keys():  # 計算分數
-            if self.q_id <= 12:
+            if self.q_id <= 10:
                 if question_list[self.q_id][1] == cat_dict[cat_id][self.q_id]:
                     self.cat_score[cat_id] += int(question_list[self.q_id][3])
                 else:
                     self.cat_score[cat_id] += int(question_list[self.q_id][4])
             else:
-                if self.q_id == 13:
+                if self.q_id == 11:
                     if color_list[0] == cat_dict[cat_id][self.q_id]:
                         self.cat_score[cat_id] += int(
                             question_list[self.q_id][3])
-                elif self.q_id == 14:
+                elif self.q_id == 12:
                     if color_list[1] == cat_dict[cat_id][self.q_id]:
                         self.cat_score[cat_id] += int(
                             question_list[self.q_id][3])
@@ -193,23 +193,25 @@ class part1_questionface():
                     if color_list[0] == cat_dict[cat_id][self.q_id]:
                         self.cat_score[cat_id] += int(
                             question_list[self.q_id][3])
-        if self.q_id >= 10:  # 製造最後三題
-            if self.q_id <= 12:
+        if self.q_id >= 8:  # 製造最後三題
+            if self.q_id <= 10:
                 color_list.append(question_list[self.q_id][1])
-        if self.q_id <= 15:  # 進下一題
+        if self.q_id == 7:
+            print(cat_score)
+        if self.q_id <= 13:  # 進下一題
             self.q_id += 1
-        if self.q_id <= 15:
-            if self.q_id == 13:
+        if self.q_id <= 13:
+            if self.q_id == 11:
                 self.questionlbl.config(
                     text=question_list[self.q_id][0]+color_list[0]+"還是"+color_list[1]+"？")
                 self.ans_btn1.config(text=color_list[0])
                 self.ans_btn2.config(text=color_list[1])
-            elif self.q_id == 14:
+            elif self.q_id == 12:
                 self.questionlbl.config(
                     text=question_list[self.q_id][0]+color_list[1]+"還是"+color_list[2]+"？")
                 self.ans_btn1.config(text=color_list[1])
                 self.ans_btn2.config(text=color_list[2])
-            elif self.q_id == 15:
+            elif self.q_id == 13:
                 self.questionlbl.config(
                     text=question_list[self.q_id][0]+color_list[0]+"還是"+color_list[2]+"？")
                 self.ans_btn1.config(text=color_list[0])
@@ -227,17 +229,17 @@ class part1_questionface():
     def click2(self, question_list, cat_dict, cat_score, color_list, i):
         global q_id
         for cat_id in cat_dict.keys():  # 計算分數
-            if self.q_id <= 12:
+            if self.q_id <= 10:
                 if question_list[self.q_id][2] == cat_dict[cat_id][self.q_id]:
                     self.cat_score[cat_id] += int(question_list[self.q_id][5])
                 else:
                     self.cat_score[cat_id] += int(question_list[self.q_id][6])
             else:
-                if self.q_id == 13:
+                if self.q_id == 11:
                     if color_list[1] == cat_dict[cat_id][self.q_id]:
                         self.cat_score[cat_id] += int(
                             question_list[self.q_id][3])
-                elif self.q_id == 14:
+                elif self.q_id == 12:
                     if color_list[2] == cat_dict[cat_id][self.q_id]:
                         self.cat_score[cat_id] += int(
                             question_list[self.q_id][3])
@@ -245,23 +247,25 @@ class part1_questionface():
                     if color_list[2] == cat_dict[cat_id][self.q_id]:
                         self.cat_score[cat_id] += int(
                             question_list[self.q_id][3])
-        if self.q_id >= 10:  # 製造最後三題
-            if self.q_id <= 12:
+        if self.q_id >= 8:  # 製造最後三題
+            if self.q_id <= 10:
                 color_list.append(question_list[self.q_id][2])
-        if self.q_id <= 15:  # 進下一題
+        if self.q_id == 7:
+            print(cat_score)
+        if self.q_id <= 13:  # 進下一題
             self.q_id += 1
-        if self.q_id <= 15:
-            if self.q_id == 13:
+        if self.q_id <= 13:
+            if self.q_id == 11:
                 self.questionlbl.config(
                     text=question_list[self.q_id][0]+color_list[0]+"還是"+color_list[1]+"？")
                 self.ans_btn1.config(text=color_list[0])
                 self.ans_btn2.config(text=color_list[1])
-            elif self.q_id == 14:
+            elif self.q_id == 12:
                 self.questionlbl.config(
                     text=question_list[self.q_id][0]+color_list[1]+"還是"+color_list[2]+"？")
                 self.ans_btn1.config(text=color_list[1])
                 self.ans_btn2.config(text=color_list[2])
-            elif self.q_id == 15:
+            elif self.q_id == 13:
                 self.questionlbl.config(
                     text=question_list[self.q_id][0]+color_list[0]+"還是"+color_list[2]+"？")
                 self.ans_btn1.config(text=color_list[0])
