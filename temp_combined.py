@@ -406,7 +406,8 @@ class part2_questionface():
     def back(self):
         global number
         if number == 0:
-            winsound.PlaySound(r'meow.wav', winsound.SND_FILENAME|winsound.SND_ASYNC)
+            winsound.PlaySound(
+                r'meow.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
         if number > 0:
             number -= 1
         answer[number] = ''
@@ -430,7 +431,6 @@ class part2_questionface():
 
     def btn1(self, i):
         global number
-        global info_img
         if number <= 9:
             number += 1
 
@@ -439,7 +439,12 @@ class part2_questionface():
         if answer[number-1] == int(true_answers[number-1]):
             self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
             self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
-            self.questionlbl.config(text='恭喜答對')
+            self.correct_img = ImageTk.PhotoImage(
+                file='correct_cat.png')
+            self.questionlbl.config(image=self.correct_img, borderwidth=0)
+            self.wronglbl = tk.Label(text='恭喜答對囉', bg='pink',
+                                     fg='white', font=self.root.ft1)
+            self.wronglbl.place(anchor='center', relx=0.5, rely=0.72)
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
@@ -458,10 +463,10 @@ class part2_questionface():
                                      fg='white', font=self.root.ft1)
             self.wronglbl.place(anchor='center', relx=0.55, rely=0.8)
 
-            info_img = ImageTk.PhotoImage(
+            self.info_img = ImageTk.PhotoImage(
                 file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
-                image=info_img, borderwidth=0)
+                image=self.info_img, borderwidth=0)
 
             if number <= 9:
                 if number == '0':
@@ -479,7 +484,6 @@ class part2_questionface():
 
     def btn2(self, i):
         global number
-        global info_img
         if number <= 9:
             number += 1
 
@@ -487,10 +491,14 @@ class part2_questionface():
 
         if answer[number-1] == int(true_answers[number-1]):
             self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
-            self.questionlbl.config(text='恭喜答對ฅ’ω’ฅ')
-            photo1 = tk.PhotoImage(file = 'correct cat.png')
-            self.questionlbl.config(image = photo1,anchor = tk.CENTER)
-            
+            self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
+
+            self.correct_img = ImageTk.PhotoImage(
+                file='correct_cat.png')
+            self.questionlbl.config(image=self.correct_img, borderwidth=0)
+            self.wronglbl = tk.Label(text='恭喜答對囉', bg='pink',
+                                     fg='white', font=self.root.ft1)
+            self.wronglbl.place(anchor='center', relx=0.5, rely=0.72)
             if number <= 9:
                 self.back_btn.config(
                     text='下一題', command=lambda: self.next(number))
@@ -507,10 +515,10 @@ class part2_questionface():
                                      fg='white', font=self.root.ft1)
             self.wronglbl.place(anchor='center', relx=0.55, rely=0.8)
 
-            info_img = ImageTk.PhotoImage(
+            self.info_img = ImageTk.PhotoImage(
                 file='part2_answers//'+str(info[number-1]))
             self.questionlbl.config(
-                image=info_img, borderwidth=0)
+                image=self.info_img, borderwidth=0)
 
             if number <= 9:
                 if number == '0':
