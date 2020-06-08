@@ -361,11 +361,11 @@ class part1_endingface():
         self.part1_endingface.create_window(
             500, 510, anchor=tk.CENTER, width=200, height=40, window=self.btn_initface)
         self.part1_endingface.create_window(
-            220, 460, anchor=tk.CENTER, width=180, height=40, window=self.btn_cat1)
+            220, 460, anchor=tk.CENTER, width=190, height=40, window=self.btn_cat1)
         self.part1_endingface.create_window(
-            500, 460, anchor=tk.CENTER, width=180, height=40, window=self.btn_cat2)
+            500, 460, anchor=tk.CENTER, width=190, height=40, window=self.btn_cat2)
         self.part1_endingface.create_window(
-            780, 460, anchor=tk.CENTER, width=180, height=40, window=self.btn_cat3)
+            780, 460, anchor=tk.CENTER, width=190, height=40, window=self.btn_cat3)
 
     def change_initface(self):
         self.part1_endingface.destroy()
