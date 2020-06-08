@@ -36,7 +36,7 @@ def read_PART2_question():
         tmp_num = random.choice(range(0, 29))
         if tmp_num not in random_num:
             random_num.append(tmp_num)
-    print(random_num)
+    #print(random_num)
     final_question = []
 
     for num in random_num:
@@ -560,35 +560,37 @@ class part2_endingface():
     def __init__(self, root, grade):
         self.root = root
         self.grade = grade
-        self.part2_endingface = tk.Canvas(
-            self.root, bd=0, width=1000, height=600, highlightthickness=0)
+        print(self.grade)
+        self.part2_endingface = tk.Canvas(self.root, bd=0, width=1000, height=600, highlightthickness=0)
         self.part2_endingface.grid()
-        self.imglist = ['小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png',
-                        '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png']
+        self.imglist = ['小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png','小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png','小龍女橘字.png','小龍女橘字.png','小龍女橘字.png','小龍女橘字.png','小龍女橘字.png']
         if self.grade <= 10:
             self.img = ImageTk.PhotoImage(file=self.imglist[0])
         elif 10 < self.grade <= 20:
             self.img = ImageTk.PhotoImage(file=self.imglist[1])
-        elif 10 < self.grade <= 20:
+        elif 20 < self.grade <= 30:
             self.img = ImageTk.PhotoImage(file=self.imglist[2])
-        elif 10 < self.grade <= 20:
+        elif 30 < self.grade <= 40:
             self.img = ImageTk.PhotoImage(file=self.imglist[3])
-        elif 10 < self.grade <= 20:
+        elif 40 < self.grade <= 50:
             self.img = ImageTk.PhotoImage(file=self.imglist[4])
-        elif 10 < self.grade <= 20:
+        elif 50 < self.grade <= 60:
             self.img = ImageTk.PhotoImage(file=self.imglist[5])
-        elif 10 < self.grade <= 20:
+        elif 60 < self.grade <= 70:
             self.img = ImageTk.PhotoImage(file=self.imglist[6])
+        elif 70 < self.grade <= 80:
+            self.img = ImageTk.PhotoImage(file=self.imglist[7])
+        elif 80 < self.grade <= 90:
+            self.img = ImageTk.PhotoImage(file=self.imglist[8])
+        elif 90 < self.grade <= 100:
+            self.img = ImageTk.PhotoImage(file=self.imglist[9])
         self.part2_endingface.create_image(0, 0, anchor=tk.NW, image=self.img)
-        self.lb = tk.Label(text='98', bg='lemon chiffon')  # '#323232'
+        self.lb = tk.Label(text=self.grade, bg='lemon chiffon')  # '#323232'
         self.lb.grid()
-        self.part2_endingface.create_window(
-            800, 330, width=200, height=40, window=self.lb)
-        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",
-                             fg='pink', anchor=tk.CENTER, command=self.change_initface)
+        self.part2_endingface.create_window(800, 330, width=200, height=40, window=self.lb)
+        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=self.change_initface)
         self.btn.grid()
-        self.part2_endingface.create_window(
-            880, 330, width=200, height=40, window=self.btn)
+        self.part2_endingface.create_window(880, 530, width=200, height=40, window=self.btn)
 
     def change_initface(self):
         global questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score
