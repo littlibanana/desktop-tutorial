@@ -98,7 +98,8 @@ class initface():
         self.initface = tk.Canvas(
             self.root, bd=0, width=1000, height=563, highlightthickness=0)  # 設定畫布大小
         # 若要讓此圖片尺寸符合canvas且保持ppt原畫面比例，此背景圖檔需先調整。(做法:用ppt做好後另存新檔成圖片、再用"小畫家3D"點選裁剪、右上角設定、鎖定外觀比例&與畫布一起調整圖片大小、寬度設定與width一樣，再儲存即完成)
-        self.background_img = ImageTk.PhotoImage(file='background_initface.png')
+        self.background_img = ImageTk.PhotoImage(
+            file='background_initface.png')
         # 設定圖片在畫布上的位置(原點(錨定點)預設為畫布左上角，前兩參數為圖片正中間那個點的座標)
         self.initface.create_image(400, 280, image=self.background_img)
         self.initface.grid()  # sticky = tk.NE
@@ -111,9 +112,12 @@ class initface():
         self.btn3 = tk.Button(self.initface, text='我想給回饋!!!', font=self.root.ft, bg="white",
                               fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://forms.gle/1bRsQAEoicZD1v9G6'))
         self.btn3.grid()
-        self.initface.create_window(800, 370, width=220, height=40, window=self.btn1)  # 設定按鈕的位置、長寬
-        self.initface.create_window(800, 420, width=220, height=40, window=self.btn2)
-        self.initface.create_window(800, 470, width=220, height=40, window=self.btn3)
+        self.initface.create_window(
+            800, 370, width=220, height=40, window=self.btn1)  # 設定按鈕的位置、長寬
+        self.initface.create_window(
+            800, 420, width=220, height=40, window=self.btn2)
+        self.initface.create_window(
+            800, 470, width=220, height=40, window=self.btn3)
 
     def change_part1_questionface(self):
         self.initface.destroy()
@@ -139,7 +143,8 @@ cat_dict = dict()
 for row in rows:
     cat_dict[int(row[0])] = row[1:]
 
-pic_list = [['虎斑.png','三花.png'],['白底橘.png','乳牛.png'],['黑貓.png','金吉拉.png']]
+pic_list = [['虎斑.png', '三花.png'], ['白底橘.png', '乳牛.png'], ['黑貓.png', '金吉拉.png']]
+
 
 class part1_questionface():
     # 讀取問題存進dict
@@ -189,16 +194,16 @@ class part1_questionface():
             self.questionlbl.config(text=question_list[self.q_id][0])
             self.ans_btn1.config(text=question_list[self.q_id][1])
             self.ans_btn2.config(text=question_list[self.q_id][2])
-            if self.q_id >= 8: 
+            if self.q_id >= 8:
                 if self.q_id == 8:
-                    self.img_left = ImageTk.PhotoImage(file = pic_list[0][0])
-                    self.img_right = ImageTk.PhotoImage(file = pic_list[0][1])
+                    self.img_left = ImageTk.PhotoImage(file=pic_list[0][0])
+                    self.img_right = ImageTk.PhotoImage(file=pic_list[0][1])
                 elif self.q_id == 9:
-                    self.img_left = ImageTk.PhotoImage(file = pic_list[1][0])
-                    self.img_right = ImageTk.PhotoImage(file = pic_list[1][1])
+                    self.img_left = ImageTk.PhotoImage(file=pic_list[1][0])
+                    self.img_right = ImageTk.PhotoImage(file=pic_list[1][1])
                 else:
-                    self.img_left = ImageTk.PhotoImage(file = pic_list[2][0])
-                    self.img_right = ImageTk.PhotoImage(file = pic_list[2][1])
+                    self.img_left = ImageTk.PhotoImage(file=pic_list[2][0])
+                    self.img_right = ImageTk.PhotoImage(file=pic_list[2][1])
                 self.left = tk.Label(image=self.img_left)
                 self.right = tk.Label(image=self.img_right)
                 self.left.place(anchor='center', relx=0.31, rely=0.7)
@@ -222,16 +227,16 @@ class part1_questionface():
             self.questionlbl.config(text=question_list[self.q_id][0])
             self.ans_btn1.config(text=question_list[self.q_id][1])
             self.ans_btn2.config(text=question_list[self.q_id][2])
-            if self.q_id >= 8: 
+            if self.q_id >= 8:
                 if self.q_id == 8:
-                    self.img_left = ImageTk.PhotoImage(file = pic_list[0][0])
-                    self.img_right = ImageTk.PhotoImage(file = pic_list[0][1])
+                    self.img_left = ImageTk.PhotoImage(file=pic_list[0][0])
+                    self.img_right = ImageTk.PhotoImage(file=pic_list[0][1])
                 elif self.q_id == 9:
-                    self.img_left = ImageTk.PhotoImage(file = pic_list[1][0])
-                    self.img_right = ImageTk.PhotoImage(file = pic_list[1][1])
+                    self.img_left = ImageTk.PhotoImage(file=pic_list[1][0])
+                    self.img_right = ImageTk.PhotoImage(file=pic_list[1][1])
                 else:
-                    self.img_left = ImageTk.PhotoImage(file = pic_list[2][0])
-                    self.img_right = ImageTk.PhotoImage(file = pic_list[2][1])
+                    self.img_left = ImageTk.PhotoImage(file=pic_list[2][0])
+                    self.img_right = ImageTk.PhotoImage(file=pic_list[2][1])
                 self.left = tk.Label(image=self.img_left)
                 self.right = tk.Label(image=self.img_right)
                 self.left.place(anchor='center', relx=0.31, rely=0.7)
@@ -535,7 +540,7 @@ class part2_endingface():
         global part2_grade
         self.root = root
         self.grade = part2_grade
-        #print(self.grade)
+        # print(self.grade)
         self.part2_endingface = tk.Canvas(
             self.root, bd=0, width=1000, height=600, highlightthickness=0)
         self.part2_endingface.grid()
@@ -563,14 +568,19 @@ class part2_endingface():
             self.img = ImageTk.PhotoImage(file=self.imglist[9])
         elif 90 < self.grade <= 100:
             self.img = ImageTk.PhotoImage(file=self.imglist[10])
-        self.part2_endingface.create_image(500, 280, image=self.img)# anchor=tk.NW,
+        self.part2_endingface.create_image(
+            500, 280, image=self.img)  # anchor=tk.NW,
         self.part2_endingface.grid()
-        self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft2, bg="white",fg='pink', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
+        self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft2,
+                           bg="white", fg='pink', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
         self.lb.grid()
-        self.part2_endingface.create_window(580, 80, width=450, height=80, window=self.lb)
-        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=self.change_initface)
+        self.part2_endingface.create_window(
+            580, 80, width=450, height=80, window=self.lb)
+        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",
+                             fg='pink', anchor=tk.CENTER, command=self.change_initface)
         self.btn.grid()
-        self.part2_endingface.create_window(870, 520, width=150, height=40, window=self.btn)
+        self.part2_endingface.create_window(
+            870, 520, width=150, height=40, window=self.btn)
 
     def change_initface(self):
         global questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score
@@ -581,5 +591,6 @@ class part2_endingface():
 
 if __name__ == '__main__':  # ?
     root = tk.Tk()
+    root.resizable(0, 0)
     Helper(root)
     root.mainloop()
