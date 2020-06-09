@@ -108,8 +108,12 @@ class initface():
         self.btn2 = tk.Button(self.initface, text='Part2 貓咪知識小學堂', font=self.root.ft, bg="white",
                               fg='pink', anchor=tk.CENTER, command=self.change_part2_questionface)
         self.btn2.grid()
-        self.initface.create_window(800, 420, width=220, height=40, window=self.btn1)  # 設定按鈕的位置、長寬
-        self.initface.create_window(800, 470, width=220, height=40, window=self.btn2)
+        self.btn3 = tk.Button(self.initface, text='我想給回饋!!!', font=self.root.ft, bg="white",
+                              fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://forms.gle/1bRsQAEoicZD1v9G6'))
+        self.btn3.grid()
+        self.initface.create_window(800, 370, width=220, height=40, window=self.btn1)  # 設定按鈕的位置、長寬
+        self.initface.create_window(800, 420, width=220, height=40, window=self.btn2)
+        self.initface.create_window(800, 470, width=220, height=40, window=self.btn3)
 
     def change_part1_questionface(self):
         self.initface.destroy()
