@@ -102,14 +102,14 @@ class initface():
         # 設定圖片在畫布上的位置(原點(錨定點)預設為畫布左上角，前兩參數為圖片正中間那個點的座標)
         self.initface.create_image(400, 280, image=self.background_img)
         self.initface.grid()  # sticky = tk.NE
-        self.btn1 = tk.Button(self.initface, text='小幫手Part 1', font=self.root.ft, bg="white", fg='pink',
+        self.btn1 = tk.Button(self.initface, text='Part1 貓咪速配小遊戲', font=self.root.ft, bg="white", fg='pink',
                               anchor=tk.CENTER, command=self.change_part1_questionface)  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn1.grid()
-        self.btn2 = tk.Button(self.initface, text='小幫手Part 2', font=self.root.ft, bg="white",
+        self.btn2 = tk.Button(self.initface, text='Part2 貓咪知識小學堂', font=self.root.ft, bg="white",
                               fg='pink', anchor=tk.CENTER, command=self.change_part2_questionface)
         self.btn2.grid()
-        self.initface.create_window(800, 420, width=200, height=40, window=self.btn1)  # 設定按鈕的位置、長寬
-        self.initface.create_window(800, 470, width=200, height=40, window=self.btn2)
+        self.initface.create_window(800, 420, width=220, height=40, window=self.btn1)  # 設定按鈕的位置、長寬
+        self.initface.create_window(800, 470, width=220, height=40, window=self.btn2)
 
     def change_part1_questionface(self):
         self.initface.destroy()
