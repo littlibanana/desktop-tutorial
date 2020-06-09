@@ -604,7 +604,7 @@ class part2_endingface():
         self.part2_endingface.grid()
         self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft2, bg="white",fg='pink', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
         self.lb.grid()
-        self.part2_endingface.create_window(580, 85, width=450, height=80, window=self.lb)
+        self.part2_endingface.create_window(580, 80, width=450, height=80, window=self.lb)
         self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=self.change_initface)
         self.btn.grid()
         self.part2_endingface.create_window(870, 520, width=150, height=40, window=self.btn)
