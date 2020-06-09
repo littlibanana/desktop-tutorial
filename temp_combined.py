@@ -96,8 +96,7 @@ class initface():
         self.initface = tk.Canvas(
             self.root, bd=0, width=1000, height=563, highlightthickness=0)  # 設定畫布大小
         # 若要讓此圖片尺寸符合canvas且保持ppt原畫面比例，此背景圖檔需先調整。(做法:用ppt做好後另存新檔成圖片、再用"小畫家3D"點選裁剪、右上角設定、鎖定外觀比例&與畫布一起調整圖片大小、寬度設定與width一樣，再儲存即完成)
-        self.background_img = ImageTk.PhotoImage(
-            file='background_initface.png')
+        self.background_img = ImageTk.PhotoImage(file='background_initface.png')
         # 設定圖片在畫布上的位置(原點(錨定點)預設為畫布左上角，前兩參數為圖片正中間那個點的座標)
         self.initface.create_image(400, 280, image=self.background_img)
         self.initface.grid()  # sticky = tk.NE
@@ -107,10 +106,8 @@ class initface():
         self.btn2 = tk.Button(self.initface, text='小幫手Part 2', font=self.root.ft, bg="white",
                               fg='pink', anchor=tk.CENTER, command=self.change_part2_questionface)
         self.btn2.grid()
-        self.initface.create_window(
-            800, 420, width=200, height=40, window=self.btn1)  # 設定按鈕的位置、長寬
-        self.initface.create_window(
-            800, 470, width=200, height=40, window=self.btn2)
+        self.initface.create_window(800, 420, width=200, height=40, window=self.btn1)  # 設定按鈕的位置、長寬
+        self.initface.create_window(800, 470, width=200, height=40, window=self.btn2)
 
     def change_part1_questionface(self):
         self.initface.destroy()
@@ -573,42 +570,42 @@ class part2_endingface():
         global part2_grade
         self.root = root
         self.grade = part2_grade
-        print(self.grade)
+        #print(self.grade)
         self.part2_endingface = tk.Canvas(
             self.root, bd=0, width=1000, height=600, highlightthickness=0)
         self.part2_endingface.grid()
-        self.imglist = ['小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png',
-                        '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png', '小龍女橘字.png']
-        if self.grade <= 10:
+        self.imglist = ['0.png', '10.png', '20.png', '30.png', '40.png',
+                        '50.png', '60.png', '70.png', '80.png', '90.png', '100.png']
+        if self.grade == 0:
             self.img = ImageTk.PhotoImage(file=self.imglist[0])
-        elif 10 < self.grade <= 20:
+        elif 0 < self.grade <= 10:
             self.img = ImageTk.PhotoImage(file=self.imglist[1])
-        elif 20 < self.grade <= 30:
+        elif 10 < self.grade <= 20:
             self.img = ImageTk.PhotoImage(file=self.imglist[2])
-        elif 30 < self.grade <= 40:
+        elif 20 < self.grade <= 30:
             self.img = ImageTk.PhotoImage(file=self.imglist[3])
-        elif 40 < self.grade <= 50:
+        elif 30 < self.grade <= 40:
             self.img = ImageTk.PhotoImage(file=self.imglist[4])
-        elif 50 < self.grade <= 60:
+        elif 40 < self.grade <= 50:
             self.img = ImageTk.PhotoImage(file=self.imglist[5])
-        elif 60 < self.grade <= 70:
+        elif 50 < self.grade <= 60:
             self.img = ImageTk.PhotoImage(file=self.imglist[6])
-        elif 70 < self.grade <= 80:
+        elif 60 < self.grade <= 70:
             self.img = ImageTk.PhotoImage(file=self.imglist[7])
-        elif 80 < self.grade <= 90:
+        elif 70 < self.grade <= 80:
             self.img = ImageTk.PhotoImage(file=self.imglist[8])
-        elif 90 < self.grade <= 100:
+        elif 80 < self.grade <= 90:
             self.img = ImageTk.PhotoImage(file=self.imglist[9])
-        self.part2_endingface.create_image(0, 0, anchor=tk.NW, image=self.img)
-        self.lb = tk.Label(text=self.grade, bg='lemon chiffon')  # '#323232'
+        elif 90 < self.grade <= 100:
+            self.img = ImageTk.PhotoImage(file=self.imglist[10])
+        self.part2_endingface.create_image(500, 280, image=self.img)# anchor=tk.NW,
+        self.part2_endingface.grid()
+        self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
         self.lb.grid()
-        self.part2_endingface.create_window(
-            800, 330, width=200, height=40, window=self.lb)
-        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",
-                             fg='pink', anchor=tk.CENTER, command=self.change_initface)
+        self.part2_endingface.create_window(560, 85, width=200, height=40, window=self.lb)
+        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=self.change_initface)
         self.btn.grid()
-        self.part2_endingface.create_window(
-            880, 530, width=200, height=40, window=self.btn)
+        self.part2_endingface.create_window(870, 520, width=150, height=40, window=self.btn)
 
     def change_initface(self):
         global questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score
