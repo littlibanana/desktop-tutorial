@@ -87,9 +87,9 @@ class Helper():
             family='内海フォント-Bold', size=20, weight=tkFont.BOLD)
         self.root.ft2 = tkFont.Font(
             family='内海フォント-Bold', size=40, weight=tkFont.BOLD)
-        # initface(self.root)
         # part1_endingface(self.root,1,2,10)
         initface(self.root)
+        #part2_endingface(self.root,85)
 
 
 class initface():
@@ -575,43 +575,64 @@ class part2_endingface():
     def __init__(self, root, grade):
         global part2_grade
         self.root = root
-        self.grade = part2_grade
+        self.grade = part2_grade#self.grade = grade
         #print(self.grade)
         self.part2_endingface = tk.Canvas(
             self.root, bd=0, width=1000, height=600, highlightthickness=0)
         self.part2_endingface.grid()
-        self.imglist = ['0.png', '10.png', '20.png', '30.png', '40.png',
-                        '50.png', '60.png', '70.png', '80.png', '90.png', '100.png']
+        self.imglist = ['paints\\招財喵.png', 'paints\\仙杜瑞喵.png', '20.png', '30.png', 'paints\\柯南.png',
+                        'paints\\躲貓貓.png', '60.png', 'paints\\令傑喵.png', 'paints\\多拉A喵.png', 'paints\\豆漿.png','100.png']# paints\\小龍女.png
         if self.grade == 0:
             self.img = ImageTk.PhotoImage(file=self.imglist[0])
+            self.introduce_btn = tk.Button(text='點我看招財貓由來', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.peekme.cc/post/763438'))
+            self.introduce_btn.grid()
+            self.part2_endingface.create_window(650, 520, width=180, height=40, window=self.introduce_btn)
         elif 0 < self.grade <= 10:
             self.img = ImageTk.PhotoImage(file=self.imglist[1])
+            self.introduce_btn = tk.Button(text='點我看襤褸貓的介紹', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://kknews.cc/zh-tw/pet/yexak6n.html'))
+            self.introduce_btn.grid()
+            self.part2_endingface.create_window(650, 520, width=200, height=40, window=self.introduce_btn)
         elif 10 < self.grade <= 20:
             self.img = ImageTk.PhotoImage(file=self.imglist[2])
         elif 20 < self.grade <= 30:
             self.img = ImageTk.PhotoImage(file=self.imglist[3])
         elif 30 < self.grade <= 40:
             self.img = ImageTk.PhotoImage(file=self.imglist[4])
+            self.introduce_btn = tk.Button(text='點我看曼切堪猫介紹', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.google.com/search?rlz=1C1CHBF_zh-TWTW903TW903&sxsrf=ALeKk01tMLLknrCUyAU756oeVyY2kof99g%3A1591718339825&ei=w7HfXvz9MeSWr7wP75iy0AY&q=%E6%9B%BC%E5%88%87%E5%A0%AA%E7%8C%AB&oq=%E6%9B%BC%E5%88%87&gs_lcp=CgZwc3ktYWIQARgAMgQIIxAnMgQIABBDMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BwgAEEcQsAM6BwgjEOoCECc6CQgjECcQRhD_AToFCAAQsQNQ8oUBWNmrAWDtxQFoAnAAeACAAbMBiAHqCJIBAzQuNpgBAKABAaoBB2d3cy13aXqwAQo&sclient=psy-ab'))
+            self.introduce_btn.grid()
+            self.part2_endingface.create_window(650, 520, width=200, height=40, window=self.introduce_btn)
         elif 40 < self.grade <= 50:
             self.img = ImageTk.PhotoImage(file=self.imglist[5])
+            self.introduce_btn = tk.Button(text='點我看斯芬克斯貓介紹', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.google.com/search?rlz=1C1CHBF_zh-TWTW903TW903&sxsrf=ALeKk038ITmC4IeAtj7zAMkUEgjM1HKlsQ%3A1591718932390&ei=FLTfXpasF5KWr7wPru2daA&q=%E6%96%AF%E8%8A%AC%E5%85%8B%E6%96%AF%E8%B2%93&oq=%E6%96%AF%E8%8A%AC%E5%85%8B%E6%96%AF%E8%B2%93&gs_lcp=CgZwc3ktYWIQAzIECCMQJzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADoHCCMQsAMQJzoFCAAQsAM6BwgAELADEB46CQgAELADEAcQHjoFCAAQsQNQ3tkSWM2FFGCpihRoAXAAeACAAYQBiAG-BZIBAzAuNpgBAKABAaABAqoBB2d3cy13aXo&sclient=psy-ab&ved=0ahUKEwiWhrCMj_XpAhUSy4sBHa52Bw0Q4dUDCAw&uact=5'))
+            self.introduce_btn.grid()
+            self.part2_endingface.create_window(650, 520, width=240, height=40, window=self.introduce_btn)
         elif 50 < self.grade <= 60:
             self.img = ImageTk.PhotoImage(file=self.imglist[6])
         elif 60 < self.grade <= 70:
             self.img = ImageTk.PhotoImage(file=self.imglist[7])
+            self.introduce_btn = tk.Button(text='點我看麝香貓與咖啡的故事', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.natgeomedia.com/environment/article/content-6091.html'))
+            self.introduce_btn.grid()
+            self.part2_endingface.create_window(590, 520, width=340, height=40, window=self.introduce_btn)
         elif 70 < self.grade <= 80:
             self.img = ImageTk.PhotoImage(file=self.imglist[8])
+            self.introduce_btn = tk.Button(text='點我看狸花貓介紹', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://kknews.cc/zh-tw/pet/zg5eryq.html'))
+            self.introduce_btn.grid()
+            self.part2_endingface.create_window(650, 520, width=200, height=40, window=self.introduce_btn)
         elif 80 < self.grade <= 90:
             self.img = ImageTk.PhotoImage(file=self.imglist[9])
+            self.introduce_btn = tk.Button(text='點我看豆漿ig', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.instagram.com/soybeanmilk_cat/?hl=zh-tw'))
+            self.introduce_btn.grid()
+            self.part2_endingface.create_window(650, 520, width=200, height=40, window=self.introduce_btn)
         elif 90 < self.grade <= 100:
             self.img = ImageTk.PhotoImage(file=self.imglist[10])
         self.part2_endingface.create_image(500, 280, image=self.img)# anchor=tk.NW,
         self.part2_endingface.grid()
-        self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft2, bg="white",fg='pink', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
+        self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft2, bg="white",fg='orange', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
         self.lb.grid()
-        self.part2_endingface.create_window(580, 80, width=450, height=80, window=self.lb)
-        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=self.change_initface)
-        self.btn.grid()
-        self.part2_endingface.create_window(870, 520, width=150, height=40, window=self.btn)
+        self.part2_endingface.create_window(500, 40, width=450, height=70, window=self.lb)
+        self.btn_initface = tk.Button(text='回到主頁', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=self.change_initface)
+        self.btn_initface.grid()
+        self.part2_endingface.create_window(870, 520, width=150, height=40, window=self.btn_initface)
 
     def change_initface(self):
         global questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score
