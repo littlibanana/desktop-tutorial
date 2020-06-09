@@ -139,6 +139,7 @@ cat_dict = dict()
 for row in rows:
     cat_dict[int(row[0])] = row[1:]
 
+pic_list = [['虎斑.png','三花.png'],['白底橘.png','乳牛.png'],['黑貓.png','金吉拉.png']]
 
 class part1_questionface():
     # 讀取問題存進dict
@@ -188,6 +189,20 @@ class part1_questionface():
             self.questionlbl.config(text=question_list[self.q_id][0])
             self.ans_btn1.config(text=question_list[self.q_id][1])
             self.ans_btn2.config(text=question_list[self.q_id][2])
+            if self.q_id >= 8: 
+                if self.q_id == 8:
+                    self.img_left = ImageTk.PhotoImage(file = pic_list[0][0])
+                    self.img_right = ImageTk.PhotoImage(file = pic_list[0][1])
+                elif self.q_id == 9:
+                    self.img_left = ImageTk.PhotoImage(file = pic_list[1][0])
+                    self.img_right = ImageTk.PhotoImage(file = pic_list[1][1])
+                else:
+                    self.img_left = ImageTk.PhotoImage(file = pic_list[2][0])
+                    self.img_right = ImageTk.PhotoImage(file = pic_list[2][1])
+                self.left = tk.Label(image=self.img_left)
+                self.right = tk.Label(image=self.img_right)
+                self.left.place(anchor='center', relx=0.31, rely=0.7)
+                self.right.place(anchor='center', relx=0.65, rely=0.7)
         else:
             # print(self.cat_score)
             self.max_id_all = self.get_3_cat(self.cat_score)
@@ -207,6 +222,20 @@ class part1_questionface():
             self.questionlbl.config(text=question_list[self.q_id][0])
             self.ans_btn1.config(text=question_list[self.q_id][1])
             self.ans_btn2.config(text=question_list[self.q_id][2])
+            if self.q_id >= 8: 
+                if self.q_id == 8:
+                    self.img_left = ImageTk.PhotoImage(file = pic_list[0][0])
+                    self.img_right = ImageTk.PhotoImage(file = pic_list[0][1])
+                elif self.q_id == 9:
+                    self.img_left = ImageTk.PhotoImage(file = pic_list[1][0])
+                    self.img_right = ImageTk.PhotoImage(file = pic_list[1][1])
+                else:
+                    self.img_left = ImageTk.PhotoImage(file = pic_list[2][0])
+                    self.img_right = ImageTk.PhotoImage(file = pic_list[2][1])
+                self.left = tk.Label(image=self.img_left)
+                self.right = tk.Label(image=self.img_right)
+                self.left.place(anchor='center', relx=0.31, rely=0.7)
+                self.right.place(anchor='center', relx=0.65, rely=0.7)
         else:
             # print(self.cat_score)
             self.max_id_all = self.get_3_cat(self.cat_score)
