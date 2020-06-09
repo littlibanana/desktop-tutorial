@@ -85,6 +85,8 @@ class Helper():
             family='内海フォント-Bold', size=15, weight=tkFont.BOLD)  # 　設定文字字體、大小、粗細
         self.root.ft1 = tkFont.Font(
             family='内海フォント-Bold', size=20, weight=tkFont.BOLD)
+        self.root.ft2 = tkFont.Font(
+            family='内海フォント-Bold', size=40, weight=tkFont.BOLD)
         # initface(self.root)
         # part1_endingface(self.root,1,2,10)
         initface(self.root)
@@ -600,9 +602,9 @@ class part2_endingface():
             self.img = ImageTk.PhotoImage(file=self.imglist[10])
         self.part2_endingface.create_image(500, 280, image=self.img)# anchor=tk.NW,
         self.part2_endingface.grid()
-        self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
+        self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft2, bg="white",fg='pink', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
         self.lb.grid()
-        self.part2_endingface.create_window(560, 85, width=200, height=40, window=self.lb)
+        self.part2_endingface.create_window(580, 85, width=450, height=80, window=self.lb)
         self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=self.change_initface)
         self.btn.grid()
         self.part2_endingface.create_window(870, 520, width=150, height=40, window=self.btn)
