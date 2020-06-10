@@ -100,7 +100,7 @@ class Helper():
             family='内海フォント-Bold', size=40, weight=tkFont.BOLD)
         # part1_endingface(self.root,1,2,10)
         #initface(self.root)
-        part2_endingface(self.root,95)
+        part2_endingface(self.root,5)
 
 
 class initface():
@@ -572,8 +572,8 @@ class part2_endingface():
             self.introduce_btn = tk.Button(text='點我看襤褸貓的介紹', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://kknews.cc/zh-tw/pet/yexak6n.html'))
             self.introduce_btn.grid()
             self.part2_endingface.create_window(650, 520, width=200, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\先杜瑞喵.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'先杜瑞喵.png',self.save_img))
+            self.save_img=io.imread('download_imgs\\仙杜瑞喵.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'仙杜瑞喵.png',self.save_img))
             self.save_img_btn.grid()
             self.part2_endingface.create_window(900, 20, width=200, height=40, window=self.save_img_btn)
         elif 10 < self.grade <= 20:
