@@ -6,7 +6,7 @@ import tkinter.font as tkFont
 from PIL import ImageTk, Image
 import pygame
 import winsound
-
+from skimage import io
 
 file = 'music.wav'
 pygame.mixer.init()
@@ -89,7 +89,7 @@ class Helper():
             family='内海フォント-Bold', size=40, weight=tkFont.BOLD)
         # part1_endingface(self.root,1,2,10)
         initface(self.root)
-        #part2_endingface(self.root,85)
+        #part2_endingface(self.root,0)
 
 
 class initface():
@@ -539,34 +539,51 @@ class part2_endingface():
     def __init__(self, root, grade):
         global part2_grade
         self.root = root
-        self.grade = part2_grade#self.grade = grade
-        #print(self.grade)
+        #self.grade = grade
         self.grade = part2_grade
-        # print(self.grade)
+        #print(self.grade)
         self.part2_endingface = tk.Canvas(
             self.root, bd=0, width=1000, height=600, highlightthickness=0)
         self.part2_endingface.grid()
-        self.imglist = ['paints\\招財喵.png', 'paints\\仙杜瑞喵.png', '20.png', '30.png', 'paints\\柯南.png',
-                        'paints\\躲貓貓.png', '60.png', 'paints\\令傑喵.png', 'paints\\多拉A喵.png', 'paints\\豆漿.png','100.png']# paints\\小龍女.png
+        self.imglist = ['paints\\招財喵.png', 'paints\\仙杜瑞喵.png', 'paints\\傻眼貓咪.png', 'paints\\白爛貓.png', 'paints\\柯南.png',
+                        'paints\\躲貓貓.png', '60.png', 'paints\\令傑喵.png', 'paints\\多拉A喵.png', 'paints\\豆漿.png','paints\\小龍女.png']# paints\\小龍女.png
         if self.grade == 0:
             self.img = ImageTk.PhotoImage(file=self.imglist[0])
             self.introduce_btn = tk.Button(text='點我看招財貓由來', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.peekme.cc/post/763438'))
             self.introduce_btn.grid()
             self.part2_endingface.create_window(650, 520, width=180, height=40, window=self.introduce_btn)
+            self.save_img=io.imread('download_imgs\\招財喵.png')
+            self.save_img_btn = tk.Button(text='save my cat', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave('C:\\Users\\Desktop\\招財喵.png',self.save_img))
+            #self.save_img_btn.grid()
+            #self.part2_endingface.create_window(935, 20, width=130, height=40, window=self.save_img_btn)
         elif 0 < self.grade <= 10:
             self.img = ImageTk.PhotoImage(file=self.imglist[1])
             self.introduce_btn = tk.Button(text='點我看襤褸貓的介紹', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://kknews.cc/zh-tw/pet/yexak6n.html'))
             self.introduce_btn.grid()
             self.part2_endingface.create_window(650, 520, width=200, height=40, window=self.introduce_btn)
+            self.save_img=io.imread('download_imgs\\先杜瑞喵.png')
+            self.save_img_btn = tk.Button(text='save my cat', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave('C:\\Users\\JamieLin\\Desktop\\新增資料夾\\柯南喵.png',self.save_img))
+            #self.save_img_btn.grid()
+            #self.part2_endingface.create_window(935, 20, width=130, height=40, window=self.save_img_btn)
         elif 10 < self.grade <= 20:
             self.img = ImageTk.PhotoImage(file=self.imglist[2])
+            self.introduce_btn = tk.Button(text='點我看奶牛貓洗澡視頻', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://youtu.be/eWXaPZMXahE'))
+            self.introduce_btn.grid()
+            self.part2_endingface.create_window(650, 520, width=250, height=40, window=self.introduce_btn)
         elif 20 < self.grade <= 30:
             self.img = ImageTk.PhotoImage(file=self.imglist[3])
+            self.introduce_btn = tk.Button(text='點我看虎斑貓個性8大分析！', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.google.com/search?rlz=1C1CHBF_zh-TWTW903TW903&sxsrf=ALeKk01tMLLknrCUyAU756oeVyY2kof99g%3A1591718339825&ei=w7HfXvz9MeSWr7wP75iy0AY&q=%E6%9B%BC%E5%88%87%E5%A0%AA%E7%8C%AB&oq=%E6%9B%BC%E5%88%87&gs_lcp=CgZwc3ktYWIQARgAMgQIIxAnMgQIABBDMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BwgAEEcQsAM6BwgjEOoCECc6CQgjECcQRhD_AToFCAAQsQNQ8oUBWNmrAWDtxQFoAnAAeACAAbMBiAHqCJIBAzQuNpgBAKABAaoBB2d3cy13aXqwAQo&sclient=psy-ab'))
+            self.introduce_btn.grid()
+            self.part2_endingface.create_window(620, 520, width=300, height=40, window=self.introduce_btn)
         elif 30 < self.grade <= 40:
             self.img = ImageTk.PhotoImage(file=self.imglist[4])
             self.introduce_btn = tk.Button(text='點我看曼切堪猫介紹', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.google.com/search?rlz=1C1CHBF_zh-TWTW903TW903&sxsrf=ALeKk01tMLLknrCUyAU756oeVyY2kof99g%3A1591718339825&ei=w7HfXvz9MeSWr7wP75iy0AY&q=%E6%9B%BC%E5%88%87%E5%A0%AA%E7%8C%AB&oq=%E6%9B%BC%E5%88%87&gs_lcp=CgZwc3ktYWIQARgAMgQIIxAnMgQIABBDMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BwgAEEcQsAM6BwgjEOoCECc6CQgjECcQRhD_AToFCAAQsQNQ8oUBWNmrAWDtxQFoAnAAeACAAbMBiAHqCJIBAzQuNpgBAKABAaoBB2d3cy13aXqwAQo&sclient=psy-ab'))
             self.introduce_btn.grid()
             self.part2_endingface.create_window(650, 520, width=200, height=40, window=self.introduce_btn)
+            self.save_img=io.imread('download_imgs\\柯南喵.png')
+            self.save_img_btn = tk.Button(text='save my cat', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave('C:\\Users\\JamieLin\\Desktop\\新增資料夾\\柯南喵.png',self.save_img))
+            #self.save_img_btn.grid()
+            #self.part2_endingface.create_window(935, 20, width=130, height=40, window=self.save_img_btn)
         elif 40 < self.grade <= 50:
             self.img = ImageTk.PhotoImage(file=self.imglist[5])
             self.introduce_btn = tk.Button(text='點我看斯芬克斯貓介紹', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.google.com/search?rlz=1C1CHBF_zh-TWTW903TW903&sxsrf=ALeKk038ITmC4IeAtj7zAMkUEgjM1HKlsQ%3A1591718932390&ei=FLTfXpasF5KWr7wPru2daA&q=%E6%96%AF%E8%8A%AC%E5%85%8B%E6%96%AF%E8%B2%93&oq=%E6%96%AF%E8%8A%AC%E5%85%8B%E6%96%AF%E8%B2%93&gs_lcp=CgZwc3ktYWIQAzIECCMQJzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADoHCCMQsAMQJzoFCAAQsAM6BwgAELADEB46CQgAELADEAcQHjoFCAAQsQNQ3tkSWM2FFGCpihRoAXAAeACAAYQBiAG-BZIBAzAuNpgBAKABAaABAqoBB2d3cy13aXo&sclient=psy-ab&ved=0ahUKEwiWhrCMj_XpAhUSy4sBHa52Bw0Q4dUDCAw&uact=5'))
@@ -591,8 +608,10 @@ class part2_endingface():
             self.part2_endingface.create_window(650, 520, width=200, height=40, window=self.introduce_btn)
         elif 90 < self.grade <= 100:
             self.img = ImageTk.PhotoImage(file=self.imglist[10])
-        self.part2_endingface.create_image(
-            500, 280, image=self.img)  # anchor=tk.NW,
+            self.introduce_btn = tk.Button(text='點我看世界最美異瞳白貓姊妹花', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://pets.ettoday.net/news/750605'))
+            self.introduce_btn.grid()
+            self.part2_endingface.create_window(600, 520, width=300, height=40, window=self.introduce_btn)
+        self.part2_endingface.create_image(500, 280, image=self.img)  # anchor=tk.NW,
         self.part2_endingface.grid()
         self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft2, bg="white",fg='orange', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
         self.lb.grid()
@@ -600,16 +619,7 @@ class part2_endingface():
         self.btn_initface = tk.Button(text='回到主頁', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=self.change_initface)
         self.btn_initface.grid()
         self.part2_endingface.create_window(870, 520, width=150, height=40, window=self.btn_initface)
-        self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft2,
-                           bg="white", fg='pink', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
-        self.lb.grid()
-        self.part2_endingface.create_window(
-            580, 80, width=450, height=80, window=self.lb)
-        self.btn = tk.Button(text='回到主頁', font=self.root.ft, bg="white",
-                             fg='pink', anchor=tk.CENTER, command=self.change_initface)
-        self.btn.grid()
-        self.part2_endingface.create_window(
-            870, 520, width=150, height=40, window=self.btn)
+        
 
     def change_initface(self):
         global questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score
