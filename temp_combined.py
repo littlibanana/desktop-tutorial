@@ -17,8 +17,8 @@ def get_desktop():
 user = getpass.getuser()
 user_desktop = 'C:\\Users\\'+user+'\\Desktop\\'
 '''
-user_desktop = get_desktop()
-
+user_desktop = get_desktop()+'\\\\'
+print(user_desktop)
 file = 'music.wav'
 pygame.mixer.init()
 track = pygame.mixer.music.load(file)
