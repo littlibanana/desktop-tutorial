@@ -8,9 +8,16 @@ import pygame
 import winsound
 from skimage import io
 import getpass
+import winreg
 
+def get_desktop():
+    key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders')
+    return winreg.QueryValueEx(key, "Desktop")[0]
+'''
 user = getpass.getuser()
 user_desktop = 'C:\\Users\\'+user+'\\Desktop\\'
+'''
+user_desktop = get_desktop()
 
 file = 'music.wav'
 pygame.mixer.init()
