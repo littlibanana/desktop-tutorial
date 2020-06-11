@@ -248,8 +248,8 @@ class part1_questionface():
                 else:
                     self.img_left = ImageTk.PhotoImage(file=pic_list[2][0])
                     self.img_right = ImageTk.PhotoImage(file=pic_list[2][1])
-                self.left = tk.Label(image=self.img_left)
-                self.right = tk.Label(image=self.img_right)
+                self.left = tk.Label(image=self.img_left, borderwidth = 0)
+                self.right = tk.Label(image=self.img_right, borderwidth = 0)
                 self.left.place(anchor='center', relx=0.31, rely=0.7)
                 self.right.place(anchor='center', relx=0.65, rely=0.7)
         else:
