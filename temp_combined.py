@@ -99,8 +99,8 @@ class Helper():
         self.root.ft2 = tkFont.Font(
             family='内海フォント-Bold', size=40, weight=tkFont.BOLD)
         # part1_endingface(self.root,1,2,10)
-        #initface(self.root)
-        part2_endingface(self.root,95)
+        initface(self.root)
+        #part2_endingface(self.root,95)
 
 
 class initface():
@@ -548,10 +548,10 @@ class part2_questionface():
 
 class part2_endingface():
     def __init__(self, root, grade):
-        #global part2_grade
+        global part2_grade
         self.root = root
-        self.grade = grade
-        #self.grade = part2_grade
+        #self.grade = grade
+        self.grade = part2_grade
         #print(self.grade)
         self.part2_endingface = tk.Canvas(
             self.root, bd=0, width=1000, height=600, highlightthickness=0)
