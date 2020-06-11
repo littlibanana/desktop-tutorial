@@ -614,7 +614,7 @@ class part2_endingface():
             self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
         elif 50 < self.grade <= 60:
             self.img = ImageTk.PhotoImage(file=self.imglist[6])
-            self.introduce_btn = tk.Button(text='點我看挪威森林貓介紹', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://kknews.cc/zh-tw/pet/26b3l5r.html'))
+            self.introduce_btn = tk.Button(text='點我看薛丁格的貓咪實驗', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://zh.wikipedia.org/wiki/%E8%96%9B%E5%AE%9A%E8%B0%94%E7%8C%AB'))
             self.introduce_btn.grid()
             self.part2_endingface.create_window(670, 520, width=240, height=40, window=self.introduce_btn)
             self.save_img=io.imread('download_imgs\\薛丁喵.png')
