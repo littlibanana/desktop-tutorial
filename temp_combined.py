@@ -189,24 +189,7 @@ class part1_questionface():
         self.ans_btn2.place(anchor='center', relx=0.7, rely=0.55)
         self.ans_btn3 = tk.Button(self.part1_questionface, text="都可以", height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click3(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
-        self.ans_btn3.grid() 
-        self.part1_questionface.create_window(
-            500, 200, height=40, window=self.questionlbl)  # width=200,
-        self.part1_questionface.create_window(
-            500, 280, height=40, window=self.ans_btn1)  # ,
-        self.part1_questionface.create_window(
-            500, 330, height=40, window=self.ans_btn2)  # width=200,
-        self.part1_questionface.create_window(
-            500, 380, height=40, window=self.ans_btn3)    
-        #self.ans_btn3.place(anchor='center', relx=0.5, rely=0.65)
-        # self.part1_questionface.create_window(
-        #     500, 200, height=40, window=self.questionlbl)  # width=200,
-        # self.part1_questionface.create_window(
-        #     310, 300, height=40, window=self.ans_btn1)  # ,
-        # self.part1_questionface.create_window(
-        #     650, 300, height=40, window=self.ans_btn2)  # width=200,
-        # self.part1_questionface.create_window(
-        #     800, 300, height=40, window=self.ans_btn3)
+        self.ans_btn3.place(anchor='center', relx=0.5, rely=0.65)
 
     def click1(self, question_list, cat_dict, cat_score, color_list, i):
         for cat_id in cat_dict.keys():  # 計算分數
@@ -214,10 +197,10 @@ class part1_questionface():
                 self.cat_score[cat_id] += int(question_list[self.q_id][3])
             else:
                 self.cat_score[cat_id] += int(question_list[self.q_id][4])
-        if self.q_id == 3:
-            self.ans_btn3.place_forget()
+
         if self.q_id <= 7:  # 進下一題
             self.q_id += 1
+
         if self.q_id <= 7:
             self.questionlbl.config(text=question_list[self.q_id][0])
             self.ans_btn1.config(text=question_list[self.q_id][1])
@@ -225,34 +208,41 @@ class part1_questionface():
         else:
             self.change_part1_colorface(self.cat_score)
 
+        if self.q_id == 4:
+            self.ans_btn3.place_forget()
+
     def click2(self, question_list, cat_dict, cat_score, color_list, i):
-        global q_id
+
         for cat_id in cat_dict.keys():  # 計算分數
             if question_list[self.q_id][2] == cat_dict[cat_id][self.q_id]:
                 self.cat_score[cat_id] += int(question_list[self.q_id][5])
             else:
                 self.cat_score[cat_id] += int(question_list[self.q_id][6])
-        if self.q_id == 3:
-            self.ans_btn3.place_forget()
+
         if self.q_id <= 7:  # 進下一題
             self.q_id += 1
+
         if self.q_id <= 7:
             self.questionlbl.config(text=question_list[self.q_id][0])
             self.ans_btn1.config(text=question_list[self.q_id][1])
             self.ans_btn2.config(text=question_list[self.q_id][2])
         else:
             self.change_part1_colorface(self.cat_score)
+        if self.q_id == 4:
+            self.ans_btn3.place_forget()
 
     def click3(self, question_list, cat_dict, cat_score, color_list, i):
-        global q_id
+
         for cat_id in cat_dict.keys():  # 計算分數
             self.cat_score[cat_id] += 3
-        if self.q_id <= 3:  # 進下一題
+
+        if self.q_id <= 4:  # 進下一題
             self.q_id += 1
             self.questionlbl.config(text=question_list[self.q_id][0])
             self.ans_btn1.config(text=question_list[self.q_id][1])
             self.ans_btn2.config(text=question_list[self.q_id][2])
-        if self.q_id == 3:
+
+        if self.q_id == 4:
             self.ans_btn3.place_forget()
 
     def change_part1_colorface(self, cat_score):
@@ -280,68 +270,46 @@ class part1_colorface():
         self.cat6_img = ImageTk.PhotoImage(file="color//黑貓.png")
         self.lb = tk.Label(self.part1_colorface,
                            text="就花色而言，你比較喜歡什麼花色的貓咪? (可複選)", font=self.root.ft)
-        self.lb.grid()
-        self.lb1 = tk.Label(self.part1_colorface, image=self.cat1_img)
-        self.lb1.grid()
-        self.lb2 = tk.Label(self.part1_colorface, image=self.cat2_img)
-        self.lb2.grid()
-        self.lb3 = tk.Label(self.part1_colorface, image=self.cat3_img)
-        self.lb3.grid()
-        self.lb4 = tk.Label(self.part1_colorface, image=self.cat4_img)
-        self.lb4.grid()
-        self.lb5 = tk.Label(self.part1_colorface, image=self.cat5_img)
-        self.lb5.grid()
-        self.lb6 = tk.Label(self.part1_colorface, image=self.cat6_img)
-        self.lb6.grid()
+        self.lb.place(anchor='center', relx=0.5, rely=0.165)
+        self.lb1 = tk.Label(self.part1_colorface,
+                            image=self.cat1_img, borderwidth=0)
+        self.lb1.place(anchor='center', relx=0.28, rely=0.33)
+        self.lb2 = tk.Label(self.part1_colorface,
+                            image=self.cat2_img, borderwidth=0)
+        self.lb2.place(anchor='center', relx=0.5, rely=0.33)
+        self.lb3 = tk.Label(self.part1_colorface,
+                            image=self.cat3_img, borderwidth=0)
+        self.lb3.place(anchor='center', relx=0.72, rely=0.33)
+        self.lb4 = tk.Label(self.part1_colorface,
+                            image=self.cat4_img, borderwidth=0)
+        self.lb4.place(anchor='center', relx=0.28, rely=0.65)
+        self.lb5 = tk.Label(self.part1_colorface,
+                            image=self.cat5_img, borderwidth=0)
+        self.lb5.place(anchor='center', relx=0.5, rely=0.65)
+        self.lb6 = tk.Label(self.part1_colorface,
+                            image=self.cat6_img, borderwidth=0)
+        self.lb6.place(anchor='center', relx=0.72, rely=0.65)
         self.btn_cat1 = tk.Button(self.part1_colorface, text='白底橘貓', font=self.root.ft, bg="white", fg='orange',
                                   anchor=tk.CENTER, command=lambda: self.click1(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
-        self.btn_cat1.grid()
+        self.btn_cat1.place(anchor='center', relx=0.28, rely=0.48)
         self.btn_cat2 = tk.Button(self.part1_colorface, text='虎斑貓', font=self.root.ft, bg="white", fg='orange',
                                   anchor=tk.CENTER, command=lambda: self.click2(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
-        self.btn_cat2.grid()
+        self.btn_cat2.place(anchor='center', relx=0.5, rely=0.48)
         self.btn_cat3 = tk.Button(self.part1_colorface, text='金吉拉', font=self.root.ft, bg="white", fg='orange',
                                   anchor=tk.CENTER, command=lambda: self.click3(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
-        self.btn_cat3.grid()
+        self.btn_cat3.place(anchor='center', relx=0.72, rely=0.48)
         self.btn_cat4 = tk.Button(self.part1_colorface, text='三花貓', font=self.root.ft, bg="white", fg='orange',
                                   anchor=tk.CENTER, command=lambda: self.click4(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
-        self.btn_cat4.grid()
+        self.btn_cat4.place(anchor='center', relx=0.28, rely=0.8)
         self.btn_cat5 = tk.Button(self.part1_colorface, text='乳牛貓', font=self.root.ft, bg="white", fg='orange',
                                   anchor=tk.CENTER, command=lambda: self.click5(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
-        self.btn_cat5.grid()
+        self.btn_cat5.place(anchor='center', relx=0.5, rely=0.8)
         self.btn_cat6 = tk.Button(self.part1_colorface, text='黑貓', font=self.root.ft, bg="white", fg='orange',
                                   anchor=tk.CENTER, command=lambda: self.click6(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
-        self.btn_cat6.grid()
+        self.btn_cat6.place(anchor='center', relx=0.72, rely=0.8)
         self.btn_continue = tk.Button(self.part1_colorface, text='我選完了', font=self.root.ft, bg="white",
                                       fg='orange', anchor=tk.CENTER, command=lambda: self.get_3_cat(self.cat_score))
-        self.btn_continue.grid()
-        self.part1_colorface.create_window(
-            500, 100, window=self.lb)
-        self.part1_colorface.create_window(
-            220, 190, width=160, height=120, window=self.lb1)
-        self.part1_colorface.create_window(
-            500, 190, width=160, height=120, window=self.lb2)
-        self.part1_colorface.create_window(
-            780, 190, width=160, height=120, window=self.lb3)
-        self.part1_colorface.create_window(
-            220, 390, width=89, height=120, window=self.lb4)
-        self.part1_colorface.create_window(
-            500, 390, width=90, height=120, window=self.lb5)
-        self.part1_colorface.create_window(
-            780, 390, width=160, height=120, window=self.lb6)
-        self.part1_colorface.create_window(
-            220, 290, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat1)
-        self.part1_colorface.create_window(
-            500, 290, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat2)
-        self.part1_colorface.create_window(
-            780, 290, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat3)
-        self.part1_colorface.create_window(
-            220, 490, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat4)
-        self.part1_colorface.create_window(
-            500, 490, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat5)
-        self.part1_colorface.create_window(
-            780, 490, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat6)
-        self.part1_colorface.create_window(
-            900, 490, anchor=tk.CENTER, width=100, height=40, window=self.btn_continue)
+        self.btn_continue.place(anchor='center', relx=0.862, rely=0.832)
 
     def click1(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
