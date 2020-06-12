@@ -179,17 +179,17 @@ class part1_questionface():
         # self.get_3_cat()
         self.q_id = 0
         self.questionlbl = tk.Label(
-            self.part1_questionface, text=question_list[0][0], bg='gray', fg='white', font=self.root.ft)
-        self.questionlbl.place(anchor='center', relx=0.5, rely=0.4)
+            self.part1_questionface, text=question_list[0][0], bg='gray', fg='white', font=self.root.ft1)
+        self.questionlbl.place(anchor='center', relx=0.5, rely=0.37)
         self.ans_btn1 = tk.Button(self.part1_questionface, text=question_list[0][1], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click1(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))  # ?
-        self.ans_btn1.place(anchor='center', relx=0.5, rely=0.53)
+        self.ans_btn1.place(anchor='center', relx=0.5, rely=0.5)
         self.ans_btn2 = tk.Button(self.part1_questionface, text=question_list[0][2], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click2(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
-        self.ans_btn2.place(anchor='center', relx=0.5, rely=0.61)
+        self.ans_btn2.place(anchor='center', relx=0.5, rely=0.59)
         self.ans_btn3 = tk.Button(self.part1_questionface, text="都可以", height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click3(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
-        self.ans_btn3.place(anchor='center', relx=0.5, rely=0.69)
+        self.ans_btn3.place(anchor='center', relx=0.5, rely=0.68)
 
     def click1(self, question_list, cat_dict, cat_score, color_list, i):
         for cat_id in cat_dict.keys():  # 計算分數
@@ -315,31 +315,37 @@ class part1_colorface():
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "白底橘貓":
                 self.cat_score[cat_id] += 5
+        self.btn_cat1.config(bg='orange', fg='white')
 
     def click2(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "虎斑貓":
                 self.cat_score[cat_id] += 5
+        self.btn_cat2.config(bg='orange', fg='white')
 
     def click3(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "金吉拉":
                 self.cat_score[cat_id] += 5
+        self.btn_cat3.config(bg='orange', fg='white')
 
     def click4(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "三花貓":
                 self.cat_score[cat_id] += 5
+        self.btn_cat4.config(bg='orange', fg='white')
 
     def click5(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "乳牛貓":
                 self.cat_score[cat_id] += 5
+        self.btn_cat5.config(bg='orange', fg='white')
 
     def click6(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "黑貓":
                 self.cat_score[cat_id] += 5
+        self.btn_cat6.config(bg='orange', fg='white')
 
     def get_3_cat(self, cat_score):
         # 找分數前三高貓咪
@@ -465,7 +471,7 @@ class part2_questionface():
             500, 280, image=self.background_img)
         self.part2_questionface.grid()
         self.questionlbl = tk.Label(
-            text=str(number+1)+'.'+questions[number], bg='gray', fg='white', font=self.root.ft)
+            text=str(number+1)+'.'+questions[number], bg='gray', fg='white', font=self.root.ft1)
 
         self.questionlbl.place(anchor='center', relx=0.5, rely=0.4)
 
@@ -473,8 +479,8 @@ class part2_questionface():
             text=option1s[number], height=1, font=self.root.ft, command=lambda: self.btn1(number), bg='pink', fg='white')
         self.ans_btn2 = tk.Button(
             text=option2s[number], height=1, font=self.root.ft, command=lambda: self.btn2(number), bg='pink', fg='white')
-        self.ans_btn1.place(anchor='center', relx=0.3, rely=0.55)
-        self.ans_btn2.place(anchor='center', relx=0.7, rely=0.55)
+        self.ans_btn1.place(anchor='center', relx=0.3, rely=0.57)
+        self.ans_btn2.place(anchor='center', relx=0.7, rely=0.57)
 
         self.back_btn = tk.Button(
             text='喵', font=self.root.ft, command=self.back, bg='white')
