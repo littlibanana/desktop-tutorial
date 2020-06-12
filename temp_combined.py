@@ -188,11 +188,11 @@ class part1_questionface():
         self.part1_questionface.create_window(
             500, 200, height=40, window=self.questionlbl)  # width=200,
         self.part1_questionface.create_window(
-            310, 300, height=40, window=self.ans_btn1)  # ,
+            500, 280, height=40, window=self.ans_btn1)  # ,
         self.part1_questionface.create_window(
-            650, 300, height=40, window=self.ans_btn2)  # width=200,
+            500, 330, height=40, window=self.ans_btn2)  # width=200,
         self.part1_questionface.create_window(
-            800, 300, height=40, window=self.ans_btn3)    
+            500, 380, height=40, window=self.ans_btn3)    
 
     def click1(self, question_list, cat_dict, cat_score, color_list, i):
         global q_id
@@ -288,23 +288,23 @@ class part1_colorface():
         self.part1_colorface.create_window(
             500, 100, window=self.lb)
         self.part1_colorface.create_window(
-            220, 150, width=160, height=120, window=self.lb1)
+            220, 190, width=160, height=120, window=self.lb1)
         self.part1_colorface.create_window(
-            500, 150, width=160, height=120, window=self.lb2)
+            500, 190, width=160, height=120, window=self.lb2)
         self.part1_colorface.create_window(
-            780, 150, width=160, height=120, window=self.lb3)
+            780, 190, width=160, height=120, window=self.lb3)
         self.part1_colorface.create_window(
-            220, 400, width=89, height=120, window=self.lb4)
+            220, 390, width=89, height=120, window=self.lb4)
         self.part1_colorface.create_window(
-            500, 400, width=90, height=120, window=self.lb5)
+            500, 390, width=90, height=120, window=self.lb5)
         self.part1_colorface.create_window(
-            780, 400, width=160, height=120, window=self.lb6)
+            780, 390, width=160, height=120, window=self.lb6)
         self.part1_colorface.create_window(
-            220, 250, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat1)
+            220, 290, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat1)
         self.part1_colorface.create_window(
-            500, 250, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat2)
+            500, 290, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat2)
         self.part1_colorface.create_window(
-            780, 250, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat3)
+            780, 290, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat3)
         self.part1_colorface.create_window(
             220, 490, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat4)
         self.part1_colorface.create_window(
