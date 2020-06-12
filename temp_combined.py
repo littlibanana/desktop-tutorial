@@ -19,7 +19,7 @@ user_desktop = 'C:\\Users\\'+user+'\\Desktop\\'
 '''
 user_desktop = get_desktop()+'\\\\'
 #print(user_desktop)
-file = 'music.wav'
+file = 'music//music.wav'
 pygame.mixer.init()
 track = pygame.mixer.music.load(file)
 pygame.mixer.music.play(-1)
@@ -27,7 +27,7 @@ pygame.mixer.music.play(-1)
 
 def read_PART2_question():
 
-    with open(file='part2.csv', mode='r', encoding='utf-8-sig') as part2:
+    with open(file='file//part2.csv', mode='r', encoding='utf-8-sig') as part2:
         question_list = []  # list of dict
         csvfile = csv.DictReader(part2)
         for row in csvfile:
@@ -86,7 +86,7 @@ class Helper():
         self.root = root
         self.root.config()  # ?
         self.root.title('Cat Adopting Helper')
-        self.root.icon_img = ImageTk.PhotoImage(file='小圖示.png')
+        self.root.icon_img = ImageTk.PhotoImage(file='background//小圖示.png')
         # 設定視窗標題前的小圖示(jpg檔不適用)(布林值為True代表每個視窗都用一樣圖示)
         self.root.iconphoto(True, self.root.icon_img)
         # 設定視窗啟動時的大小與位置(寬x長+左位移+右位移)(此長寬為ppt等比例縮放尺寸)
@@ -110,7 +110,7 @@ class initface():
             self.root, bd=0, width=1000, height=563, highlightthickness=0)  # 設定畫布大小
         # 若要讓此圖片尺寸符合canvas且保持ppt原畫面比例，此背景圖檔需先調整。(做法:用ppt做好後另存新檔成圖片、再用"小畫家3D"點選裁剪、右上角設定、鎖定外觀比例&與畫布一起調整圖片大小、寬度設定與width一樣，再儲存即完成)
         self.background_img = ImageTk.PhotoImage(
-            file='background_initface.png')
+            file='background//background_initface.png')
         # 設定圖片在畫布上的位置(原點(錨定點)預設為畫布左上角，前兩參數為圖片正中間那個點的座標)
         self.initface.create_image(400, 280, image=self.background_img)
         self.initface.grid()  # sticky = tk.NE
@@ -139,7 +139,7 @@ class initface():
         part2_questionface(self.root)
 
 
-file1 = "question_part1.csv"
+file1 = "file//question_part1.csv"
 filesopen = open(file1, 'r', newline='')
 rows = csv.reader(filesopen)
 question_list = []
@@ -147,15 +147,12 @@ for row in rows:
     question_list.append(row)
 
 # 讀取貓咪資料存進dict
-file2 = "貓咪.csv"
+file2 = "file//貓咪.csv"
 filesopen = open(file2, 'r', newline='')
 rows = csv.reader(filesopen)
 cat_dict = dict()
 for row in rows:
     cat_dict[int(row[0])] = row[1:]
-
-pic_list = [['虎斑.png', '三花.png'], ['白底橘.png', '乳牛.png'], ['黑貓.png', '金吉拉.png']]
-
 
 class part1_questionface():
     # 讀取問題存進dict
@@ -164,7 +161,7 @@ class part1_questionface():
         self.part1_questionface = tk.Canvas(
             self.root, bd=0, width=1000, height=563, highlightthickness=0)
         self.background_img = ImageTk.PhotoImage(
-            file='part1_question_background.png')
+            file='background//part1_question_background.png')
         self.part1_questionface.create_image(
             500, 280, image=self.background_img)  # ?
         self.part1_questionface.grid()
@@ -185,12 +182,17 @@ class part1_questionface():
         self.ans_btn2 = tk.Button(self.part1_questionface, text=question_list[0][2], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click2(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
         self.ans_btn2.grid()  # .place(anchor = 'center', relx = 0.7, rely = 0.8)
+        self.ans_btn3 = tk.Button(self.part1_questionface, text="都可以", height = 1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click3(
+            question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
+        self.ans_btn3.grid() 
         self.part1_questionface.create_window(
             500, 200, height=40, window=self.questionlbl)  # width=200,
         self.part1_questionface.create_window(
             310, 300, height=40, window=self.ans_btn1)  # ,
         self.part1_questionface.create_window(
             650, 300, height=40, window=self.ans_btn2)  # width=200,
+        self.part1_questionface.create_window(
+            800, 300, height=40, window=self.ans_btn3)    
 
     def click1(self, question_list, cat_dict, cat_score, color_list, i):
         global q_id
@@ -199,35 +201,14 @@ class part1_questionface():
                 self.cat_score[cat_id] += int(question_list[self.q_id][3])
             else:
                 self.cat_score[cat_id] += int(question_list[self.q_id][4])
-        if self.q_id <= 10:  # 進下一題
+        if self.q_id <= 7:  # 進下一題
             self.q_id += 1
-        if self.q_id <= 10:
+        if self.q_id <= 7:
             self.questionlbl.config(text=question_list[self.q_id][0])
             self.ans_btn1.config(text=question_list[self.q_id][1])
             self.ans_btn2.config(text=question_list[self.q_id][2])
-            if self.q_id >= 8:
-                if self.q_id == 8:
-                    self.img_left = ImageTk.PhotoImage(file=pic_list[0][0])
-                    self.img_right = ImageTk.PhotoImage(file=pic_list[0][1])
-                elif self.q_id == 9:
-                    self.left.grid_forget()
-                    self.right.grid_forget()
-                    self.img_left = ImageTk.PhotoImage(file=pic_list[1][0])
-                    self.img_right = ImageTk.PhotoImage(file=pic_list[1][1])
-                else:
-                    self.left.grid_forget()
-                    self.right.grid_forget()
-                    self.img_left = ImageTk.PhotoImage(file=pic_list[2][0])
-                    self.img_right = ImageTk.PhotoImage(file=pic_list[2][1])
-                self.left = tk.Label(image=self.img_left, borderwidth = 0)
-                self.right = tk.Label(image=self.img_right, borderwidth = 0)
-                self.left.place(anchor='center', relx=0.31, rely=0.7)
-                self.right.place(anchor='center', relx=0.65, rely=0.7)
         else:
-            # print(self.cat_score)
-            self.max_id_all = self.get_3_cat(self.cat_score)
-            # print(self.max_id_all)
-            self.change_part1_endingface(self.max_id_all)
+            self.change_part1_colorface(self.cat_score)
 
     def click2(self, question_list, cat_dict, cat_score, color_list, i):
         global q_id
@@ -236,36 +217,128 @@ class part1_questionface():
                 self.cat_score[cat_id] += int(question_list[self.q_id][5])
             else:
                 self.cat_score[cat_id] += int(question_list[self.q_id][6])
-        if self.q_id <= 10:  # 進下一題
+        if self.q_id <= 7:  # 進下一題
             self.q_id += 1
-        if self.q_id <= 10:
+        if self.q_id <= 7:
             self.questionlbl.config(text=question_list[self.q_id][0])
             self.ans_btn1.config(text=question_list[self.q_id][1])
             self.ans_btn2.config(text=question_list[self.q_id][2])
-            if self.q_id >= 8:
-                if self.q_id == 8:
-                    self.img_left = ImageTk.PhotoImage(file=pic_list[0][0])
-                    self.img_right = ImageTk.PhotoImage(file=pic_list[0][1])
-                elif self.q_id == 9:
-                    self.left.grid_forget()
-                    self.right.grid_forget()
-                    self.img_left = ImageTk.PhotoImage(file=pic_list[1][0])
-                    self.img_right = ImageTk.PhotoImage(file=pic_list[1][1])
-                else:
-                    self.left.grid_forget()
-                    self.right.grid_forget()
-                    self.img_left = ImageTk.PhotoImage(file=pic_list[2][0])
-                    self.img_right = ImageTk.PhotoImage(file=pic_list[2][1])
-                self.left = tk.Label(image=self.img_left, borderwidth = 0)
-                self.right = tk.Label(image=self.img_right, borderwidth = 0)
-                self.left.place(anchor='center', relx=0.31, rely=0.7)
-                self.right.place(anchor='center', relx=0.65, rely=0.7)
         else:
-            # print(self.cat_score)
-            self.max_id_all = self.get_3_cat(self.cat_score)
-            # print(self.max_id_all)
-            self.change_part1_endingface(self.max_id_all)
+            self.change_part1_colorface(self.cat_score)
+         
+    def click3(self, question_list, cat_dict, cat_score, color_list, i):
+        global q_id
+        for cat_id in cat_dict.keys():  # 計算分數
+            self.cat_score[cat_id] += 3
+        if self.q_id <= 3:  # 進下一題
+            self.q_id += 1
+            self.questionlbl.config(text=question_list[self.q_id][0])
+            self.ans_btn1.config(text=question_list[self.q_id][1])
+            self.ans_btn2.config(text=question_list[self.q_id][2])
+    
+    def change_part1_colorface(self, cat_score):
+        self.cat_score = cat_score
+        self.part1_questionface.destroy()
+        part1_colorface(self.root, self.cat_score)
 
+class part1_colorface():
+    def __init__(self, root, cat_score):
+        self.root = root
+        self.cat_score = cat_score
+        self.part1_colorface = tk.Canvas(
+            self.root, bd=0, width=1000, height=563, highlightthickness=0)
+        self.background_img = ImageTk.PhotoImage(file='background//part1_color.png')
+        self.part1_colorface.create_image(
+            500, 280, image=self.background_img)  # ?
+        self.part1_colorface.grid()
+        self.cat1_img = ImageTk.PhotoImage(file="color//白底橘.png")
+        self.cat2_img = ImageTk.PhotoImage(file="color//虎斑.png")
+        self.cat3_img = ImageTk.PhotoImage(file="color//金吉拉.png")
+        self.cat4_img = ImageTk.PhotoImage(file="color//三花.png")
+        self.cat5_img = ImageTk.PhotoImage(file="color//乳牛.png")
+        self.cat6_img = ImageTk.PhotoImage(file="color//黑貓.png")
+        self.lb = tk.Label(self.part1_colorface, text="就花色而言，你比較喜歡什麼花色的貓咪? (可複選)", font=self.root.ft)
+        self.lb.grid()
+        self.lb1 = tk.Label(self.part1_colorface, image=self.cat1_img)
+        self.lb1.grid()
+        self.lb2 = tk.Label(self.part1_colorface, image=self.cat2_img)
+        self.lb2.grid()
+        self.lb3 = tk.Label(self.part1_colorface, image=self.cat3_img)
+        self.lb3.grid()
+        self.lb4 = tk.Label(self.part1_colorface, image=self.cat4_img)
+        self.lb4.grid()
+        self.lb5 = tk.Label(self.part1_colorface, image=self.cat5_img)
+        self.lb5.grid()
+        self.lb6 = tk.Label(self.part1_colorface, image=self.cat6_img)
+        self.lb6.grid()
+        self.btn_cat1 = tk.Button(self.part1_colorface, text='白底橘貓', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click1(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat1.grid()
+        self.btn_cat2 = tk.Button(self.part1_colorface, text='虎斑貓', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click2(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat2.grid()
+        self.btn_cat3 = tk.Button(self.part1_colorface, text='金吉拉', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click3(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat3.grid()
+        self.btn_cat4 = tk.Button(self.part1_colorface, text='三花貓', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click4(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat4.grid()
+        self.btn_cat5 = tk.Button(self.part1_colorface, text='乳牛貓', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click5(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat5.grid()
+        self.btn_cat6 = tk.Button(self.part1_colorface, text='黑貓', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click6(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat6.grid()
+        self.btn_continue = tk.Button(self.part1_colorface, text='我選完了', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.get_3_cat(self.cat_score))
+        self.btn_continue.grid()
+        self.part1_colorface.create_window(
+            500, 100, window=self.lb)
+        self.part1_colorface.create_window(
+            220, 150, width=160, height=120, window=self.lb1)
+        self.part1_colorface.create_window(
+            500, 150, width=160, height=120, window=self.lb2)
+        self.part1_colorface.create_window(
+            780, 150, width=160, height=120, window=self.lb3)
+        self.part1_colorface.create_window(
+            220, 400, width=89, height=120, window=self.lb4)
+        self.part1_colorface.create_window(
+            500, 400, width=90, height=120, window=self.lb5)
+        self.part1_colorface.create_window(
+            780, 400, width=160, height=120, window=self.lb6)
+        self.part1_colorface.create_window(
+            220, 250, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat1)
+        self.part1_colorface.create_window(
+            500, 250, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat2)
+        self.part1_colorface.create_window(
+            780, 250, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat3)
+        self.part1_colorface.create_window(
+            220, 490, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat4)
+        self.part1_colorface.create_window(
+            500, 490, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat5)
+        self.part1_colorface.create_window(
+            780, 490, anchor=tk.CENTER, width=100, height=40, window=self.btn_cat6)
+        self.part1_colorface.create_window(
+            900, 490, anchor=tk.CENTER, width=100, height=40, window=self.btn_continue)
+
+    def click1(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "白底橘貓":
+                self.cat_score[cat_id] += 5
+    def click2(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "虎斑貓":
+                self.cat_score[cat_id] += 5
+    def click3(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "金吉拉":
+                self.cat_score[cat_id] += 5    
+    def click4(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "三花貓":
+                self.cat_score[cat_id] += 5     
+    def click5(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "乳牛貓":
+                self.cat_score[cat_id] += 5
+    def click6(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "黑貓":
+                self.cat_score[cat_id] += 5
+        
     def get_3_cat(self, cat_score):
         # 找分數前三高貓咪
         max_id_all = []
@@ -293,19 +366,19 @@ class part1_questionface():
                     del cat_score[id]
             if len(max_id_all) >= 3:
                 break
-        return max_id_all
-
+        self.change_part1_endingface(max_id_all)
+    
     def change_part1_endingface(self, max_id_all):
         self.max_id_all = max_id_all
         # print(max_id_all)  # error
-        self.part1_questionface.destroy()
+        self.part1_colorface.destroy()
         part1_endingface(
             self.root, self.max_id_all[0], self.max_id_all[1], self.max_id_all[2])
 
 
 # 貓的dict 含有超連結跟圖片位址跟貓的名字
 cats_dict = dict()
-with open(file='cat_info.csv', mode='r') as f:
+with open(file='file//cat_info.csv', mode='r') as f:
     rows = csv.reader(f)
     for row in rows:
         cnum = int(row[0])
@@ -320,7 +393,7 @@ class part1_endingface():
         self.part1_endingface = tk.Canvas(
             self.root, bd=0, width=1000, height=563, highlightthickness=0)
         self.background_img = ImageTk.PhotoImage(
-            file='part1_result_background.png')
+            file='background//part1_result_background.png')
         self.part1_endingface.create_image(
             500, 280, image=self.background_img)  # ?
         self.part1_endingface.grid()
@@ -385,7 +458,7 @@ class part2_questionface():
         self.part2_questionface = tk.Canvas(self.root, bd=0, width=1000,
                                             height=563, highlightthickness=0)
         self.background_img = ImageTk.PhotoImage(
-            file='part2_question_background.png')
+            file='background//part2_question_background.png')
         self.part2_questionface.create_image(
             500, 280, image=self.background_img)
         self.part2_questionface.grid()
@@ -409,7 +482,7 @@ class part2_questionface():
         global number
         if number == 0:
             winsound.PlaySound(
-                r'meow.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
+                r'music//meow.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
         if number > 0:
             number -= 1
         answer[number] = ''
@@ -488,7 +561,7 @@ class part2_questionface():
             self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
 
             self.correct_img = ImageTk.PhotoImage(
-                file='correct_cat.png')
+                file='background//correct_cat.png')
             self.questionlbl.config(image=self.correct_img, borderwidth=0)
             self.wronglbl = tk.Label(text='恭喜答對囉', bg='pink',
                                      fg='white', font=self.root.ft1)
