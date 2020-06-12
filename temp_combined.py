@@ -198,7 +198,7 @@ class part1_questionface():
             500, 330, height=40, window=self.ans_btn2)  # width=200,
         self.part1_questionface.create_window(
             500, 380, height=40, window=self.ans_btn3)    
-        self.ans_btn3.place(anchor='center', relx=0.5, rely=0.65)
+        #self.ans_btn3.place(anchor='center', relx=0.5, rely=0.65)
         # self.part1_questionface.create_window(
         #     500, 200, height=40, window=self.questionlbl)  # width=200,
         # self.part1_questionface.create_window(
