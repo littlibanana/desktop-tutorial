@@ -4,25 +4,29 @@ import csv
 import webbrowser
 import tkinter.font as tkFont
 from PIL import ImageTk, Image
-import pygame
+# import pygame
 import winsound
 from skimage import io
 #import getpass
 import winreg
 
+
 def get_desktop():
-    key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders')
+    key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
+                         r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders')
     return winreg.QueryValueEx(key, "Desktop")[0]
+
+
 '''
 user = getpass.getuser()
 user_desktop = 'C:\\Users\\'+user+'\\Desktop\\'
 '''
 user_desktop = get_desktop()+'\\\\'
-#print(user_desktop)
-file = 'music//music.wav'
-pygame.mixer.init()
-track = pygame.mixer.music.load(file)
-pygame.mixer.music.play(-1)
+# print(user_desktop)
+# file = 'music//music.wav'
+# pygame.mixer.init()
+# track = pygame.mixer.music.load(file)
+# pygame.mixer.music.play(-1)
 
 
 def read_PART2_question():
@@ -100,7 +104,7 @@ class Helper():
             family='内海フォント-Bold', size=40, weight=tkFont.BOLD)
         # part1_endingface(self.root,1,2,10)
         initface(self.root)
-        #part2_endingface(self.root,95)
+        # part2_endingface(self.root,95)
 
 
 class initface():
@@ -154,6 +158,7 @@ cat_dict = dict()
 for row in rows:
     cat_dict[int(row[0])] = row[1:]
 
+
 class part1_questionface():
     # 讀取問題存進dict
     def __init__(self, root):
@@ -175,14 +180,14 @@ class part1_questionface():
         self.q_id = 0
         self.questionlbl = tk.Label(
             self.part1_questionface, text=question_list[0][0], bg='gray', fg='white', font=self.root.ft)
-        self.questionlbl.grid()  # place(anchor = 'center', relx = 0.5, rely = 0.45)
+        self.questionlbl.place(anchor='center', relx=0.5, rely=0.4)
         self.ans_btn1 = tk.Button(self.part1_questionface, text=question_list[0][1], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click1(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))  # ?
-        self.ans_btn1.grid()  # .place(anchor = 'center', relx = 0.3, rely = 0.8)
+        self.ans_btn1.place(anchor='center', relx=0.3, rely=0.55)
         self.ans_btn2 = tk.Button(self.part1_questionface, text=question_list[0][2], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click2(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
-        self.ans_btn2.grid()  # .place(anchor = 'center', relx = 0.7, rely = 0.8)
-        self.ans_btn3 = tk.Button(self.part1_questionface, text="都可以", height = 1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click3(
+        self.ans_btn2.place(anchor='center', relx=0.7, rely=0.55)
+        self.ans_btn3 = tk.Button(self.part1_questionface, text="都可以", height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click3(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
         self.ans_btn3.grid() 
         self.part1_questionface.create_window(
@@ -193,14 +198,24 @@ class part1_questionface():
             500, 330, height=40, window=self.ans_btn2)  # width=200,
         self.part1_questionface.create_window(
             500, 380, height=40, window=self.ans_btn3)    
+        self.ans_btn3.place(anchor='center', relx=0.5, rely=0.65)
+        # self.part1_questionface.create_window(
+        #     500, 200, height=40, window=self.questionlbl)  # width=200,
+        # self.part1_questionface.create_window(
+        #     310, 300, height=40, window=self.ans_btn1)  # ,
+        # self.part1_questionface.create_window(
+        #     650, 300, height=40, window=self.ans_btn2)  # width=200,
+        # self.part1_questionface.create_window(
+        #     800, 300, height=40, window=self.ans_btn3)
 
     def click1(self, question_list, cat_dict, cat_score, color_list, i):
-        global q_id
         for cat_id in cat_dict.keys():  # 計算分數
             if question_list[self.q_id][1] == cat_dict[cat_id][self.q_id]:
                 self.cat_score[cat_id] += int(question_list[self.q_id][3])
             else:
                 self.cat_score[cat_id] += int(question_list[self.q_id][4])
+        if self.q_id == 3:
+            self.ans_btn3.place_forget()
         if self.q_id <= 7:  # 進下一題
             self.q_id += 1
         if self.q_id <= 7:
@@ -217,6 +232,8 @@ class part1_questionface():
                 self.cat_score[cat_id] += int(question_list[self.q_id][5])
             else:
                 self.cat_score[cat_id] += int(question_list[self.q_id][6])
+        if self.q_id == 3:
+            self.ans_btn3.place_forget()
         if self.q_id <= 7:  # 進下一題
             self.q_id += 1
         if self.q_id <= 7:
@@ -225,7 +242,7 @@ class part1_questionface():
             self.ans_btn2.config(text=question_list[self.q_id][2])
         else:
             self.change_part1_colorface(self.cat_score)
-         
+
     def click3(self, question_list, cat_dict, cat_score, color_list, i):
         global q_id
         for cat_id in cat_dict.keys():  # 計算分數
@@ -235,11 +252,14 @@ class part1_questionface():
             self.questionlbl.config(text=question_list[self.q_id][0])
             self.ans_btn1.config(text=question_list[self.q_id][1])
             self.ans_btn2.config(text=question_list[self.q_id][2])
-    
+        if self.q_id == 3:
+            self.ans_btn3.place_forget()
+
     def change_part1_colorface(self, cat_score):
         self.cat_score = cat_score
         self.part1_questionface.destroy()
         part1_colorface(self.root, self.cat_score)
+
 
 class part1_colorface():
     def __init__(self, root, cat_score):
@@ -247,7 +267,8 @@ class part1_colorface():
         self.cat_score = cat_score
         self.part1_colorface = tk.Canvas(
             self.root, bd=0, width=1000, height=563, highlightthickness=0)
-        self.background_img = ImageTk.PhotoImage(file='background//part1_color.png')
+        self.background_img = ImageTk.PhotoImage(
+            file='background//part1_color.png')
         self.part1_colorface.create_image(
             500, 280, image=self.background_img)  # ?
         self.part1_colorface.grid()
@@ -257,7 +278,8 @@ class part1_colorface():
         self.cat4_img = ImageTk.PhotoImage(file="color//三花.png")
         self.cat5_img = ImageTk.PhotoImage(file="color//乳牛.png")
         self.cat6_img = ImageTk.PhotoImage(file="color//黑貓.png")
-        self.lb = tk.Label(self.part1_colorface, text="就花色而言，你比較喜歡什麼花色的貓咪? (可複選)", font=self.root.ft)
+        self.lb = tk.Label(self.part1_colorface,
+                           text="就花色而言，你比較喜歡什麼花色的貓咪? (可複選)", font=self.root.ft)
         self.lb.grid()
         self.lb1 = tk.Label(self.part1_colorface, image=self.cat1_img)
         self.lb1.grid()
@@ -271,19 +293,26 @@ class part1_colorface():
         self.lb5.grid()
         self.lb6 = tk.Label(self.part1_colorface, image=self.cat6_img)
         self.lb6.grid()
-        self.btn_cat1 = tk.Button(self.part1_colorface, text='白底橘貓', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click1(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat1 = tk.Button(self.part1_colorface, text='白底橘貓', font=self.root.ft, bg="white", fg='orange',
+                                  anchor=tk.CENTER, command=lambda: self.click1(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat1.grid()
-        self.btn_cat2 = tk.Button(self.part1_colorface, text='虎斑貓', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click2(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat2 = tk.Button(self.part1_colorface, text='虎斑貓', font=self.root.ft, bg="white", fg='orange',
+                                  anchor=tk.CENTER, command=lambda: self.click2(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat2.grid()
-        self.btn_cat3 = tk.Button(self.part1_colorface, text='金吉拉', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click3(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat3 = tk.Button(self.part1_colorface, text='金吉拉', font=self.root.ft, bg="white", fg='orange',
+                                  anchor=tk.CENTER, command=lambda: self.click3(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat3.grid()
-        self.btn_cat4 = tk.Button(self.part1_colorface, text='三花貓', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click4(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat4 = tk.Button(self.part1_colorface, text='三花貓', font=self.root.ft, bg="white", fg='orange',
+                                  anchor=tk.CENTER, command=lambda: self.click4(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat4.grid()
-        self.btn_cat5 = tk.Button(self.part1_colorface, text='乳牛貓', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click5(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat5 = tk.Button(self.part1_colorface, text='乳牛貓', font=self.root.ft, bg="white", fg='orange',
+                                  anchor=tk.CENTER, command=lambda: self.click5(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat5.grid()
-        self.btn_cat6 = tk.Button(self.part1_colorface, text='黑貓', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.click6(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+        self.btn_cat6 = tk.Button(self.part1_colorface, text='黑貓', font=self.root.ft, bg="white", fg='orange',
+                                  anchor=tk.CENTER, command=lambda: self.click6(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat6.grid()
-        self.btn_continue = tk.Button(self.part1_colorface, text='我選完了', font=self.root.ft, bg="white", fg='orange', anchor=tk.CENTER, command=lambda: self.get_3_cat(self.cat_score))
+        self.btn_continue = tk.Button(self.part1_colorface, text='我選完了', font=self.root.ft, bg="white",
+                                      fg='orange', anchor=tk.CENTER, command=lambda: self.get_3_cat(self.cat_score))
         self.btn_continue.grid()
         self.part1_colorface.create_window(
             500, 100, window=self.lb)
@@ -318,27 +347,32 @@ class part1_colorface():
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "白底橘貓":
                 self.cat_score[cat_id] += 5
+
     def click2(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "虎斑貓":
                 self.cat_score[cat_id] += 5
+
     def click3(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "金吉拉":
-                self.cat_score[cat_id] += 5    
+                self.cat_score[cat_id] += 5
+
     def click4(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "三花貓":
-                self.cat_score[cat_id] += 5     
+                self.cat_score[cat_id] += 5
+
     def click5(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "乳牛貓":
                 self.cat_score[cat_id] += 5
+
     def click6(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "黑貓":
                 self.cat_score[cat_id] += 5
-        
+
     def get_3_cat(self, cat_score):
         # 找分數前三高貓咪
         max_id_all = []
@@ -367,7 +401,7 @@ class part1_colorface():
             if len(max_id_all) >= 3:
                 break
         self.change_part1_endingface(max_id_all)
-    
+
     def change_part1_endingface(self, max_id_all):
         self.max_id_all = max_id_all
         # print(max_id_all)  # error
@@ -633,120 +667,168 @@ class part2_endingface():
         self.root = root
         #self.grade = grade
         self.grade = part2_grade
-        #print(self.grade)
+        # print(self.grade)
         self.part2_endingface = tk.Canvas(
             self.root, bd=0, width=1000, height=600, highlightthickness=0)
         self.part2_endingface.grid()
         self.imglist = ['paints\\招財喵.png', 'paints\\仙杜瑞喵.png', 'paints\\傻眼貓咪.png', 'paints\\白爛貓.png', 'paints\\柯南.png',
-                        'paints\\躲貓貓.png', 'paints\\薛丁喵.png', 'paints\\令傑喵.png', 'paints\\多拉A喵.png', 'paints\\豆漿.png','paints\\小龍女.png']# paints\\小龍女.png
+                        'paints\\躲貓貓.png', 'paints\\薛丁喵.png', 'paints\\令傑喵.png', 'paints\\多拉A喵.png', 'paints\\豆漿.png', 'paints\\小龍女.png']  # paints\\小龍女.png
         if self.grade == 0:
             self.img = ImageTk.PhotoImage(file=self.imglist[0])
-            self.introduce_btn = tk.Button(text='點我看招財貓由來', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.peekme.cc/post/763438'))
+            self.introduce_btn = tk.Button(text='點我看招財貓由來', font=self.root.ft, bg="white", fg='pink',
+                                           anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.peekme.cc/post/763438'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(650, 520, width=180, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\招財喵.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'招財喵.png',self.save_img))
+            self.part2_endingface.create_window(
+                650, 520, width=180, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\招財喵.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'招財喵.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
         elif 0 < self.grade <= 10:
             self.img = ImageTk.PhotoImage(file=self.imglist[1])
-            self.introduce_btn = tk.Button(text='點我看襤褸貓的介紹', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://kknews.cc/zh-tw/pet/yexak6n.html'))
+            self.introduce_btn = tk.Button(text='點我看襤褸貓的介紹', font=self.root.ft, bg="white", fg='pink',
+                                           anchor=tk.CENTER, command=lambda: webbrowser.open('https://kknews.cc/zh-tw/pet/yexak6n.html'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(650, 520, width=200, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\仙杜瑞喵.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'仙杜瑞喵.png',self.save_img))
+            self.part2_endingface.create_window(
+                650, 520, width=200, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\仙杜瑞喵.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'仙杜瑞喵.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
         elif 10 < self.grade <= 20:
             self.img = ImageTk.PhotoImage(file=self.imglist[2])
-            self.introduce_btn = tk.Button(text='點我看奶牛貓洗澡視頻', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://youtu.be/eWXaPZMXahE'))
+            self.introduce_btn = tk.Button(text='點我看奶牛貓洗澡視頻', font=self.root.ft, bg="white", fg='pink',
+                                           anchor=tk.CENTER, command=lambda: webbrowser.open('https://youtu.be/eWXaPZMXahE'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(650, 520, width=250, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\傻眼貓咪.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'傻眼貓咪.png',self.save_img))
+            self.part2_endingface.create_window(
+                650, 520, width=250, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\傻眼貓咪.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'傻眼貓咪.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
         elif 20 < self.grade <= 30:
             self.img = ImageTk.PhotoImage(file=self.imglist[3])
-            self.introduce_btn = tk.Button(text='點我看虎斑貓個性8大分析！', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://thecatcity.com/article/28056/%E7%B1%B3%E5%85%8B%E6%96%AF-%E8%99%8E%E6%96%91%E8%B2%93%E5%80%8B%E6%80%A7-8-%E5%A4%A7%E5%88%86%E6%9E%90-%E5%82%B2%E5%AC%8C-%E6%9A%B4%E8%BA%81-%E6%9C%80%E5%85%B7%E5%8F%8D%E5%B7%AE%E8%90%8C'))
+            self.introduce_btn = tk.Button(text='點我看虎斑貓個性8大分析！', font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open(
+                'https://thecatcity.com/article/28056/%E7%B1%B3%E5%85%8B%E6%96%AF-%E8%99%8E%E6%96%91%E8%B2%93%E5%80%8B%E6%80%A7-8-%E5%A4%A7%E5%88%86%E6%9E%90-%E5%82%B2%E5%AC%8C-%E6%9A%B4%E8%BA%81-%E6%9C%80%E5%85%B7%E5%8F%8D%E5%B7%AE%E8%90%8C'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(620, 520, width=300, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\白爛喵.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'白爛喵.png',self.save_img))
+            self.part2_endingface.create_window(
+                620, 520, width=300, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\白爛喵.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'白爛喵.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
         elif 30 < self.grade <= 40:
             self.img = ImageTk.PhotoImage(file=self.imglist[4])
-            self.introduce_btn = tk.Button(text='點我看曼切堪猫超萌影片', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://youtu.be/jANE8lpoj2c'))
+            self.introduce_btn = tk.Button(text='點我看曼切堪猫超萌影片', font=self.root.ft, bg="white", fg='pink',
+                                           anchor=tk.CENTER, command=lambda: webbrowser.open('https://youtu.be/jANE8lpoj2c'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(650, 520, width=250, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\柯南喵.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'柯南喵.png',self.save_img))
+            self.part2_endingface.create_window(
+                650, 520, width=250, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\柯南喵.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'柯南喵.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
         elif 40 < self.grade <= 50:
             self.img = ImageTk.PhotoImage(file=self.imglist[5])
-            self.introduce_btn = tk.Button(text='點我看斯芬克斯貓超萌影片', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://youtu.be/VuaZ-ngEvVU'))
+            self.introduce_btn = tk.Button(text='點我看斯芬克斯貓超萌影片', font=self.root.ft, bg="white", fg='pink',
+                                           anchor=tk.CENTER, command=lambda: webbrowser.open('https://youtu.be/VuaZ-ngEvVU'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(650, 520, width=250, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\躲貓貓.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'躲貓貓.png',self.save_img))
+            self.part2_endingface.create_window(
+                650, 520, width=250, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\躲貓貓.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'躲貓貓.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
         elif 50 < self.grade <= 60:
             self.img = ImageTk.PhotoImage(file=self.imglist[6])
-            self.introduce_btn = tk.Button(text='點我看薛丁格的貓咪實驗', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://zh.wikipedia.org/wiki/%E8%96%9B%E5%AE%9A%E8%B0%94%E7%8C%AB'))
+            self.introduce_btn = tk.Button(text='點我看薛丁格的貓咪實驗', font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER,
+                                           command=lambda: webbrowser.open('https://zh.wikipedia.org/wiki/%E8%96%9B%E5%AE%9A%E8%B0%94%E7%8C%AB'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(670, 520, width=240, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\薛丁喵.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'薛丁喵.png',self.save_img))
+            self.part2_endingface.create_window(
+                670, 520, width=240, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\薛丁喵.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'薛丁喵.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
         elif 60 < self.grade <= 70:
             self.img = ImageTk.PhotoImage(file=self.imglist[7])
-            self.introduce_btn = tk.Button(text='點我看麝香貓與咖啡的故事', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.natgeomedia.com/environment/article/content-6091.html'))
+            self.introduce_btn = tk.Button(text='點我看麝香貓與咖啡的故事', font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER,
+                                           command=lambda: webbrowser.open('https://www.natgeomedia.com/environment/article/content-6091.html'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(640, 520, width=290, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\令傑喵.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'令傑喵.png',self.save_img))
+            self.part2_endingface.create_window(
+                640, 520, width=290, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\令傑喵.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'令傑喵.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
         elif 70 < self.grade <= 80:
             self.img = ImageTk.PhotoImage(file=self.imglist[8])
-            self.introduce_btn = tk.Button(text='點我看狸花貓超萌影片', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://youtu.be/krkI2FzKozE'))
+            self.introduce_btn = tk.Button(text='點我看狸花貓超萌影片', font=self.root.ft, bg="white", fg='pink',
+                                           anchor=tk.CENTER, command=lambda: webbrowser.open('https://youtu.be/krkI2FzKozE'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(650, 520, width=220, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\多拉A喵.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'多拉A喵.png',self.save_img))
+            self.part2_endingface.create_window(
+                650, 520, width=220, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\多拉A喵.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'多拉A喵.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
         elif 80 < self.grade <= 90:
             self.img = ImageTk.PhotoImage(file=self.imglist[9])
-            self.introduce_btn = tk.Button(text='點我看豆漿Instagram', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://www.instagram.com/soybeanmilk_cat/?hl=zh-tw'))
+            self.introduce_btn = tk.Button(text='點我看豆漿Instagram', font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER,
+                                           command=lambda: webbrowser.open('https://www.instagram.com/soybeanmilk_cat/?hl=zh-tw'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(650, 520, width=220, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\豆漿.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'豆漿.png',self.save_img))
+            self.part2_endingface.create_window(
+                650, 520, width=220, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\豆漿.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'豆漿.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
         elif 90 < self.grade <= 100:
             self.img = ImageTk.PhotoImage(file=self.imglist[10])
-            self.introduce_btn = tk.Button(text='點我看世界最美異瞳白貓', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: webbrowser.open('https://pets.ettoday.net/news/750605'))
+            self.introduce_btn = tk.Button(text='點我看世界最美異瞳白貓', font=self.root.ft, bg="white", fg='pink',
+                                           anchor=tk.CENTER, command=lambda: webbrowser.open('https://pets.ettoday.net/news/750605'))
             self.introduce_btn.grid()
-            self.part2_endingface.create_window(650, 520, width=250, height=40, window=self.introduce_btn)
-            self.save_img=io.imread('download_imgs\\小龍女喵.png')
-            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'小龍女喵.png',self.save_img))
+            self.part2_endingface.create_window(
+                650, 520, width=250, height=40, window=self.introduce_btn)
+            self.save_img = io.imread('download_imgs\\小龍女喵.png')
+            self.save_img_btn = tk.Button(text='下載我的貓咪\n至桌面', font=self.root.ft, bg="white", fg='pink',
+                                          anchor=tk.CENTER, command=lambda: io.imsave(user_desktop+'小龍女喵.png', self.save_img))
             self.save_img_btn.grid()
-            self.part2_endingface.create_window(924, 30, width=150, height=60, window=self.save_img_btn)
-        self.part2_endingface.create_image(500, 280, image=self.img)  # anchor=tk.NW,
+            self.part2_endingface.create_window(
+                924, 30, width=150, height=60, window=self.save_img_btn)
+        self.part2_endingface.create_image(
+            500, 280, image=self.img)  # anchor=tk.NW,
         self.part2_endingface.grid()
-        self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft2, bg="white",fg='orange', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
+        self.lb = tk.Label(text='你的分數是 : '+str(self.grade), font=self.root.ft2,
+                           bg="white", fg='orange', anchor=tk.CENTER)  # '#323232' bg='lemon chiffon'
         self.lb.grid()
-        self.part2_endingface.create_window(500, 40, width=450, height=70, window=self.lb)
-        self.btn_initface = tk.Button(text='回到主頁', font=self.root.ft, bg="white",fg='pink', anchor=tk.CENTER, command=self.change_initface)
+        self.part2_endingface.create_window(
+            500, 40, width=450, height=70, window=self.lb)
+        self.btn_initface = tk.Button(text='回到主頁', font=self.root.ft, bg="white",
+                                      fg='pink', anchor=tk.CENTER, command=self.change_initface)
         self.btn_initface.grid()
-        self.part2_endingface.create_window(870, 520, width=150, height=40, window=self.btn_initface)
-        
+        self.part2_endingface.create_window(
+            870, 520, width=150, height=40, window=self.btn_initface)
 
     def change_initface(self):
         global questions, option1s, option2s, true_answers, info, btn_1_score, btn_2_score
