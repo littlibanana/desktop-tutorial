@@ -183,13 +183,13 @@ class part1_questionface():
         self.questionlbl.place(anchor='center', relx=0.5, rely=0.4)
         self.ans_btn1 = tk.Button(self.part1_questionface, text=question_list[0][1], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click1(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))  # ?
-        self.ans_btn1.place(anchor='center', relx=0.3, rely=0.55)
+        self.ans_btn1.place(anchor='center', relx=0.5, rely=0.53)
         self.ans_btn2 = tk.Button(self.part1_questionface, text=question_list[0][2], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click2(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
-        self.ans_btn2.place(anchor='center', relx=0.7, rely=0.55)
+        self.ans_btn2.place(anchor='center', relx=0.5, rely=0.61)
         self.ans_btn3 = tk.Button(self.part1_questionface, text="都可以", height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click3(
             question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
-        self.ans_btn3.place(anchor='center', relx=0.5, rely=0.65)
+        self.ans_btn3.place(anchor='center', relx=0.5, rely=0.69)
 
     def click1(self, question_list, cat_dict, cat_score, color_list, i):
         for cat_id in cat_dict.keys():  # 計算分數
