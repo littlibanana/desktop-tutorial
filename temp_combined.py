@@ -290,62 +290,110 @@ class part1_colorface():
                             image=self.cat6_img, borderwidth=0)
         self.lb6.place(anchor='center', relx=0.72, rely=0.65)
         self.btn_cat1 = tk.Button(self.part1_colorface, text='白底橘貓', font=self.root.ft, bg="white", fg='orange',
-                                  anchor=tk.CENTER, command=lambda: self.click1(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+                                  anchor=tk.CENTER, command=lambda: self.click1_0(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat1.place(anchor='center', relx=0.28, rely=0.48)
         self.btn_cat2 = tk.Button(self.part1_colorface, text='虎斑貓', font=self.root.ft, bg="white", fg='orange',
-                                  anchor=tk.CENTER, command=lambda: self.click2(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+                                  anchor=tk.CENTER, command=lambda: self.click2_0(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat2.place(anchor='center', relx=0.5, rely=0.48)
         self.btn_cat3 = tk.Button(self.part1_colorface, text='金吉拉', font=self.root.ft, bg="white", fg='orange',
-                                  anchor=tk.CENTER, command=lambda: self.click3(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+                                  anchor=tk.CENTER, command=lambda: self.click3_0(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat3.place(anchor='center', relx=0.72, rely=0.48)
         self.btn_cat4 = tk.Button(self.part1_colorface, text='三花貓', font=self.root.ft, bg="white", fg='orange',
-                                  anchor=tk.CENTER, command=lambda: self.click4(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+                                  anchor=tk.CENTER, command=lambda: self.click4_0(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat4.place(anchor='center', relx=0.28, rely=0.8)
         self.btn_cat5 = tk.Button(self.part1_colorface, text='乳牛貓', font=self.root.ft, bg="white", fg='orange',
-                                  anchor=tk.CENTER, command=lambda: self.click5(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+                                  anchor=tk.CENTER, command=lambda: self.click5_0(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat5.place(anchor='center', relx=0.5, rely=0.8)
         self.btn_cat6 = tk.Button(self.part1_colorface, text='黑貓', font=self.root.ft, bg="white", fg='orange',
-                                  anchor=tk.CENTER, command=lambda: self.click6(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
+                                  anchor=tk.CENTER, command=lambda: self.click6_0(cat_dict, self.cat_score))  # 設定按鈕上的文字、字體、按鈕被景色、按鈕文字色、按鈕文字位置
         self.btn_cat6.place(anchor='center', relx=0.72, rely=0.8)
         self.btn_continue = tk.Button(self.part1_colorface, text='我選完了', font=self.root.ft, bg="white",
                                       fg='orange', anchor=tk.CENTER, command=lambda: self.get_3_cat(self.cat_score))
         self.btn_continue.place(anchor='center', relx=0.862, rely=0.832)
 
-    def click1(self, cat_dict, cat_score):
+    def click1_0(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "白底橘貓":
                 self.cat_score[cat_id] += 5
-        self.btn_cat1.config(bg='orange', fg='white')
+        self.btn_cat1.config(bg='orange', fg='white', command=lambda: self.click1_1(
+            cat_dict, self.cat_score))
 
-    def click2(self, cat_dict, cat_score):
+    def click1_1(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "白底橘貓":
+                self.cat_score[cat_id] -= 5
+        self.btn_cat1.config(bg='white', fg='orange', command=lambda: self.click1_0(
+            cat_dict, self.cat_score))
+
+    def click2_0(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "虎斑貓":
                 self.cat_score[cat_id] += 5
-        self.btn_cat2.config(bg='orange', fg='white')
+        self.btn_cat2.config(bg='orange', fg='white', command=lambda: self.click2_1(
+            cat_dict, self.cat_score))
 
-    def click3(self, cat_dict, cat_score):
+    def click2_1(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "虎斑貓":
+                self.cat_score[cat_id] -= 5
+        self.btn_cat2.config(bg='white', fg='orange', command=lambda: self.click2_0(
+            cat_dict, self.cat_score))
+
+    def click3_0(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "金吉拉":
                 self.cat_score[cat_id] += 5
-        self.btn_cat3.config(bg='orange', fg='white')
+        self.btn_cat3.config(bg='orange', fg='white', command=lambda: self.click3_1(
+            cat_dict, self.cat_score))
 
-    def click4(self, cat_dict, cat_score):
+    def click3_1(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "金吉拉":
+                self.cat_score[cat_id] -= 5
+        self.btn_cat3.config(bg='white', fg='orange', command=lambda: self.click3_0(
+            cat_dict, self.cat_score))
+
+    def click4_0(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "三花貓":
                 self.cat_score[cat_id] += 5
-        self.btn_cat4.config(bg='orange', fg='white')
+        self.btn_cat4.config(bg='orange', fg='white', command=lambda: self.click4_1(
+            cat_dict, self.cat_score))
 
-    def click5(self, cat_dict, cat_score):
+    def click4_1(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "三花貓":
+                self.cat_score[cat_id] -= 5
+        self.btn_cat4.config(bg='white', fg='orange', command=lambda: self.click4_0(
+            cat_dict, self.cat_score))
+
+    def click5_0(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "乳牛貓":
                 self.cat_score[cat_id] += 5
-        self.btn_cat5.config(bg='orange', fg='white')
+        self.btn_cat5.config(bg='orange', fg='white', command=lambda: self.click5_1(
+            cat_dict, self.cat_score))
 
-    def click6(self, cat_dict, cat_score):
+    def click5_1(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "乳牛貓":
+                self.cat_score[cat_id] -= 5
+        self.btn_cat5.config(bg='white', fg='orange', command=lambda: self.click5_0(
+            cat_dict, self.cat_score))
+
+    def click6_0(self, cat_dict, cat_score):
         for cat_id in cat_dict.keys():
             if cat_dict[cat_id][8] == "黑貓":
                 self.cat_score[cat_id] += 5
-        self.btn_cat6.config(bg='orange', fg='white')
+        self.btn_cat6.config(bg='orange', fg='white', command=lambda: self.click6_1(
+            cat_dict, self.cat_score))
+
+    def click6_1(self, cat_dict, cat_score):
+        for cat_id in cat_dict.keys():
+            if cat_dict[cat_id][8] == "黑貓":
+                self.cat_score[cat_id] -= 5
+        self.btn_cat6.config(bg='white', fg='orange', command=lambda: self.click6_0(
+            cat_dict, self.cat_score))
 
     def get_3_cat(self, cat_score):
         # 找分數前三高貓咪
