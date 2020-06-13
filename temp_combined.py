@@ -4,7 +4,7 @@ import csv
 import webbrowser
 import tkinter.font as tkFont
 from PIL import ImageTk, Image
-# import pygame
+import pygame
 import winsound
 from skimage import io
 #import getpass
@@ -22,11 +22,11 @@ user = getpass.getuser()
 user_desktop = 'C:\\Users\\'+user+'\\Desktop\\'
 '''
 user_desktop = get_desktop()+'\\\\'
-# print(user_desktop)
-# file = 'music//music.wav'
-# pygame.mixer.init()
-# track = pygame.mixer.music.load(file)
-# pygame.mixer.music.play(-1)
+print(user_desktop)
+file = 'music//music.wav'
+pygame.mixer.init()
+track = pygame.mixer.music.load(file)
+pygame.mixer.music.play(-1)
 
 
 def read_PART2_question():
@@ -559,7 +559,7 @@ class part2_questionface():
             self.back_btn.place(anchor='center', relx=0.85, rely=0.8)
             self.questionlbl.place(anchor='center', relx=0.5, rely=0.45)
             self.correct_img = ImageTk.PhotoImage(
-                file='correct_cat.png')
+                file='background//correct_cat.png')
             self.questionlbl.config(image=self.correct_img, borderwidth=0)
             self.wronglbl = tk.Label(text='恭喜答對囉', bg='pink',
                                      fg='white', font=self.root.ft1)
