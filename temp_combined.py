@@ -170,7 +170,6 @@ class part1_questionface():
         self.part1_questionface.create_image(
             500, 280, image=self.background_img)  # ?
         self.part1_questionface.grid()
-        self.color_list = []
         self.cat_score = {}
         for cat_id in cat_dict.keys():
             self.cat_score[int(cat_id)] = 60  # 分數60起跳
@@ -182,16 +181,16 @@ class part1_questionface():
             self.part1_questionface, text=question_list[0][0], bg='gray', fg='white', font=self.root.ft1)
         self.questionlbl.place(anchor='center', relx=0.5, rely=0.37)
         self.ans_btn1 = tk.Button(self.part1_questionface, text=question_list[0][1], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click1(
-            question_list, cat_dict, self.cat_score, self.color_list, self.q_id))  # ?
+            question_list, cat_dict, self.cat_score, self.q_id))  # ?
         self.ans_btn1.place(anchor='center', relx=0.5, rely=0.5)
         self.ans_btn2 = tk.Button(self.part1_questionface, text=question_list[0][2], height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click2(
-            question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
+            question_list, cat_dict, self.cat_score, self.q_id))
         self.ans_btn2.place(anchor='center', relx=0.5, rely=0.59)
         self.ans_btn3 = tk.Button(self.part1_questionface, text="都可以", height=1, font=self.root.ft, bg="white", fg='pink', anchor=tk.CENTER, command=lambda: self.click3(
-            question_list, cat_dict, self.cat_score, self.color_list, self.q_id))
+            question_list, cat_dict, self.cat_score, self.q_id))
         self.ans_btn3.place(anchor='center', relx=0.5, rely=0.68)
 
-    def click1(self, question_list, cat_dict, cat_score, color_list, i):
+    def click1(self, question_list, cat_dict, cat_score, i):
         for cat_id in cat_dict.keys():  # 計算分數
             if question_list[self.q_id][1] == cat_dict[cat_id][self.q_id]:
                 self.cat_score[cat_id] += int(question_list[self.q_id][3])
@@ -211,7 +210,7 @@ class part1_questionface():
         if self.q_id == 4:
             self.ans_btn3.place_forget()
 
-    def click2(self, question_list, cat_dict, cat_score, color_list, i):
+    def click2(self, question_list, cat_dict, cat_score, i):
 
         for cat_id in cat_dict.keys():  # 計算分數
             if question_list[self.q_id][2] == cat_dict[cat_id][self.q_id]:
@@ -231,7 +230,7 @@ class part1_questionface():
         if self.q_id == 4:
             self.ans_btn3.place_forget()
 
-    def click3(self, question_list, cat_dict, cat_score, color_list, i):
+    def click3(self, question_list, cat_dict, cat_score, i):
 
         for cat_id in cat_dict.keys():  # 計算分數
             self.cat_score[cat_id] += 3
